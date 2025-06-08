@@ -1,6 +1,8 @@
 import type { NextConfig } from "next";
 import path from 'path';
 
+// Module resolution configuration for @ alias
+
 const nextConfig : NextConfig= {
   reactStrictMode: true,
   env: {
