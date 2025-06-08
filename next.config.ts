@@ -6,8 +6,8 @@ import path from 'path';
 const nextConfig : NextConfig= {
   reactStrictMode: true,
   env: {
-    NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000',
-    NEXT_PUBLIC_FRONTEND_URL: process.env.NEXT_PUBLIC_FRONTEND_URL || 'http://localhost:3000',
+    NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL || 'https://vital-up-production.up.railway.app',
+    NEXT_PUBLIC_FRONTEND_URL: process.env.NEXT_PUBLIC_FRONTEND_URL || 'https://vital-up-frontend.vercel.app',
   },
   webpack: (config) => {
     config.resolve.alias = {
@@ -17,7 +17,7 @@ const nextConfig : NextConfig= {
     return config;
   },
   async rewrites() {
-    const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'https://vital-up-production.up.railway.app';
     return [
       {
         source: '/api/:path*',
@@ -42,7 +42,7 @@ const nextConfig : NextConfig= {
     ]
   },
   async headers() {
-    const frontendUrl = process.env.NEXT_PUBLIC_FRONTEND_URL || 'http://localhost:3000';
+    const frontendUrl = process.env.NEXT_PUBLIC_FRONTEND_URL || 'https://vital-up-frontend.vercel.app';
     return [
       {
         source: '/:path*',
