@@ -1,25 +1,13 @@
 {
   "version": 2,
-  "builds": [
-    {
-      "src": "package.json",
-      "use": "@vercel/next"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "/"
-    }
-  ],
-  "env": {
-    "NEXT_PUBLIC_API_URL": "@next_public_api_url",
-    "NEXT_PUBLIC_FRONTEND_URL": "@next_public_frontend_url"
-  },
   "functions": {
     "app/api/**/*.js": {
       "maxDuration": 30
     }
+  },
+  "env": {
+    "NEXT_PUBLIC_API_URL": "https://vital-up-production.up.railway.app",
+    "NEXT_PUBLIC_FRONTEND_URL": "https://vital-up-frontend.vercel.app"
   },
   "headers": [
     {
