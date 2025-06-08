@@ -1,0 +1,662 @@
+{
+  "navigation": {
+    "home": "Home",
+    "dashboard": "Dashboard",
+    "quizzes": "Quizzes",
+    "challenges": "Challenges",
+    "badges": "Badges",
+    "profile": "Profile",
+    "settings": "Settings",
+    "admin": "Admin",
+    "users": "Users",
+    "signin": "Sign In",
+    "register": "Register",
+    "logout": "Logout"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "level": "Level",
+    "cancel": "Cancel",
+    "save": "Save",
+    "points": "Points",
+    "edit": "Edit",
+    "delete": "Delete",
+    "submit": "Submit",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "close": "Close",
+    "confirm": "Confirm",
+    "yes": "Yes",
+    "no": "No",
+    "search": "Search",
+    "filter": "Filter",
+    "sort": "Sort",
+    "actions": "Actions",
+    "view": "View",
+    "tagline": "Level up, live better"
+  },
+  "dashboard": {
+    "loading": "Loading your dashboard...",
+    "welcome": "Welcome, {{name}}",
+    "subtitle": "Your Health & Fitness Dashboard 🌿",
+    "editProfile": "Edit Profile",
+    "totalPoints": "Total Points",
+    "level": "Level",
+    "badges": "Badges",
+    "challenges": "Challenges",
+    "recentQuizzes": "Recent Quizzes",
+    "activeChallenges": "Active Challenges",
+    "recentBadges": "Recent Badges",
+    "dailyTip": "Daily Tip 💡",
+    "viewAll": "View All →",
+    "defaultTip": "Take a deep breath, nourish your body and mind."
+  },
+  "auth": {
+    "signin": "Sign In",
+    "signup": "Sign Up",
+    "register": "Register",
+    "logout": "Logout",
+    "email": "Email",
+    "password": "Password",
+    "signinTitle": "Sign In",
+    "emailPlaceholder": "Email address",
+    "passwordPlaceholder": "Password",
+    "signingIn": "Signing in...",
+    "noAccount": "Don't have an account?",
+    "registerHere": "Register here",
+    "emailVerifiedSuccess": "Email verified successfully! You can now sign in.",
+    "verificationInvalid": "The verification link is invalid or has expired.",
+    "emailAlreadyVerified": "Your email is already verified. You can sign in.",
+    "registrationSuccess": "Registration successful! Please verify your email before signing in. Check your inbox.",
+    "csrfError": "Error getting CSRF token",
+    "authVerificationError": "Error verifying authentication",
+    "emailVerificationRequired": "Please verify your email before signing in. Check your inbox.",
+    "loginError": "Error signing in",
+    "connectionError": "Connection to server failed",
+    "registerTitle": "Register",
+    "namePlaceholder": "Name",
+    "confirmPasswordPlaceholder": "Confirm password",
+    "processing": "Processing...",
+    "registerError": "Error registering",
+    "alreadyHaveAccount": "Already have an account?",
+    "signinHere": "Sign in"
+  },
+  "quiz": {
+    "title": "Quizzes",
+    "header": "Knowledge Quizzes",
+    "subtitle": "Test your knowledge and earn points! 🧠✨",
+    "stats": {
+      "completed": "Completed",
+      "available": "Available",
+      "inProgress": "In Progress"
+    },
+    "error": "An error occurred while loading quizzes",
+    "questions": "Questions",
+    "pointsEach": "pts each",
+    "inProgressQuizzes": "In Progress Quizzes",
+    "question": "Question",
+    "of": "of",
+    "completed": "completed",
+    "completedStatus": "Completed ✓",
+    "pts": "pts",
+    "loading": {
+      "title": "Loading quizzes...",
+      "message": "Please wait while we fetch your quizzes!"
+    },
+    "noQuizzes": {
+      "title": "No quizzes available",
+      "message": "Check back later for new quizzes!"
+    },
+    "feedback": {
+      "correct": "Correct! +{{points}} points. Click \"Next Question\" to continue.",
+      "incorrect": "Incorrect. The correct answer is highlighted in green. You must answer correctly to continue.",
+      "submitError": "Error: {{error}}",
+      "submitFailed": "An error occurred while submitting your answer",
+      "loginRequired": "Please log in to access quizzes."
+    },
+       "availableQuizzes": "Available Quizzes",
+    "completedQuizzes": "Completed Quizzes",
+    "incompleteQuizzes": "Incomplete Quizzes",
+    "startQuiz": "Start Quiz",
+    "resumeQuiz": "Resume Quiz",
+    "retakeQuiz": "Retake Quiz",
+    "submitAnswer": "Submit Answer",
+    "nextQuestion": "Next Question",
+    "completeQuiz": "Complete Quiz",
+    "score": "Score",
+    "points": "Points",
+    "correct": "Correct!",
+    "incorrect": "Incorrect",
+    "quizCompleted": "Quiz Completed!",
+    "congratulations": "Congratulations!",
+    "alreadyCompleted": "You have already completed this quiz"
+  },
+
+  "badges": {
+    "loading": "Loading badges...",
+    "loginRequired": "Please log in to view badges.",
+    "title": "Badge Collection",
+    "stats": {
+      "earned": "Earned",
+      "available": "Available"
+    },
+    "categories": {
+      "all": "All Badges",
+      "quiz": "Quiz Master",
+      "challenge": "Challenge Hero",
+      "points": "Point Collector",
+      "level": "Level Achiever"
+    },
+    "sections": {
+      "earned": "Earned Badges",
+      "available": "Available Badges",
+      "categories": "Badge Categories",
+      "benefits": "Benefits of Earning Badges"
+    },
+    "points": "points",
+    "earnedOn": "Earned on",
+    "completeToEarn": "Complete requirements to earn",
+    "empty": {
+      "allEarned": "You haven't earned any badges yet. Complete challenges and quizzes to earn badges!",
+      "categoryEarned": "No {{category}} badges earned yet.",
+      "allAvailable": "All badges have been earned! Great job!",
+      "categoryAvailable": "All {{category}} badges have been earned!"
+    },
+    "categoryTypes": {
+      "wellness": {
+        "title": "Wellness Achievements",
+        "description": "Badges earned through maintaining healthy habits and completing wellness challenges."
+      },
+      "fitness": {
+        "title": "Fitness Milestones",
+        "description": "Badges awarded for reaching specific fitness goals and activity levels."
+      },
+      "knowledge": {
+        "title": "Knowledge Masters",
+        "description": "Badges earned by completing quizzes and demonstrating health knowledge."
+      }
+    },
+    "benefits": {
+      "unlock": "Unlock special features and content",
+      "track": "Track your progress in different health areas",
+      "earn": "Earn bonus points for completing badge collections",
+      "share": "Share your achievements with friends",
+      "recommendations": "Get personalized recommendations based on earned badges"
+    },
+    "error": {
+      "fetch": "Failed to fetch badges"
+    }
+  },
+  "profile": {
+    "loading": "Loading profile...",
+    "title": "My Profile",
+    "subtitle": "Manage your personal information and preferences",
+    "memberSince": "Member since",
+    "buttons": {
+      "editPreferences": "Edit Preferences",
+      "viewAll": "View All →"
+    },
+    "sections": {
+      "levelProgress": "Level and Progress",
+      "statistics": "Statistics",
+      "recentBadges": "Recent Badges",
+      "pointsHistory": "Points History"
+    },
+    "level": "Level",
+    "points": "points",
+    "pointsToNextLevel": "points to next level",
+    "stats": {
+      "completedChallenges": "Challenges Completed",
+      "completedQuizzes": "Quizzes Completed",
+      "badgesEarned": "Badges Earned",
+      "activeDays": "Active Days"
+    },
+    "badges": {
+      "viewAll": "View All →",
+      "noBadges": "You haven't earned any badges yet"
+    },
+    "noBadges": "You haven't earned any badges yet",
+    "errors": {
+      "loadFailed": "Failed to load profile data"
+    }
+  },
+  "admin": {
+        "loading": "Loading admin dashboard...",
+        "title": "Admin Dashboard",
+        "subtitle": "Manage your platform and view analytics 🔧📊",
+        "stats": {
+            "totalUsers": "Total Users",
+            "activeUsers": "Active Users",
+            "totalChallenges": "Total Challenges",
+            "totalQuizzes": "Total Quizzes"
+        },
+        "navigation": {
+            "manageUsers": "Manage Users",
+            "manageUsersDesc": "View and edit user accounts",
+            "manageChallenges": "Manage Challenges",
+            "manageChallengesDesc": "Create and edit challenges",
+            "manageBadges": "Manage Badges",
+            "manageBadgesDesc": "Create and edit badges",
+            "manageQuizzes": "Manage Quizzes",
+            "manageQuizzesDesc": "Create and edit quizzes"
+        },
+        "charts": {
+            "usersByLevel": "Users by Level",
+            "level": "Level",
+            "topChallenges": "Top Challenges",
+            "challenge": "Challenge",
+            "completions": "completions"
+        },
+        "quizzes": {
+            "loading": "Loading quizzes...",
+            "title": "Manage Quizzes",
+            "subtitle": "Create and manage quiz content 📝⚙️",
+            "createButton": "+ Create Quiz",
+            "confirmDelete": "Are you sure you want to delete this quiz?",
+            "questions": "questions",
+            "pointsPerQuestion": "Points per Question",
+            "availableFrom": "Available From",
+            "availableUntil": "Available Until",
+            "stats": {
+                "total": "Total Quizzes",
+                "active": "Active Quizzes",
+                "totalQuestions": "Total Questions"
+            },
+            "status": {
+                "active": "Active",
+                "inactive": "Inactive"
+            },
+            "difficulties": {
+                "easy": "Easy",
+                "medium": "Medium",
+                "hard": "Hard"
+            },
+            "pagination": {
+                "showing": "Showing page {{current}} of {{total}}"
+            },
+            "modal": {
+                "editTitle": "Edit Quiz",
+                "createTitle": "Create Quiz",
+                "title": "Title",
+                "description": "Description",
+                "pointsPerQuestion": "Points per Question",
+                "availableFrom": "Available From",
+                "availableUntil": "Available Until",
+                "status": "Status",
+                "difficulty": "Difficulty",
+                "category": "Category",
+                "categoryPlaceholder": "general",
+                "questions": "Questions",
+                "questionPlaceholder": "Question text",
+                "optionPlaceholder": "Option {{number}}",
+                "addOption": "Add Option",
+                "addQuestion": "Add Question",
+                "remove": "Remove",
+                "saveChanges": "Save Changes",
+                "createQuiz": "Create Quiz"
+            },
+            "errors": {
+                "loadFailed": "Failed to load quizzes. Please try again later.",
+                "unexpectedFormat": "Received unexpected data format from server",
+                "processingError": "Error processing server response",
+                "createFailed": "Failed to create quiz",
+                "updateFailed": "Failed to update quiz",
+                "deleteFailed": "Failed to delete quiz"
+            }
+        },
+    "users": {
+      "loading": "Loading users...",
+      "title": "Manage Users",
+      "subtitle": "View and edit user accounts 👥⚙️",
+      "confirmDelete": "Are you sure you want to delete this user? This action cannot be undone.",
+      "deleteSuccess": "User deleted successfully",
+      "deleteError": "Failed to delete user",
+      "updateSuccess": "User updated successfully",
+      "updateError": "Failed to update user",
+      "interestsUpdateSuccess": "User interests updated successfully",
+      "interestsUpdateError": "Failed to update user interests",
+      "table": {
+        "id": "ID",
+        "name": "Name",
+        "email": "Email",
+        "level": "Level",
+        "points": "Points",
+        "admin": "Admin",
+        "badges": "Badges",
+        "actions": "Actions",
+        "yes": "Yes",
+        "no": "No",
+        "moreBadges": "+ {{count}} more",
+        "noBadges": "No badges",
+        "edit": "Edit",
+        "interests": "Interests",
+        "delete": "Delete"
+      },
+      "pagination": {
+        "previous": "Previous",
+        "next": "Next",
+        "showing": "Showing page {{current}} of {{total}}"
+      },
+      "editModal": {
+        "title": "Edit User",
+        "name": "Name",
+        "email": "Email",
+        "level": "Level",
+        "points": "Points",
+        "admin": "Admin",
+        "cancel": "Cancel",
+        "save": "Save"
+      },
+      "interestsModal": {
+        "title": "Edit User Interests",
+        "subtitle": "Select interests for {{name}}",
+        "cancel": "Cancel",
+        "save": "Save"
+      }
+    },
+    "challenges": {
+        "loading": "Loading challenges...",
+        "title": "Manage Challenges",
+        "subtitle": "Create and manage wellness challenges 💪⚙️",
+        "createButton": "+ Create Challenge",
+        "confirmDelete": "Are you sure you want to delete this challenge?",
+      "updateSuccess": "Challenge updated successfully",
+      "createSuccess": "Challenge created successfully",
+      "deleteSuccess": "Challenge deleted successfully",
+      "deleteError": "Failed to delete challenge",
+      "error": "An error occurred",
+      "categories": {
+        "physical": "Physical",
+        "mental": "Mental",
+        "social": "Social",
+        "environmental": "Environmental"
+      },
+      "difficulties": {
+        "beginner": "Beginner",
+        "intermediate": "Intermediate",
+        "advanced": "Advanced"
+      },
+      "status": {
+        "active": "Active",
+        "inactive": "Inactive"
+      },
+      "pagination": {
+        "previous": "Previous",
+        "next": "Next",
+        "showing": "Showing page {{current}} of {{total}}"
+      },
+      "modal": {
+        "editTitle": "Edit Challenge",
+        "createTitle": "Create New Challenge",
+        "title": "Title",
+        "description": "Description",
+        "category": "Category",
+        "difficulty": "Difficulty",
+        "points": "Points Reward",
+        "duration": "Duration (Days)",
+        "startDate": "Start Date",
+        "endDate": "End Date",
+        "endDatePlaceholder": "Select end date and time",
+        "goals": "Goals",
+        "goalPlaceholder": "Enter a goal",
+        "addGoal": "+ Add Goal",
+        "badgeRewards": "Badge Rewards (IDs)",
+        "badgeIdPlaceholder": "Badge ID",
+        "addBadgeReward": "+ Add Badge Reward",
+        "remove": "×",
+        "activeChallenge": "Active Challenge",
+        "cancel": "Cancel",
+        "updateButton": "Update Challenge",
+        "createButton": "Create Challenge"
+      }
+    },
+    "badges": {
+      "loading": "Loading badges...",
+      "title": "Manage Badges",
+      "subtitle": "Create and manage achievement badges 🏆⚙️",
+      "createButton": "+ Create Badge",
+      "confirmDelete": "Are you sure you want to delete this badge?",
+      "updateSuccess": "Badge updated successfully",
+      "createSuccess": "Badge created successfully",
+      "deleteSuccess": "Badge deleted successfully",
+      "deleteError": "Failed to delete badge",
+      "error": "An error occurred",
+      "pointsReward": "Points Reward",
+      "requirements": "Requirements",
+      "items": "items",
+      "types": {
+        "quiz": "Quiz",
+        "challenge": "Challenge",
+        "points": "Points",
+        "level": "Level"
+      },
+      "status": {
+        "active": "Active",
+        "inactive": "Inactive"
+      },
+      "pagination": {
+        "previous": "Previous",
+        "next": "Next",
+        "showing": "Showing page {{current}} of {{total}}"
+      },
+      "modal": {
+        "editTitle": "Edit Badge",
+        "createTitle": "Create Badge",
+        "name": "Name",
+        "description": "Description",
+        "selectIcon": "Select Icon",
+        "selected": "Selected",
+        "type": "Type",
+        "pointsReward": "Points Reward",
+        "isActive": "Is Active",
+        "inactiveNote": "Inactive badges won't be visible to users",
+        "requirements": "Requirements",
+        "requirementPlaceholder": "Enter requirement",
+        "addRequirement": "+ Add Requirement",
+        "remove": "Remove",
+        "cancel": "Cancel",
+        "updateButton": "Update Badge",
+        "createButton": "Create Badge"
+      }
+    }
+  },
+  "footer": {
+    "copyright": "© 2025 VitalUp — All rights reserved."
+  },
+  "features": {
+    "title": "Features",
+    "subtitle": "Discover all the amazing features that will help you on your wellness journey",
+    "healthTracking": {
+      "title": "Health Tracking",
+      "description": "Monitor your daily health metrics and track your progress over time with our comprehensive health tracking system."
+    },
+    "personalizedPlans": {
+      "title": "Personalized Plans",
+      "description": "Get customized wellness plans tailored to your specific goals, preferences, and lifestyle for maximum effectiveness."
+    },
+    "communitySupport": {
+      "title": "Community Support",
+      "description": "Connect with like-minded individuals, share your journey, and get motivated by our supportive wellness community."
+    },
+    "expertGuidance": {
+      "title": "Expert Guidance",
+      "description": "Access professional advice and guidance from certified wellness experts to help you make informed decisions."
+    },
+    "progressAnalytics": {
+      "title": "Progress Analytics",
+      "description": "Visualize your wellness journey with detailed analytics and insights to understand your patterns and improvements."
+    },
+    "goalSetting": {
+      "title": "Goal Setting",
+      "description": "Set achievable wellness goals and track your progress with our intelligent goal-setting and monitoring system."
+    },
+    "smartReminders": {
+      "title": "Smart Reminders",
+      "description": "Get personalized reminders to help you stay on track with your wellness goals."
+    },
+    "progressTracking": {
+      "title": "Progress Tracking",
+      "description": "Monitor your progress and see how far you've come on your wellness journey."
+    },
+    "communityChallenges": {
+      "title": "Community Challenges",
+      "description": "Join others in weekly and monthly challenges."
+    }
+  },
+ 
+  "home": {
+    "hero": {
+      "title": "Transform your wellness with VitalUp",
+      "description": "Join our platform to receive personalized health reminders, complete daily challenges, and unlock rewards that will motivate you to live better.",
+      "imageAlt": "Health and wellness illustration",
+      "cta": {
+        "primary": "Get Started Now",
+        "secondary": "Explore Features"
+      }
+    }
+  },
+  "challenges": {
+        "title": "Health Challenges",
+        "subtitle": "Transform your life with our wellness challenges! 💪✨",
+        "collection": "Challenge Collection",
+        "loginRequired": "Please log in to access challenges.",
+        "stats": {
+            "completed": "Completed",
+            "available": "Available",
+            "inProgress": "In Progress"
+        },
+        "sections": {
+            "active": "Active Challenges",
+            "available": "Available Challenges",
+            "completed": "Completed Challenges"
+        },
+        "progress": {
+            "label": "Progress",
+            "complete": "Challenge Complete!",
+            "almostThere": "Almost there! Keep going!",
+            "halfway": "Halfway there! Great progress!",
+            "goodStart": "Good start! Keep it up!",
+            "justStarted": "Just getting started"
+        },
+        "buttons": {
+            "join": "Join Challenge",
+            "joining": "Joining..."
+        },
+        "completedOn": "Completed on",
+        "points": "points",
+        "days": "days",
+        "error": {
+            "fetch": "Failed to fetch challenges",
+            "join": "Failed to join challenge"
+        },
+        "success": {
+            "joined": "Challenge joined successfully! Good luck!"
+        }
+    },
+  "settings": {
+    "title": "User Settings",
+    "sections": {
+      "notifications": "Notification Preferences",
+      "privacy": "Privacy Settings",
+      "dataProcessing": "Data Processing Consents",
+      "interests": "Interests"
+    },
+    "notifications": {
+      "quizReminders": "Quiz Reminders",
+      "challengeUpdates": "Challenge Updates",
+      "achievementAlerts": "Achievement Alerts",
+      "weeklySummaries": "Weekly Summaries",
+      "marketingEmails": "Marketing Emails",
+      "channel": "Notification Channel",
+      "emailFrequency": "Email Frequency",
+      "channels": {
+        "email": "Email",
+        "push": "Push Notifications",
+        "sms": "SMS",
+        "all": "All Channels"
+      },
+      "frequency": {
+        "daily": "Daily",
+        "threeDays": "Every 3 Days",
+        "weekly": "Weekly"
+      }
+    },
+    "privacy": {
+      "profileVisibility": "Profile Visibility",
+      "showActivityStatus": "Show Activity Status",
+      "allowFriendRequests": "Allow Friend Requests",
+      "shareAchievements": "Share Achievements",
+      "shareProgress": "Share Progress",
+      "visibility": {
+        "public": "Public",
+        "friends": "Friends Only",
+        "private": "Private"
+      }
+    },
+    "dataProcessing": {
+      "analytics": "Analytics",
+      "personalization": "Personalization",
+      "thirdPartySharing": "Third Party Sharing"
+    },
+    "interests": {
+      "description": "Select your interests to get personalized challenge recommendations"
+    },
+    "buttons": {
+      "save": "Save Changes",
+      "saving": "Saving..."
+    },
+    "messages": {
+      "saveSuccess": "Settings saved successfully!",
+      "saveError": "Error saving settings. Please try again."
+    }
+  },
+  "pointsHistory": {
+    "title": "Points History",
+    "totalPoints": "Total Points",
+    "fromQuizzes": "From Quizzes",
+    "fromBadges": "From Badges",
+    "fromChallenges": "From Challenges",
+    "recentTransactions": "Recent Transactions",
+    "noHistory": "No points history available.",
+    "points": "points",
+    "balance": "Balance:",
+    "pagination": {
+      "previous": "Previous",
+      "next": "Next",
+      "page": "Page",
+      "of": "of"
+    }
+  },
+  "icons": {
+    "trophy": "Trophy",
+    "medal": "Medal",
+    "star": "Star",
+    "crown": "Crown",
+    "fire": "Fire",
+    "lightning": "Lightning",
+    "diamond": "Diamond",
+    "shield": "Shield",
+    "target": "Target",
+    "rocket": "Rocket",
+    "brain": "Brain",
+    "heart": "Heart",
+    "muscle": "Muscle",
+    "book": "Book",
+    "graduation": "Graduation",
+    "checkmark": "Checkmark"
+  },
+  "languages": {
+    "english": "English",
+    "spanish": "Español"
+  },
+  "alt": {
+    "logo": "VitalUp Logo"
+  },
+  "placeholders": {
+    "selectStartDateTime": "Select start date and time"
+  }
+ 
+}
