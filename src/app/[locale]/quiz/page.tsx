@@ -50,7 +50,7 @@ export default function QuizPage() {
     const fetchQuizzes = async () => {
       try {
         setIsLoading(true);
-        const token = localStorage.getItem('token');
+        const token = localStorage.getItem('auth_token');
         if (!token) {
           console.error('No token found');
           setIsLoading(false);
@@ -136,7 +136,7 @@ export default function QuizPage() {
 
     try {
       setIsSubmitting(true); // Add loading state
-      const token = localStorage.getItem('token');
+      const token = localStorage.getItem('auth_token');
       if (!token) {
         console.error('No token found');
         setIsSubmitting(false);
@@ -211,7 +211,7 @@ export default function QuizPage() {
 
     setIsSubmitting(true);
     try {
-      const token = localStorage.getItem('token');
+      const token = localStorage.getItem('auth_token');
       if (!token) {
         console.error('No token found');
         setIsSubmitting(false);
@@ -356,7 +356,7 @@ export default function QuizPage() {
                 
                 // Refresh the quiz list to show updated status
                 try {
-                  const token = localStorage.getItem('token');
+                  const token = localStorage.getItem('auth_token');
                   if (!token) {
                     console.error('No token found');
                     return;
@@ -491,7 +491,7 @@ export default function QuizPage() {
                     const fetchQuizzes = async () => {
                       try {
                         setIsLoading(true); // Show loading state while fetching
-                        const token = localStorage.getItem('token');
+                        const token = localStorage.getItem('auth_token');
                         if (!token) {
                           console.error('No token found');
                           setIsLoading(false);

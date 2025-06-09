@@ -61,7 +61,7 @@ export default function ChallengesPage() {
   const fetchChallenges = useCallback(async () => {
     setIsLoading(true);
     try {
-      const token = localStorage.getItem('token');
+      const token = localStorage.getItem('auth_token');
       if (!token) {
         console.error('No token found');
         setIsLoading(false);
@@ -119,7 +119,7 @@ export default function ChallengesPage() {
     setIsJoining(true);
     setError(null);
     try {
-      const token = localStorage.getItem('token');
+      const token = localStorage.getItem('auth_token');
       if (!token) {
         console.error('No token found');
         return;

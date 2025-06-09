@@ -40,7 +40,7 @@ export default function SettingsPage() {
   useEffect(() => {
     const fetchPreferences = async () => {
       try {
-        const token = localStorage.getItem('token');
+        const token = localStorage.getItem('auth_token');
         if (!token) {
           console.error('No token found');
           return;
@@ -90,7 +90,7 @@ export default function SettingsPage() {
     setSaveStatus('idle');
 
     try {
-      const token = localStorage.getItem('token');
+      const token = localStorage.getItem('auth_token');
       if (!token) {
         console.error('No token found');
         setSaveStatus('error');

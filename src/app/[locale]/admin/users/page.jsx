@@ -61,7 +61,7 @@ export default function AdminUsers() {
     const fetchUsers = async (page) => {
         try {
             setLoading(true);
-            const token = localStorage.getItem('token');
+            const token = localStorage.getItem('auth_token');
             if (!token) {
                 console.error('No token found');
                 setLoading(false);
@@ -123,7 +123,7 @@ export default function AdminUsers() {
     
     const fetchAvailableInterests = async () => {
         try {
-            const token = localStorage.getItem('token');
+            const token = localStorage.getItem('auth_token');
             if (!token) {
                 console.error('No token found');
                 setAvailableInterests([]);
@@ -151,7 +151,7 @@ export default function AdminUsers() {
     
     const fetchUserInterests = async (userId) => {
         try {
-            const token = localStorage.getItem('token');
+            const token = localStorage.getItem('auth_token');
             if (!token) {
                 console.error('No token found');
                 setUserInterests([]);
@@ -199,7 +199,7 @@ export default function AdminUsers() {
         }
 
         try {
-            const token = localStorage.getItem('token');
+            const token = localStorage.getItem('auth_token');
             if (!token) {
                 console.error('No token found');
                 return;
@@ -235,7 +235,7 @@ export default function AdminUsers() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const token = localStorage.getItem('token');
+            const token = localStorage.getItem('auth_token');
             if (!token) {
                 console.error('No token found');
                 return;
@@ -277,7 +277,7 @@ export default function AdminUsers() {
     const handleInterestsSubmit = async (e) => {
         e.preventDefault();
         try {
-            const token = localStorage.getItem('token');
+            const token = localStorage.getItem('auth_token');
             if (!token) {
                 console.error('No token found');
                 return;
