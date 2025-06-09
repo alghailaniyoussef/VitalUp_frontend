@@ -15,8 +15,16 @@ export default function Dashboard() {
     useEffect(() => {
         const fetchUserAndDashboard = async () => {
             try {
+                const token = localStorage.getItem('auth_token');
+                if (!token) {
+                    throw new Error('No auth token found');
+                }
+
                 const userRes = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/user`, {
-                    credentials: 'include',
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json',
+                    },
                 });
                 if (!userRes.ok) throw new Error('Not authenticated');
                 const userData = await userRes.json();
@@ -25,10 +33,10 @@ export default function Dashboard() {
                 const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/dashboard-data`, {
                     method: 'GET',
                     headers: { 
+                        'Authorization': `Bearer ${token}`,
                         'Content-Type': 'application/json',
                         'Accept-Language': locale
                     },
-                    credentials: 'include',
                 });
 
                 if (!res.ok) throw new Error('Fallo al obtener los datos');

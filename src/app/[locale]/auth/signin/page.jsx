@@ -41,19 +41,7 @@ function SignInContent() {
             console.log('🔍 Starting login process...');
             console.log('🌐 API URL:', process.env.NEXT_PUBLIC_API_URL);
             
-            // Debug: Check initial state
-            const debugResponse = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/debug/auth`, {
-                method: 'GET',
-                credentials: 'include',
-                headers: {
-                    'Accept': 'application/json',
-                }
-            });
-            
-            if (debugResponse.ok) {
-                const debugData = await debugResponse.json();
-                console.log('🔍 Initial debug info:', debugData);
-            }
+
 
             console.log('🚀 Attempting token-based login...');
             const loginResponse = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/login`, {

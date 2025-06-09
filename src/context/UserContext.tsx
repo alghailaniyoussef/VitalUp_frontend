@@ -40,16 +40,20 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
                 return null;
             };
 
-            const csrfToken = getCookie('XSRF-TOKEN');
+            const token = localStorage.getItem('auth_token');
+            if (!token) {
+                console.log("❌ No auth token found");
+                setUser(null);
+                setLoading(false);
+                return;
+            }
             
             const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/user`, {
                 method: 'GET',
-                credentials: 'include',
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
-                    'X-Requested-With': 'XMLHttpRequest',
-                    ...(csrfToken && { 'X-XSRF-TOKEN': decodeURIComponent(csrfToken) }),
+                    'Authorization': `Bearer ${token}`,
                 }
             });
 
