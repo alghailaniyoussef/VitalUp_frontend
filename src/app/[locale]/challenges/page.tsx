@@ -61,14 +61,18 @@ export default function ChallengesPage() {
   const fetchChallenges = useCallback(async () => {
     setIsLoading(true);
     try {
-      const csrfToken = document.cookie.split('; ').find(row => row.startsWith('XSRF-TOKEN='))?.split('=')[1] || '';
+      const token = localStorage.getItem('token');
+      if (!token) {
+        console.error('No token found');
+        setIsLoading(false);
+        return;
+      }
+      
       const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/challenges?filter_by_interests=true&locale=${locale}`, {
-        credentials: 'include',
         headers: {
           'Accept': 'application/json',
           'Accept-Language': locale,
-          'X-Requested-With': 'XMLHttpRequest',
-          'X-XSRF-TOKEN': decodeURIComponent(csrfToken),
+          'Authorization': `Bearer ${token}`,
         },
       });
       if (response.ok) {
@@ -115,16 +119,19 @@ export default function ChallengesPage() {
     setIsJoining(true);
     setError(null);
     try {
-      const csrfToken = document.cookie.split('; ').find(row => row.startsWith('XSRF-TOKEN='))?.split('=')[1] || '';
+      const token = localStorage.getItem('token');
+      if (!token) {
+        console.error('No token found');
+        return;
+      }
+      
       const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/challenges/${challengeId}/join`, {
         method: 'POST',
-        credentials: 'include',
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json',
           'Accept-Language': locale,
-          'X-Requested-With': 'XMLHttpRequest',
-          'X-XSRF-TOKEN': decodeURIComponent(csrfToken),
+          'Authorization': `Bearer ${token}`,
         },
       });
 

@@ -50,14 +50,18 @@ export default function QuizPage() {
     const fetchQuizzes = async () => {
       try {
         setIsLoading(true);
-        const csrfToken = document.cookie.split('; ').find(row => row.startsWith('XSRF-TOKEN='))?.split('=')[1] || '';
+        const token = localStorage.getItem('token');
+        if (!token) {
+          console.error('No token found');
+          setIsLoading(false);
+          return;
+        }
+        
         const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/quizzes?locale=${locale}`, {
-          credentials: 'include',
           headers: {
             'Accept': 'application/json',
             'Accept-Language': locale,
-            'X-Requested-With': 'XMLHttpRequest',
-            'X-XSRF-TOKEN': decodeURIComponent(csrfToken),
+            'Authorization': `Bearer ${token}`,
           },
         });
         if (response.ok) {
@@ -132,16 +136,20 @@ export default function QuizPage() {
 
     try {
       setIsSubmitting(true); // Add loading state
-      const csrfToken = document.cookie.split('; ').find(row => row.startsWith('XSRF-TOKEN='))?.split('=')[1] || '';
+      const token = localStorage.getItem('token');
+      if (!token) {
+        console.error('No token found');
+        setIsSubmitting(false);
+        return;
+      }
+      
       const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/quizzes/${currentQuiz.id}/complete`, {
         method: 'POST',
-        credentials: 'include',
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json',
           'Accept-Language': locale,
-          'X-Requested-With': 'XMLHttpRequest',
-          'X-XSRF-TOKEN': decodeURIComponent(csrfToken),
+          'Authorization': `Bearer ${token}`,
         },
       });
 
@@ -203,16 +211,20 @@ export default function QuizPage() {
 
     setIsSubmitting(true);
     try {
-      const csrfToken = document.cookie.split('; ').find(row => row.startsWith('XSRF-TOKEN='))?.split('=')[1] || '';
+      const token = localStorage.getItem('token');
+      if (!token) {
+        console.error('No token found');
+        setIsSubmitting(false);
+        return;
+      }
+      
       const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/quizzes/${currentQuiz.id}/submit`, {
         method: 'POST',
-        credentials: 'include',
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json',
           'Accept-Language': locale,
-          'X-Requested-With': 'XMLHttpRequest',
-          'X-XSRF-TOKEN': decodeURIComponent(csrfToken),
+          'Authorization': `Bearer ${token}`,
         },
         body: JSON.stringify({
           question_index: currentQuestionIndex,
@@ -344,14 +356,17 @@ export default function QuizPage() {
                 
                 // Refresh the quiz list to show updated status
                 try {
-                  const csrfToken = document.cookie.split('; ').find(row => row.startsWith('XSRF-TOKEN='))?.split('=')[1] || '';
+                  const token = localStorage.getItem('token');
+                  if (!token) {
+                    console.error('No token found');
+                    return;
+                  }
+                  
                   const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/quizzes?locale=${locale}`, {
-                    credentials: 'include',
                     headers: {
                       'Accept': 'application/json',
                       'Accept-Language': locale,
-                      'X-Requested-With': 'XMLHttpRequest',
-                      'X-XSRF-TOKEN': decodeURIComponent(csrfToken),
+                      'Authorization': `Bearer ${token}`,
                     },
                   });
                   if (response.ok) {
@@ -476,14 +491,18 @@ export default function QuizPage() {
                     const fetchQuizzes = async () => {
                       try {
                         setIsLoading(true); // Show loading state while fetching
-                        const csrfToken = document.cookie.split('; ').find(row => row.startsWith('XSRF-TOKEN='))?.split('=')[1] || '';
+                        const token = localStorage.getItem('token');
+                        if (!token) {
+                          console.error('No token found');
+                          setIsLoading(false);
+                          return;
+                        }
+                        
                         const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/quizzes?locale=${locale}`, {
-                          credentials: 'include',
                           headers: {
                             'Accept': 'application/json',
                             'Accept-Language': locale,
-                            'X-Requested-With': 'XMLHttpRequest',
-                            'X-XSRF-TOKEN': decodeURIComponent(csrfToken),
+                            'Authorization': `Bearer ${token}`,
                           },
                         });
                         if (response.ok) {

@@ -61,7 +61,13 @@ export default function AdminUsers() {
     const fetchUsers = async (page) => {
         try {
             setLoading(true);
-            const csrfToken = document.cookie.split('; ').find(row => row.startsWith('XSRF-TOKEN='))?.split('=')[1] || '';
+            const token = localStorage.getItem('token');
+            if (!token) {
+                console.error('No token found');
+                setLoading(false);
+                return;
+            }
+            
             // Fetch all users without locale filter to show both EN and ES users
             const apiUrl = `${process.env.NEXT_PUBLIC_API_URL}/api/admin/users?page=${page}`;
             console.log('Fetching users with URL:', apiUrl);
@@ -71,10 +77,8 @@ export default function AdminUsers() {
                 headers: {
                     'Content-Type': 'application/json',
                     'Accept': 'application/json',
-                    'X-Requested-With': 'XMLHttpRequest',
-                    'X-XSRF-TOKEN': csrfToken ? decodeURIComponent(csrfToken) : ''
+                    'Authorization': `Bearer ${token}`,
                 },
-                credentials: 'include',
             });
             
             console.log('Users API response status:', res.status);
@@ -119,16 +123,20 @@ export default function AdminUsers() {
     
     const fetchAvailableInterests = async () => {
         try {
-            const csrfToken = document.cookie.split('; ').find(row => row.startsWith('XSRF-TOKEN='))?.split('=')[1] || '';
+            const token = localStorage.getItem('token');
+            if (!token) {
+                console.error('No token found');
+                setAvailableInterests([]);
+                return;
+            }
+            
             const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/admin/interests?locale=${locale}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
                     'Accept': 'application/json',
-                    'X-Requested-With': 'XMLHttpRequest',
-                    'X-XSRF-TOKEN': csrfToken ? decodeURIComponent(csrfToken) : ''
+                    'Authorization': `Bearer ${token}`,
                 },
-                credentials: 'include',
             });
 
             if (!res.ok) throw new Error('Failed to fetch interests');
@@ -143,16 +151,20 @@ export default function AdminUsers() {
     
     const fetchUserInterests = async (userId) => {
         try {
-            const csrfToken = document.cookie.split('; ').find(row => row.startsWith('XSRF-TOKEN='))?.split('=')[1] || '';
+            const token = localStorage.getItem('token');
+            if (!token) {
+                console.error('No token found');
+                setUserInterests([]);
+                return;
+            }
+            
             const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/admin/users/${userId}/interests?locale=${locale}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
                     'Accept': 'application/json',
-                    'X-Requested-With': 'XMLHttpRequest',
-                    'X-XSRF-TOKEN': csrfToken ? decodeURIComponent(csrfToken) : ''
+                    'Authorization': `Bearer ${token}`,
                 },
-                credentials: 'include',
             });
 
             if (!res.ok) throw new Error('Failed to fetch user interests');
@@ -187,16 +199,19 @@ export default function AdminUsers() {
         }
 
         try {
-            const csrfToken = document.cookie.split('; ').find(row => row.startsWith('XSRF-TOKEN='))?.split('=')[1];
+            const token = localStorage.getItem('token');
+            if (!token) {
+                console.error('No token found');
+                return;
+            }
+            
             const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/admin/users/${userId}`, {
                 method: 'DELETE',
                 headers: { 
                     'Content-Type': 'application/json',
                     'Accept': 'application/json',
-                    'X-Requested-With': 'XMLHttpRequest',
-                    'X-XSRF-TOKEN': decodeURIComponent(csrfToken)
+                    'Authorization': `Bearer ${token}`,
                 },
-                credentials: 'include',
             });
 
             if (!res.ok) throw new Error('Failed to delete user');
@@ -220,16 +235,19 @@ export default function AdminUsers() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const csrfToken = document.cookie.split('; ').find(row => row.startsWith('XSRF-TOKEN='))?.split('=')[1];
+            const token = localStorage.getItem('token');
+            if (!token) {
+                console.error('No token found');
+                return;
+            }
+            
             const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/admin/users/${editingUser.id}`, {
                 method: 'PUT',
                 headers: { 
                     'Content-Type': 'application/json',
                     'Accept': 'application/json',
-                    'X-Requested-With': 'XMLHttpRequest',
-                    'X-XSRF-TOKEN': decodeURIComponent(csrfToken)
+                    'Authorization': `Bearer ${token}`,
                 },
-                credentials: 'include',
                 body: JSON.stringify(formData)
             });
 
@@ -259,16 +277,19 @@ export default function AdminUsers() {
     const handleInterestsSubmit = async (e) => {
         e.preventDefault();
         try {
-            const csrfToken = document.cookie.split('; ').find(row => row.startsWith('XSRF-TOKEN='))?.split('=')[1];
+            const token = localStorage.getItem('token');
+            if (!token) {
+                console.error('No token found');
+                return;
+            }
+            
             const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/admin/users/${editingInterests.id}/interests`, {
                 method: 'PUT',
                 headers: { 
                     'Content-Type': 'application/json',
                     'Accept': 'application/json',
-                    'X-Requested-With': 'XMLHttpRequest',
-                    'X-XSRF-TOKEN': decodeURIComponent(csrfToken)
+                    'Authorization': `Bearer ${token}`,
                 },
-                credentials: 'include',
                 body: JSON.stringify({ interests: userInterests })
             });
 

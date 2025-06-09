@@ -4,6 +4,17 @@ import type { NextRequest } from 'next/server';
 const locales = ['en', 'es'];
 const defaultLocale = 'es';
 
+// Protected routes that require authentication
+const protectedRoutes = [
+  '/dashboard',
+  '/profile',
+  '/settings',
+  '/quiz',
+  '/challenges',
+  '/badges',
+  '/admin'
+];
+
 // Get the preferred locale, similar to the above or using a library
 function getLocale(request: NextRequest): string {
   // Check if there is any supported locale in the pathname
@@ -20,6 +31,14 @@ function getLocale(request: NextRequest): string {
 
   // If no locale in pathname, return default locale
   return defaultLocale;
+}
+
+function isProtectedRoute(pathname: string): boolean {
+  // Remove locale from pathname to check against protected routes
+  const pathWithoutLocale = pathname.replace(/^\/[a-z]{2}/, '') || '/';
+  return protectedRoutes.some(route => 
+    pathWithoutLocale.startsWith(route) || pathWithoutLocale === route
+  );
 }
 
 export function middleware(request: NextRequest) {
@@ -46,6 +65,18 @@ export function middleware(request: NextRequest) {
     const locale = getLocale(request);
     const newUrl = new URL(`/${locale}${pathname}`, request.url);
     return NextResponse.redirect(newUrl);
+  }
+
+  // Check authentication for protected routes
+  if (isProtectedRoute(pathname)) {
+    const token = request.cookies.get('token')?.value || 
+                  request.headers.get('authorization')?.replace('Bearer ', '');
+    
+    if (!token) {
+      const locale = pathname.split('/')[1] || defaultLocale;
+      const loginUrl = new URL(`/${locale}/auth/signin`, request.url);
+      return NextResponse.redirect(loginUrl);
+    }
   }
 
   return NextResponse.next();

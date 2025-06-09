@@ -54,14 +54,19 @@ export default function BadgesPage() {
   useEffect(() => {
     const fetchBadges = async () => {
       try {
-        const csrfToken = document.cookie.split('; ').find(row => row.startsWith('XSRF-TOKEN='))?.split('=')[1] || '';
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/badges?locale=${locale}`, {
-          credentials: 'include',
+        const token = localStorage.getItem('token');
+        if (!token) {
+          console.error('No token found');
+          setLoading(false);
+          return;
+        }
+        
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/user/badges`, {
+          method: 'GET',
           headers: {
             'Accept': 'application/json',
             'Accept-Language': locale,
-            'X-Requested-With': 'XMLHttpRequest',
-            'X-XSRF-TOKEN': decodeURIComponent(csrfToken),
+            'Authorization': `Bearer ${token}`,
           },
         });
         if (response.ok) {

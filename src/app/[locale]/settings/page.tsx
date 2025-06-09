@@ -40,14 +40,17 @@ export default function SettingsPage() {
   useEffect(() => {
     const fetchPreferences = async () => {
       try {
-        const csrfToken = document.cookie.split('; ').find(row => row.startsWith('XSRF-TOKEN='))?.split('=')[1] || '';
+        const token = localStorage.getItem('token');
+        if (!token) {
+          console.error('No token found');
+          return;
+        }
+        
         const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/user/preferences`, {
-          credentials: 'include',
           headers: {
             'Accept': 'application/json',
             'Accept-Language': locale,
-            'X-Requested-With': 'XMLHttpRequest',
-            'X-XSRF-TOKEN': decodeURIComponent(csrfToken),
+            'Authorization': `Bearer ${token}`,
           },
         });
         if (response.ok) {
@@ -87,7 +90,12 @@ export default function SettingsPage() {
     setSaveStatus('idle');
 
     try {
-      const csrfToken = document.cookie.split('; ').find(row => row.startsWith('XSRF-TOKEN='))?.split('=')[1] || '';
+      const token = localStorage.getItem('token');
+      if (!token) {
+        console.error('No token found');
+        setSaveStatus('error');
+        return;
+      }
       
       // Prepare data for submission, including interests
       const dataToSubmit = {
@@ -99,13 +107,11 @@ export default function SettingsPage() {
       
       const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/user/preferences`, {
         method: 'PUT',
-        credentials: 'include',
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json',
           'Accept-Language': locale,
-          'X-Requested-With': 'XMLHttpRequest',
-          'X-XSRF-TOKEN': decodeURIComponent(csrfToken),
+          'Authorization': `Bearer ${token}`,
         },
         body: JSON.stringify(dataToSubmit),
       });

@@ -16,16 +16,21 @@ export default function ProfilePage() {
 
     const fetchProfile = async () => {
         try {
-            const csrfToken = document.cookie.split('; ').find(row => row.startsWith('XSRF-TOKEN='))?.split('=')[1];
+            const token = localStorage.getItem('token');
+            if (!token) {
+                console.error('No token found');
+                setError(t('profile.errors.noToken'));
+                setLoading(false);
+                return;
+            }
+            
             const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/user/profile`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
                     'Accept': 'application/json',
-                    'X-Requested-With': 'XMLHttpRequest',
-                    'X-XSRF-TOKEN': decodeURIComponent(csrfToken)
+                    'Authorization': `Bearer ${token}`,
                 },
-                credentials: 'include',
             });
 
             if (!res.ok) {
