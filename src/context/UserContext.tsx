@@ -33,18 +33,13 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
     const fetchUser = async () => {
         try {
             // Get CSRF token from cookies
-            const getCookie = (name: string) => {
-                const value = `; ${document.cookie}`;
-                const parts = value.split(`; ${name}=`);
-                if (parts.length === 2) return parts.pop()?.split(';').shift();
-                return null;
-            };
+       
 
             const token = localStorage.getItem('auth_token');
             if (!token) {
                 console.log("❌ No auth token found");
                 setUser(null);
-                setLoading(false);
+                setIsLoading(false);
                 return;
             }
             
