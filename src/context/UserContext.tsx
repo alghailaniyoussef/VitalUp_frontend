@@ -32,6 +32,16 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
 
     const fetchUser = async () => {
         try {
+            // Get CSRF token from cookies
+            const getCookie = (name: string) => {
+                const value = `; ${document.cookie}`;
+                const parts = value.split(`; ${name}=`);
+                if (parts.length === 2) return parts.pop()?.split(';').shift();
+                return null;
+            };
+
+            const csrfToken = getCookie('XSRF-TOKEN');
+            
             const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/user`, {
                 method: 'GET',
                 credentials: 'include',
@@ -39,6 +49,7 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
                     'X-Requested-With': 'XMLHttpRequest',
+                    ...(csrfToken && { 'X-XSRF-TOKEN': decodeURIComponent(csrfToken) }),
                 }
             });
 

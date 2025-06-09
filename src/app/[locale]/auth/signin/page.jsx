@@ -72,6 +72,7 @@ function SignInContent() {
 
             if (loginResponse.ok) {
                 // After successful login, verify the user is authenticated
+                const updatedCsrfToken = Cookies.get('XSRF-TOKEN');
                 const userResponse = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/user`, {
                     method: 'GET',
                     credentials: 'include',
@@ -79,6 +80,7 @@ function SignInContent() {
                         'Accept': 'application/json',
                         'Content-Type': 'application/json',
                         'X-Requested-With': 'XMLHttpRequest',
+                        'X-XSRF-TOKEN': updatedCsrfToken ? decodeURIComponent(updatedCsrfToken) : '',
                     }
                 });
 
