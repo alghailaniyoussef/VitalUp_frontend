@@ -30,31 +30,31 @@ export default function EnhancedNavigation() {
 
   const handleLogout = async () => {
     try {
-      const csrfToken = Cookies.get('XSRF-TOKEN');
-            
-      // First, get a CSRF cookie if we don't have one
-      if (!csrfToken) {
-          await fetch(`${process.env.NEXT_PUBLIC_API_URL}/sanctum/csrf-cookie`, {
-              credentials: 'include'
-          });
+      const token = localStorage.getItem('auth_token');
+      
+      if (token) {
+        await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/logout`, {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`,
+          }
+        });
       }
-      await fetch(`${process.env.NEXT_PUBLIC_API_URL}/logout`, {
-        method: 'POST',
-        credentials: 'include',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-          'X-Requested-With': 'XMLHttpRequest',
-          'X-XSRF-TOKEN': csrfToken ? decodeURIComponent(csrfToken) : '', 
-        }
-      });
+      
+      // Clear local storage
       localStorage.removeItem('auth_user');
+      localStorage.removeItem('user');
+      localStorage.removeItem('auth_token');
       setUser(null);
       router.push('/');
     } catch (error) {
       console.error('Logout error:', error);
       // Still clear local state even if logout request fails
       localStorage.removeItem('auth_user');
+      localStorage.removeItem('user');
+      localStorage.removeItem('auth_token');
       setUser(null);
       router.push('/');
     }
@@ -65,13 +65,16 @@ export default function EnhancedNavigation() {
     if (!user) return 0;
 
     try {
+      const token = localStorage.getItem('auth_token');
+      if (!token) return 0;
+      
       const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/dashboard-data`, {
         method: 'GET',
         headers: { 
           'Content-Type': 'application/json',
-          'Accept-Language': locale
+          'Accept-Language': locale,
+          'Authorization': `Bearer ${token}`,
         },
-        credentials: 'include',
       });
 
       if (!res.ok) {

@@ -55,41 +55,13 @@ function SignInContent() {
                 console.log('🔍 Initial debug info:', debugData);
             }
 
-            // Get CSRF cookie first - with credentials included and proper domain handling
-            console.log('🍪 Fetching CSRF cookie...');
-            const csrfResponse = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/sanctum/csrf-cookie`, {
-                method: 'GET',
-                credentials: 'include',
-                headers: {
-                    'Accept': 'application/json',
-                }
-            });
-
-            console.log('🍪 CSRF Response status:', csrfResponse.status);
-            console.log('🍪 CSRF Response headers:', Object.fromEntries(csrfResponse.headers.entries()));
-
-            if (!csrfResponse.ok) {
-                const errorText = await csrfResponse.text();
-                console.error('❌ Failed to fetch CSRF cookie:', errorText);
-                setError(t('auth.csrfError') + ' - ' + errorText);
-                setIsLoading(false);
-                return;
-            }
-
-            const csrfToken = Cookies.get('XSRF-TOKEN');
-            console.log('🔑 CSRF Token:', csrfToken ? 'present' : 'missing');
-            console.log('🍪 All cookies:', document.cookie);
-
-            console.log('🚀 Attempting login...');
+            console.log('🚀 Attempting token-based login...');
             const loginResponse = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/login`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                     'Accept': 'application/json',
-                    'X-Requested-With': 'XMLHttpRequest',
-                    'X-XSRF-TOKEN': csrfToken ? decodeURIComponent(csrfToken) : '',
                 },
-                credentials: 'include',
                 body: JSON.stringify({ email, password }),
             });
 
@@ -100,43 +72,15 @@ function SignInContent() {
             console.log('🔐 Login Response data:', data);
 
             if (loginResponse.ok) {
-                console.log('✅ Login successful, verifying user...');
+                console.log('✅ Login successful!');
+                console.log('🎫 Token received:', data.token ? 'present' : 'missing');
                 
-                // After successful login, verify the user is authenticated
-                const updatedCsrfToken = Cookies.get('XSRF-TOKEN');
-                console.log('🔑 Updated CSRF Token:', updatedCsrfToken ? 'present' : 'missing');
+                // Store user data and token in localStorage
+                localStorage.setItem('user', JSON.stringify(data.user));
+                localStorage.setItem('auth_token', data.token);
                 
-                const userResponse = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/user`, {
-                    method: 'GET',
-                    credentials: 'include',
-                    headers: {
-                        'Accept': 'application/json',
-                        'Content-Type': 'application/json',
-                        'X-Requested-With': 'XMLHttpRequest',
-                        'X-XSRF-TOKEN': updatedCsrfToken ? decodeURIComponent(updatedCsrfToken) : '',
-                    }
-                });
-
-                console.log('👤 User Response status:', userResponse.status);
-                console.log('👤 User Response headers:', Object.fromEntries(userResponse.headers.entries()));
-
-                if (userResponse.ok) {
-                    const userData = await userResponse.json();
-                    console.log('👤 User data:', userData);
-                    setUser(userData);
-                    localStorage.setItem('auth_user', JSON.stringify(userData));
-
-                    console.log('🎉 Login complete, redirecting...');
-                    setTimeout(() => {
-                        router.refresh();
-                        router.push(`/${locale}/dashboard`);
-                    }, 50);
-
-                } else {
-                    const userErrorData = await userResponse.json();
-                    console.error('❌ User verification failed:', userErrorData);
-                    setError(t('auth.authVerificationError') + ' - ' + JSON.stringify(userErrorData));
-                }
+                // Redirect to dashboard
+                router.push(`/${locale}/dashboard`);
             } else {
                 console.error('❌ Login failed:', data);
                 if (data.email_verification_required) {
