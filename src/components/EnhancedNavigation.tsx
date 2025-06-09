@@ -1,5 +1,4 @@
 'use client';
-import Cookies from 'js-cookie';
 
 import Link from 'next/link';
 import { useRouter, usePathname } from 'next/navigation';
@@ -43,10 +42,14 @@ export default function EnhancedNavigation() {
         });
       }
       
-      // Clear local storage
+      // Clear local storage and cookies
       localStorage.removeItem('auth_user');
       localStorage.removeItem('user');
       localStorage.removeItem('auth_token');
+      
+      // Clear auth token cookie
+      document.cookie = 'auth_token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+      
       setUser(null);
       router.push('/');
     } catch (error) {
@@ -55,6 +58,10 @@ export default function EnhancedNavigation() {
       localStorage.removeItem('auth_user');
       localStorage.removeItem('user');
       localStorage.removeItem('auth_token');
+      
+      // Clear auth token cookie
+      document.cookie = 'auth_token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+      
       setUser(null);
       router.push('/');
     }

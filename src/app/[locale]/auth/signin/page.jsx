@@ -66,6 +66,13 @@ function SignInContent() {
                 // Store user data and token in localStorage
                 localStorage.setItem('user', JSON.stringify(data.user));
                 localStorage.setItem('auth_token', data.token);
+                localStorage.setItem('auth_user', JSON.stringify(data.user));
+                
+                // Also store token in cookies for middleware access
+                Cookies.set('auth_token', data.token, { expires: 7, secure: true, sameSite: 'strict' });
+                
+                // Update UserContext with the logged-in user
+                setUser(data.user);
                 
                 // Redirect to dashboard
                 router.push(`/${locale}/dashboard`);

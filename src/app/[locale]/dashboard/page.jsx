@@ -4,31 +4,32 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { useI18n } from '@/context/I18nContext';
+import { useUser } from '@/context/UserContext';
 
 export default function Dashboard() {
-    const [user, setUser] = useState(null);
+    const { user, isLoading: userLoading } = useUser();
     const [dashboard, setDashboard] = useState(null);
     const [loading, setLoading] = useState(true);
     const router = useRouter();
     const { t, locale } = useI18n();
 
     useEffect(() => {
-        const fetchUserAndDashboard = async () => {
+        // Wait for UserContext to finish loading
+        if (userLoading) return;
+        
+        // If no user is authenticated, redirect to signin
+        if (!user) {
+            router.push(`/${locale}/auth/signin`);
+            return;
+        }
+
+        const fetchDashboard = async () => {
             try {
                 const token = localStorage.getItem('auth_token');
                 if (!token) {
-                    throw new Error('No auth token found');
+                    router.push(`/${locale}/auth/signin`);
+                    return;
                 }
-
-                const userRes = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/user`, {
-                    headers: {
-                        'Authorization': `Bearer ${token}`,
-                        'Content-Type': 'application/json',
-                    },
-                });
-                if (!userRes.ok) throw new Error('Not authenticated');
-                const userData = await userRes.json();
-                setUser(userData);
 
                 const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/dashboard-data`, {
                     method: 'GET',
@@ -39,22 +40,26 @@ export default function Dashboard() {
                     },
                 });
 
-                if (!res.ok) throw new Error('Fallo al obtener los datos');
+                if (!res.ok) throw new Error('Failed to fetch dashboard data');
                 const data = await res.json();
                 setDashboard(data);
             } catch (err) {
-                console.error('❌ Error cargando dashboard:', err);
+                console.error('❌ Error loading dashboard:', err);
                 router.push(`/${locale}/auth/signin`);
             } finally {
                 setLoading(false);
             }
         };
 
-        fetchUserAndDashboard();
-    }, [locale, router]);
+        fetchDashboard();
+    }, [user, userLoading, locale, router]);
 
-    if (loading) {
+    if (userLoading || loading) {
         return <p className="text-center text-green-700 mt-20 text-xl">{t('dashboard.loading')}</p>;
+    }
+
+    if (!user) {
+        return null; // Will redirect in useEffect
     }
 
     return (

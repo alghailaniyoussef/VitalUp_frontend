@@ -69,7 +69,8 @@ export function middleware(request: NextRequest) {
 
   // Check authentication for protected routes
   if (isProtectedRoute(pathname)) {
-    const token = request.cookies.get('token')?.value || 
+    // Check for token in cookies (auth_token) or Authorization header
+    const token = request.cookies.get('auth_token')?.value || 
                   request.headers.get('authorization')?.replace('Bearer ', '');
     
     if (!token) {
