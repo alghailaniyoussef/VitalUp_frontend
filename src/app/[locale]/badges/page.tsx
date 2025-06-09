@@ -6,6 +6,7 @@ import { useI18n } from '@/context/I18nContext';
 import { motion, AnimatePresence } from 'framer-motion';
 import  { CircularProgress } from '@/components/ProgressTracker';
 import AchievementNotification, { useAchievementNotifications } from '@/components/AchievementNotification';
+import { useRouter } from 'next/navigation';
 
 interface Badge {
   id: number;
@@ -31,7 +32,7 @@ export default function BadgesPage() {
   const [loading, setLoading] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const { currentAchievement, closeAchievement } = useAchievementNotifications();
-
+  const router = useRouter();
   const predefinedIcons = [
     { name: t('icons.trophy'), icon: '🏆', value: 'trophy' },
     { name: t('icons.medal'), icon: '🏅', value: 'medal' },
@@ -56,12 +57,12 @@ export default function BadgesPage() {
       try {
         const token = localStorage.getItem('auth_token');
         if (!token) {
-          console.error('No token found');
+          router.push(`/${locale}/auth/signin`);
           setLoading(false);
           return;
         }
         
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/user/badges`, {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/badges?locale=${locale}`, {
           method: 'GET',
           headers: {
             'Accept': 'application/json',

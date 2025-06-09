@@ -5,6 +5,7 @@ import { useUser } from '@/context/UserContext';
 import { useI18n  } from '@/context/I18nContext';
 import { motion, AnimatePresence } from 'framer-motion';
 import { CircularProgress } from '@/components/ProgressTracker';
+import { useRouter } from 'next/navigation';
 
 interface Question {
   id: number;
@@ -45,14 +46,14 @@ export default function QuizPage() {
   const [showConfetti, setShowConfetti] = useState(false);
   const [quizCompleted, setQuizCompleted] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-
+  const router = useRouter();
   useEffect(() => {
     const fetchQuizzes = async () => {
       try {
         setIsLoading(true);
         const token = localStorage.getItem('auth_token');
         if (!token) {
-          console.error('No token found');
+          router.push(`/${locale}/auth/signin`);
           setIsLoading(false);
           return;
         }
@@ -138,7 +139,7 @@ export default function QuizPage() {
       setIsSubmitting(true); // Add loading state
       const token = localStorage.getItem('auth_token');
       if (!token) {
-        console.error('No token found');
+        router.push(`/${locale}/auth/signin`);
         setIsSubmitting(false);
         return;
       }
@@ -213,7 +214,7 @@ export default function QuizPage() {
     try {
       const token = localStorage.getItem('auth_token');
       if (!token) {
-        console.error('No token found');
+        router.push(`/${locale}/auth/signin`);
         setIsSubmitting(false);
         return;
       }
@@ -358,7 +359,7 @@ export default function QuizPage() {
                 try {
                   const token = localStorage.getItem('auth_token');
                   if (!token) {
-                    console.error('No token found');
+                    router.push(`/${locale}/auth/signin`);
                     return;
                   }
                   
@@ -493,7 +494,7 @@ export default function QuizPage() {
                         setIsLoading(true); // Show loading state while fetching
                         const token = localStorage.getItem('auth_token');
                         if (!token) {
-                          console.error('No token found');
+                          router.push(`/${locale}/auth/signin`);
                           setIsLoading(false);
                           return;
                         }

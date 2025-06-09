@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useI18n } from '@/context/I18nContext';
 import { useUser } from '@/context/UserContext';
+import { useRouter } from 'next/navigation';
 
 interface PointsHistoryEntry {
   id: number;
@@ -40,15 +41,23 @@ const PointsHistory: React.FC<PointsHistoryProps> = ({ onDataUpdate }) => {
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-
+  const router = useRouter();
   const fetchPointsHistory = useCallback(async () => {
     try {
+      const token = localStorage.getItem('auth_token');
+      if (!token) {
+        router.push(`/${locale}/auth/signin`);
+        setLoading(false);
+        return;
+      }
+      
       const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/points/history?page=${currentPage}`, {
         method: 'GET',
         credentials: 'include',
         headers: {
           'Accept': 'application/json',
           'Accept-Language': locale,
+          'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json',
           'X-Requested-With': 'XMLHttpRequest',
         },
@@ -69,11 +78,18 @@ const PointsHistory: React.FC<PointsHistoryProps> = ({ onDataUpdate }) => {
 
   const fetchPointsSummary = useCallback(async () => {
     try {
+      const token = localStorage.getItem('auth_token');
+      if (!token) {
+        router.push(`/${locale}/auth/signin`);
+        return;
+      }
+      
       const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/points/summary`, {
         method: 'GET',
         credentials: 'include',
         headers: {
           'Accept': 'application/json',
+          'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json',
           'X-Requested-With': 'XMLHttpRequest',
         },

@@ -18,7 +18,7 @@ export default function ProfilePage() {
         try {
             const token = localStorage.getItem('auth_token');
             if (!token) {
-                console.error('No token found');
+                router.push(`/${locale}/auth/signin`);
                 setError(t('profile.errors.noToken'));
                 setLoading(false);
                 return;

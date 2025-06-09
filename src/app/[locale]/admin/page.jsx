@@ -17,7 +17,13 @@ export default function AdminDashboard() {
 
     const fetchAnalytics = async () => {
         try {
-            const csrfToken = document.cookie.split('; ').find(row => row.startsWith('XSRF-TOKEN='))?.split('=')[1] || '';
+            const token = localStorage.getItem('auth_token');
+            if (!token) {
+                router.push(`/${locale}/auth/signin`);
+                setLoading(false);
+                return;
+            }
+            
             const apiUrl = `${process.env.NEXT_PUBLIC_API_URL}/api/admin/analytics`;
             console.log('Fetching analytics with URL:', apiUrl);
             
@@ -27,10 +33,8 @@ export default function AdminDashboard() {
                     'Content-Type': 'application/json',
                     'Accept': 'application/json',
                     'Accept-Language': locale,
-                    'X-Requested-With': 'XMLHttpRequest',
-                    'X-XSRF-TOKEN': csrfToken ? decodeURIComponent(csrfToken) : ''
+                    'Authorization': `Bearer ${token}`,
                 },
-                credentials: 'include',
             });
             
             console.log('Analytics API response status:', res.status);

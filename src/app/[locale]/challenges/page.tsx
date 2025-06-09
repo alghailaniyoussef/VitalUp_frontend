@@ -5,6 +5,7 @@ import { useUser } from '@/context/UserContext';
 import { useI18n } from '@/context/I18nContext';
 import { motion, AnimatePresence } from 'framer-motion';
 import { CircularProgress } from '@/components/ProgressTracker';
+import { useRouter } from 'next/navigation';
 
 interface Challenge {
   id: number;
@@ -42,7 +43,7 @@ export default function ChallengesPage() {
   const [isJoining, setIsJoining] = useState(false);
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
   const [showConfetti, setShowConfetti] = useState(false);
-
+  const router = useRouter();
   // Calculate progress based on days elapsed
   const calculateProgress = (challenge: Challenge): number => {
     if (!challenge.started_at || challenge.status === 'completed') {
@@ -63,7 +64,7 @@ export default function ChallengesPage() {
     try {
       const token = localStorage.getItem('auth_token');
       if (!token) {
-        console.error('No token found');
+        router.push(`/${locale}/auth/signin`);
         setIsLoading(false);
         return;
       }
@@ -121,7 +122,7 @@ export default function ChallengesPage() {
     try {
       const token = localStorage.getItem('auth_token');
       if (!token) {
-        console.error('No token found');
+        router.push(`/${locale}/auth/signin`);
         return;
       }
       

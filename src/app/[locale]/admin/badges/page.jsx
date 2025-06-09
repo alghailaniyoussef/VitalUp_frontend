@@ -73,17 +73,21 @@ export default function AdminBadges() {
     const fetchBadges = async (page, localeParam = locale) => {
         try {
             setLoading(true);
-            const csrfToken = document.cookie.split('; ').find(row => row.startsWith('XSRF-TOKEN='))?.split('=')[1] || '';
+            const token = localStorage.getItem('auth_token');
+            if (!token) {
+                router.push(`/${locale}/auth/signin`);
+                setLoading(false);
+                return;
+            }
+            
             // Fetch badges filtered by current locale for proper pagination
             const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/admin/badges?page=${page}&locale=${localeParam}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
                     'Accept': 'application/json',
-                    'X-Requested-With': 'XMLHttpRequest',
-                    'X-XSRF-TOKEN': csrfToken ? decodeURIComponent(csrfToken) : ''
+                    'Authorization': `Bearer ${token}`,
                 },
-                credentials: 'include',
             });
 
             if (!res.ok) {
@@ -153,16 +157,12 @@ export default function AdminBadges() {
                 badgeData.is_active = selectedBadge.is_active;
             }
 
-            const csrfToken = document.cookie.split('; ').find(row => row.startsWith('XSRF-TOKEN='))?.split('=')[1] || '';
             const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/admin/badges${editingBadge ? `/${selectedBadge.id}` : ''}`, {
                 method: editingBadge ? 'PUT' : 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                     'Accept': 'application/json',
-                    'X-Requested-With': 'XMLHttpRequest',
-                    'X-XSRF-TOKEN': csrfToken ? decodeURIComponent(csrfToken) : ''
                 },
-                credentials: 'include',
                 body: JSON.stringify(badgeData)
             });
 
@@ -220,16 +220,13 @@ export default function AdminBadges() {
         if (!confirm(t('admin.badges.confirmDelete'))) return;
 
         try {
-            const csrfToken = document.cookie.split('; ').find(row => row.startsWith('XSRF-TOKEN='))?.split('=')[1];
             const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/admin/badges/${id}`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
                     'Accept': 'application/json',
-                    'X-Requested-With': 'XMLHttpRequest',
-                    'X-XSRF-TOKEN': decodeURIComponent(csrfToken)
+           
                 },
-                credentials: 'include',
             });
 
             if (!res.ok) throw new Error('Failed to delete badge');

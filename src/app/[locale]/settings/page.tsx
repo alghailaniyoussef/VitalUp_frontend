@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useUser } from '@/context/UserContext';
 import { useI18n } from '@/context/I18nContext';
+import { useRouter } from 'next/navigation';
 
 interface UserPreferences {
   notification_preferences: {
@@ -36,21 +37,23 @@ export default function SettingsPage() {
   const [preferences, setPreferences] = useState<UserPreferences | null>(null);
   const [isSaving, setIsSaving] = useState(false);
   const [saveStatus, setSaveStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const router = useRouter();
 
   useEffect(() => {
     const fetchPreferences = async () => {
       try {
         const token = localStorage.getItem('auth_token');
         if (!token) {
-          console.error('No token found');
-          return;
+            router.push(`/${locale}/auth/signin`);
+            return;
         }
         
         const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/user/preferences`, {
-          headers: {
-            'Accept': 'application/json',
-            'Accept-Language': locale,
-            'Authorization': `Bearer ${token}`,
+          method: 'GET',
+          headers: { 
+              'Authorization': `Bearer ${token}`,
+              'Content-Type': 'application/json',
+              'Accept-Language': locale
           },
         });
         if (response.ok) {
@@ -92,7 +95,7 @@ export default function SettingsPage() {
     try {
       const token = localStorage.getItem('auth_token');
       if (!token) {
-        console.error('No token found');
+        router.push(`/${locale}/auth/signin`);
         setSaveStatus('error');
         return;
       }

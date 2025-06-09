@@ -33,7 +33,13 @@ export default function AdminQuizzes() {
 
         const fetchQuizzes = async (page = 1, localeParam = locale) => {
             try {
-                const csrfToken = document.cookie.split('; ').find(row => row.startsWith('XSRF-TOKEN='))?.split('=')[1] || '';
+                const token = localStorage.getItem('auth_token');
+                if (!token) {
+                    router.push(`/${locale}/auth/signin`);
+                    setLoading(false);
+                    return;
+                }
+                
                 const apiUrl = `${process.env.NEXT_PUBLIC_API_URL}/api/admin/quizzes?page=${page}&locale=${localeParam}`;
                 console.log('Fetching quizzes with URL:', apiUrl);
                 
@@ -42,10 +48,8 @@ export default function AdminQuizzes() {
                     headers: {
                         'Accept': 'application/json',
                         'Content-Type': 'application/json',
-                        'X-Requested-With': 'XMLHttpRequest',
-                        'X-XSRF-TOKEN': csrfToken ? decodeURIComponent(csrfToken) : ''
+                        'Authorization': `Bearer ${token}`,
                     },
-                    credentials: 'include',
                 });
                 
                 console.log('Quizzes API response status:', res.status);
@@ -121,16 +125,12 @@ export default function AdminQuizzes() {
             
             console.log('Submitting quiz data:', quizData);
             
-            const csrfToken = document.cookie.split('; ').find(row => row.startsWith('XSRF-TOKEN='))?.split('=')[1] || '';
             const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/admin/quizzes`, {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
-                    'X-Requested-With': 'XMLHttpRequest',
-                    'X-XSRF-TOKEN': decodeURIComponent(csrfToken)
                 },
-                credentials: 'include',
                 body: JSON.stringify(quizData),
             });
 
@@ -151,16 +151,12 @@ export default function AdminQuizzes() {
 
     const handleUpdateQuiz = async (quizId, updates) => {
         try {
-            const csrfToken = document.cookie.split('; ').find(row => row.startsWith('XSRF-TOKEN='))?.split('=')[1] || '';
             const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/admin/quizzes/${quizId}`, {
                 method: 'PUT',
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
-                    'X-Requested-With': 'XMLHttpRequest',
-                    'X-XSRF-TOKEN': decodeURIComponent(csrfToken)
                 },
-                credentials: 'include',
                 body: JSON.stringify(updates),
             });
 
@@ -184,10 +180,7 @@ export default function AdminQuizzes() {
                 method: 'DELETE',
                 headers: {
                     'Accept': 'application/json',
-                    'X-Requested-With': 'XMLHttpRequest',
-                    'X-XSRF-TOKEN': decodeURIComponent(csrfToken)
                 },
-                credentials: 'include',
             });
 
             if (!res.ok) throw new Error(t('admin.quizzes.errors.deleteFailed'));

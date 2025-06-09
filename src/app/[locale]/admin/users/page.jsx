@@ -63,7 +63,7 @@ export default function AdminUsers() {
             setLoading(true);
             const token = localStorage.getItem('auth_token');
             if (!token) {
-                console.error('No token found');
+                router.push(`/${locale}/auth/signin`);
                 setLoading(false);
                 return;
             }
@@ -125,7 +125,7 @@ export default function AdminUsers() {
         try {
             const token = localStorage.getItem('auth_token');
             if (!token) {
-                console.error('No token found');
+                router.push(`/${locale}/auth/signin`);
                 setAvailableInterests([]);
                 return;
             }
@@ -153,7 +153,7 @@ export default function AdminUsers() {
         try {
             const token = localStorage.getItem('auth_token');
             if (!token) {
-                console.error('No token found');
+                router.push(`/${locale}/auth/signin`);
                 setUserInterests([]);
                 return;
             }
@@ -201,7 +201,7 @@ export default function AdminUsers() {
         try {
             const token = localStorage.getItem('auth_token');
             if (!token) {
-                console.error('No token found');
+                router.push(`/${locale}/auth/signin`);
                 return;
             }
             
@@ -237,7 +237,7 @@ export default function AdminUsers() {
         try {
             const token = localStorage.getItem('auth_token');
             if (!token) {
-                console.error('No token found');
+                router.push(`/${locale}/auth/signin`);
                 return;
             }
             
@@ -279,7 +279,7 @@ export default function AdminUsers() {
         try {
             const token = localStorage.getItem('auth_token');
             if (!token) {
-                console.error('No token found');
+                router.push(`/${locale}/auth/signin`);
                 return;
             }
             

@@ -56,15 +56,21 @@ export default function AdminChallenges() {
     const fetchChallenges = async (page = 1, localeParam = locale) => {
         try {
             setLoading(true);
-            const csrfToken = document.cookie.split('; ').find(row => row.startsWith('XSRF-TOKEN='))?.split('=')[1] || '';
+            const token = localStorage.getItem('auth_token');
+            if (!token) {
+                console.error('No token found');
+                setLoading(false);
+                return;
+            }
+            
             // Fetch challenges filtered by current locale for proper pagination
             const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/admin/challenges?page=${page}&locale=${localeParam}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
                     'Accept': 'application/json',
+                    'Authorization': `Bearer ${token}`,
                     'X-Requested-With': 'XMLHttpRequest',
-                    'X-XSRF-TOKEN': csrfToken ? decodeURIComponent(csrfToken) : ''
                 },
                 credentials: 'include',
             });
