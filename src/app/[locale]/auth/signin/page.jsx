@@ -56,7 +56,7 @@ function SignInContent() {
 
             const csrfToken = Cookies.get('XSRF-TOKEN');
 
-            const loginResponse = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/login`, {
+            const loginResponse = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/login`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
