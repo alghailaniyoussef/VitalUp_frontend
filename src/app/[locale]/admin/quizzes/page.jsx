@@ -175,7 +175,6 @@ export default function AdminQuizzes() {
         if (!window.confirm(t('admin.quizzes.confirmDelete'))) return;
 
         try {
-            const csrfToken = document.cookie.split('; ').find(row => row.startsWith('XSRF-TOKEN='))?.split('=')[1] || '';
             const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/admin/quizzes/${quizId}`, {
                 method: 'DELETE',
                 headers: {

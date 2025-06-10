@@ -51,7 +51,7 @@
     "verificationInvalid": "El enlace de verificación es inválido o ha expirado.",
     "emailAlreadyVerified": "Tu email ya está verificado. Puedes iniciar sesión.",
     "registrationSuccess": "¡Registro exitoso! Por favor verifica tu email antes de iniciar sesión. Revisa tu bandeja de entrada.",
-    "csrfError": "Error obteniendo el token CSRF",
+
     "authVerificationError": "Error verificando autenticación",
     "emailVerificationRequired": "Por favor verifica tu email antes de iniciar sesión. Revisa tu bandeja de entrada.",
     "loginError": "Error al iniciar sesión",

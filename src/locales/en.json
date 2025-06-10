@@ -71,7 +71,7 @@
     "verificationInvalid": "The verification link is invalid or has expired.",
     "emailAlreadyVerified": "Your email is already verified. You can sign in.",
     "registrationSuccess": "Registration successful! Please verify your email before signing in. Check your inbox.",
-    "csrfError": "Error getting CSRF token",
+
     "authVerificationError": "Error verifying authentication",
     "emailVerificationRequired": "Please verify your email before signing in. Check your inbox.",
     "loginError": "Error signing in",

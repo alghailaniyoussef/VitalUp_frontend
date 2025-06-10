@@ -69,10 +69,8 @@ export default function AdminChallenges() {
                 headers: {
                     'Content-Type': 'application/json',
                     'Accept': 'application/json',
-                    'Authorization': `Bearer ${token}`,
-                    'X-Requested-With': 'XMLHttpRequest',
+                    'Authorization': `Bearer ${token}`
                 },
-                credentials: 'include',
             });
 
             if (!res.ok) {
@@ -170,16 +168,19 @@ export default function AdminChallenges() {
                 badge_rewards: filteredBadgeRewards
             };
 
-            const csrfToken = document.cookie.split('; ').find(row => row.startsWith('XSRF-TOKEN='))?.split('=')[1] || '';
+            const token = localStorage.getItem('auth_token');
+            if (!token) {
+                router.push('/auth/signin');
+                return;
+            }
+
             const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/admin/challenges${editingChallenge ? `/${formData.id}` : ''}`, {
                 method: editingChallenge ? 'PUT' : 'POST',
                 headers: {
+                    'Authorization': `Bearer ${token}`,
                     'Content-Type': 'application/json',
-                    'Accept': 'application/json',
-                    'X-Requested-With': 'XMLHttpRequest',
-                    'X-XSRF-TOKEN': csrfToken ? decodeURIComponent(csrfToken) : ''
+                    'Accept': 'application/json'
                 },
-                credentials: 'include',
                 body: JSON.stringify(submitData)
             });
 
@@ -201,16 +202,19 @@ export default function AdminChallenges() {
         if (!confirm(t('admin.challenges.confirmDelete'))) return;
         
         try {
-            const csrfToken = document.cookie.split('; ').find(row => row.startsWith('XSRF-TOKEN='))?.split('=')[1];
+            const token = localStorage.getItem('auth_token');
+            if (!token) {
+                router.push('/auth/signin');
+                return;
+            }
+
             const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/admin/challenges/${id}`, {
                 method: 'DELETE',
                 headers: { 
+                    'Authorization': `Bearer ${token}`,
                     'Content-Type': 'application/json',
-                    'Accept': 'application/json',
-                    'X-Requested-With': 'XMLHttpRequest',
-                    'X-XSRF-TOKEN': decodeURIComponent(csrfToken)
-                },
-                credentials: 'include',
+                    'Accept': 'application/json'
+                }
             });
 
             if (!res.ok) throw new Error('Failed to delete challenge');

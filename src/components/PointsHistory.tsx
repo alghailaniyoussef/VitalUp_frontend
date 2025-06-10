@@ -53,13 +53,11 @@ const PointsHistory: React.FC<PointsHistoryProps> = ({ onDataUpdate }) => {
       
       const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/points/history?page=${currentPage}`, {
         method: 'GET',
-        credentials: 'include',
         headers: {
           'Accept': 'application/json',
           'Accept-Language': locale,
           'Authorization': `Bearer ${token}`,
-          'Content-Type': 'application/json',
-          'X-Requested-With': 'XMLHttpRequest',
+          'Content-Type': 'application/json'
         },
       });
 
@@ -86,12 +84,10 @@ const PointsHistory: React.FC<PointsHistoryProps> = ({ onDataUpdate }) => {
       
       const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/points/summary`, {
         method: 'GET',
-        credentials: 'include',
         headers: {
           'Accept': 'application/json',
           'Authorization': `Bearer ${token}`,
-          'Content-Type': 'application/json',
-          'X-Requested-With': 'XMLHttpRequest',
+          'Content-Type': 'application/json'
         },
       });
 

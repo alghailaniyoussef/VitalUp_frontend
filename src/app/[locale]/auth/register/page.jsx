@@ -4,7 +4,6 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { useUser } from '@/context/UserContext';
-import Cookies from 'js-cookie';
 import { useI18n } from '@/context/I18nContext';
 
 export default function RegisterPage() {
@@ -31,25 +30,12 @@ export default function RegisterPage() {
         setError(null);
 
         try {
-            // Get CSRF token from cookies
-            const csrfToken = Cookies.get('XSRF-TOKEN');
-            
-            // First, get a CSRF cookie if we don't have one
-            if (!csrfToken) {
-                await fetch(`${process.env.NEXT_PUBLIC_API_URL}/sanctum/csrf-cookie`, {
-                    credentials: 'include'
-                });
-            }
-            
             const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/register`, {
                 method: 'POST',
                 headers: { 
                     'Content-Type': 'application/json',
-                    'Accept': 'application/json',
-                    'X-Requested-With': 'XMLHttpRequest',
-                    'X-XSRF-TOKEN': csrfToken ? decodeURIComponent(csrfToken) : ''
+                    'Accept': 'application/json'
                 },
-                credentials: 'include',
                 body: JSON.stringify(form),
             });
 
@@ -76,11 +62,10 @@ export default function RegisterPage() {
                     try {
                         const userRes = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/user`, {
                             method: 'GET',
-                            credentials: 'include',
                             headers: {
+                                'Authorization': `Bearer ${data.token}`,
                                 'Accept': 'application/json',
-                                'Content-Type': 'application/json',
-                                'X-Requested-With': 'XMLHttpRequest',
+                                'Content-Type': 'application/json'
                             }
                         });
                         
