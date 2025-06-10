@@ -6,12 +6,7 @@
   --color-background-dark: #0a0a0a;
   --color-foreground-dark: #ededed;
 }
-@media (prefers-color-scheme: dark) {
-  body {
-    color: #000 !important;
-    background-color: #fff !important;
-  }
-}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --color-background: var(--color-background-dark);
