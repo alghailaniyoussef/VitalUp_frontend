@@ -125,36 +125,46 @@ export default function BadgesPage() {
         onClose={closeAchievement}
       />
 
-      <div className="max-w-6xl mx-auto p-4 space-y-8 min-h-screen">
+      <div className="min-h-screen bg-gradient-to-br from-gamified-bg via-primary-50 to-gamified-bg py-12">
+        <div className="container mx-auto px-6">
+          {/* Header */}
+          <div className="text-center mb-12">
+            <div className="flex items-center justify-center mb-6">
+              <div className="bg-gradient-to-br from-gamified-accent via-gamified-warning to-gamified-accent w-16 h-16 rounded-full flex items-center justify-center mr-4 shadow-glow animate-pulse">
+                <span className="text-white text-2xl">🏆</span>
+              </div>
+              <h1 className="text-5xl font-bold bg-gradient-to-r from-gamified-text via-gamified-accent to-gamified-text bg-clip-text text-transparent">{t('badges.title')}</h1>
+            </div>
+            <p className="text-xl text-gamified-text/80 bg-gamified-card/50 backdrop-blur-sm px-8 py-4 rounded-2xl border border-gamified-border/30 max-w-2xl mx-auto">{t('badges.subtitle')}</p>
+          </div>
+
         {/* Header with stats */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           className="text-center space-y-4"
         >
-          <h1 className="text-4xl font-bold bg-gradient-to-r from-teal-600 to-teal-800 bg-clip-text text-transparent">
-            {t('badges.title')}
-          </h1>
-          <div className="flex justify-center items-center space-x-8">
-            <div className="text-center">
-              <div className="text-2xl font-bold text-teal-600">{earnedBadges.length}</div>
-              <div className="text-sm text-gray-600">{t('badges.stats.earned')}</div>
+          <div className="flex justify-center items-center space-x-12 mb-12">
+            <div className="text-center bg-gamified-card/50 backdrop-blur-sm px-8 py-6 rounded-2xl border border-gamified-border/30 shadow-soft">
+              <div className="text-4xl font-bold text-gamified-success mb-2">{earnedBadges.length}</div>
+              <div className="text-sm text-gamified-text/70 font-semibold">{t('badges.stats.earned')}</div>
             </div>
-            <div className="text-center">
-              <div className="text-2xl font-bold text-gray-400">{badges.length}</div>
-              <div className="text-sm text-gray-600">{t('badges.stats.available')}</div>
+            <div className="text-center bg-gamified-card/50 backdrop-blur-sm px-8 py-6 rounded-2xl border border-gamified-border/30 shadow-soft">
+              <div className="text-4xl font-bold text-gamified-accent mb-2">{badges.length}</div>
+              <div className="text-sm text-gamified-text/70 font-semibold">{t('badges.stats.available')}</div>
             </div>
-            <div className="text-center">
+            <div className="text-center bg-gamified-card/50 backdrop-blur-sm px-8 py-6 rounded-2xl border border-gamified-border/30 shadow-soft">
               <CircularProgress
-                percentage={(earnedBadges.length / (earnedBadges.length + badges.length)) * 100}
-                size={60}
-                strokeWidth={4}
+                percentage={earnedBadges.length > 0 ? (earnedBadges.length / (earnedBadges.length + badges.length)) * 100 : 0}
+                size={80}
+                strokeWidth={6}
                 showPercentage={false}
               >
-                <span className="text-xs font-bold text-teal-600">
-                  {Math.round((earnedBadges.length / (earnedBadges.length + badges.length)) * 100)}%
+                <span className="text-sm font-bold text-gamified-accent">
+                  {Math.round(earnedBadges.length > 0 ? (earnedBadges.length / (earnedBadges.length + badges.length)) * 100 : 0)}%
                 </span>
               </CircularProgress>
+              <div className="text-xs text-gamified-text/60 font-medium mt-2">Progress</div>
             </div>
           </div>
         </motion.div>
@@ -184,8 +194,8 @@ export default function BadgesPage() {
               key={category.value}
               onClick={() => setSelectedCategory(category.value)}
               className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 flex items-center space-x-2 ${selectedCategory === category.value
-                  ? 'bg-teal-600 text-white shadow-lg'
-                  : 'bg-white text-gray-600 hover:bg-teal-50 hover:text-teal-600 border border-gray-200'
+                  ? 'bg-gradient-to-r from-teal-600 to-green-600 text-white shadow-lg'
+                  : 'bg-gradient-to-r from-white to-teal-50 text-gray-600 hover:from-teal-50 hover:to-green-50 hover:text-teal-600 border border-teal-200'
                 }`}
             >
               <span>{category.icon}</span>
@@ -199,16 +209,16 @@ export default function BadgesPage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
-          className="space-y-6"
+          className="space-y-8"
         >
-          <div className="flex items-center justify-between">
-            <h2 className="text-2xl font-semibold text-teal-700 flex items-center">
-              <span className="mr-2">🏆</span>
-              {t('badges.sections.earned')}
-              <span className="ml-2 bg-teal-100 text-teal-800 text-sm font-medium px-2 py-1 rounded-full">
-                {filteredEarnedBadges.length}
-              </span>
-            </h2>
+          <div className="flex items-center space-x-4">
+            <div className="bg-gradient-to-br from-gamified-success via-gamified-accent to-gamified-success w-12 h-12 rounded-full flex items-center justify-center shadow-glow">
+              <span className="text-white text-xl">✨</span>
+            </div>
+            <h2 className="text-3xl font-bold bg-gradient-to-r from-gamified-text via-gamified-success to-gamified-text bg-clip-text text-transparent">{t('badges.sections.earned')}</h2>
+            <span className="bg-gradient-to-r from-gamified-success/20 to-gamified-accent/20 text-gamified-success text-sm font-bold px-4 py-2 rounded-full border border-gamified-success/30">
+              {filteredEarnedBadges.length}
+            </span>
           </div>
 
           <AnimatePresence mode="wait">
@@ -226,7 +236,7 @@ export default function BadgesPage() {
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: index * 0.1 }}
                   whileHover={{ scale: 1.05, y: -5 }}
-                  className="bg-gradient-to-br from-white to-teal-50 backdrop-blur-sm rounded-xl shadow-lg p-6 border border-teal-200 hover:border-teal-300 transition-all duration-300 flex flex-col items-center relative overflow-hidden"
+                  className="bg-gradient-to-br from-white via-teal-50 to-green-50 backdrop-blur-sm rounded-xl shadow-xl p-6 border border-teal-300 hover:border-teal-400 transition-all duration-300 flex flex-col items-center relative overflow-hidden hover:shadow-2xl"
                 >
                   {/* Shine effect */}
                   <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 transform translate-x-[-100%] hover:translate-x-[100%] transition-transform duration-1000" />
@@ -276,16 +286,16 @@ export default function BadgesPage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4 }}
-          className="space-y-6"
+          className="space-y-8"
         >
-          <div className="flex items-center justify-between">
-            <h2 className="text-2xl font-semibold text-teal-700 flex items-center">
-              <span className="mr-2">🎯</span>
-              {t('badges.sections.available')}
-              <span className="ml-2 bg-gray-100 text-gray-800 text-sm font-medium px-2 py-1 rounded-full">
-                {filteredBadges.length}
-              </span>
-            </h2>
+          <div className="flex items-center space-x-4">
+            <div className="bg-gradient-to-br from-gamified-accent via-gamified-warning to-gamified-accent w-12 h-12 rounded-full flex items-center justify-center shadow-glow">
+              <span className="text-white text-xl">🎯</span>
+            </div>
+            <h2 className="text-3xl font-bold bg-gradient-to-r from-gamified-text via-gamified-accent to-gamified-text bg-clip-text text-transparent">{t('badges.sections.available')}</h2>
+            <span className="bg-gradient-to-r from-gamified-accent/20 to-gamified-warning/20 text-gamified-accent text-sm font-bold px-4 py-2 rounded-full border border-gamified-accent/30">
+              {filteredBadges.length}
+            </span>
           </div>
 
           <AnimatePresence mode="wait">
@@ -303,7 +313,7 @@ export default function BadgesPage() {
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: index * 0.1 }}
                   whileHover={{ scale: 1.02, y: -2 }}
-                  className="bg-white/60 backdrop-blur-sm rounded-xl shadow-lg p-6 border border-gray-200 hover:border-teal-200 transition-all duration-300 flex flex-col items-center opacity-75 hover:opacity-90 relative overflow-hidden"
+                  className="bg-gradient-to-br from-white/80 to-gray-50/60 backdrop-blur-sm rounded-xl shadow-lg p-6 border border-gray-300 hover:border-teal-300 transition-all duration-300 flex flex-col items-center opacity-75 hover:opacity-95 relative overflow-hidden hover:shadow-xl"
                 >
                   {/* Progress indicator */}
                   <div className="absolute top-0 left-0 right-0 h-1 bg-gray-200">
@@ -427,6 +437,7 @@ export default function BadgesPage() {
             ))}
           </ul>
         </motion.section>
-      </div>
+        </div>   
+         </div>
       </> );
 }

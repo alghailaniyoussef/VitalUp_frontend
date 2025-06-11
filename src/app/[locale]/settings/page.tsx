@@ -134,20 +134,35 @@ export default function SettingsPage() {
   };
 
   if (!user || !preferences) {
-    return <div className="p-4">{t('common.loading')}</div>;
+    return <div className="p-4 text-teal-700">{t('common.loading')}</div>;
   }
 
   return (
-    <div className="max-w-4xl mx-auto p-4 space-y-8 bg-gradient-to-b from-green-50 to-blue-50 min-h-screen">
-      <h1 className="text-3xl font-bold mb-8 text-teal-800">{t('settings.title')}</h1>
+    <div className="min-h-screen bg-gradient-to-br from-personal-bg via-primary-50 to-personal-bg py-12">
+      <div className="container mx-auto px-6 max-w-5xl">
+        {/* Header */}
+        <div className="text-center mb-12">
+          <div className="flex items-center justify-center mb-6">
+            <div className="bg-gradient-to-br from-personal-accent via-personal-info to-personal-accent w-16 h-16 rounded-full flex items-center justify-center mr-4 shadow-soft">
+              <span className="text-white text-2xl">⚙️</span>
+            </div>
+            <h1 className="text-5xl font-bold bg-gradient-to-r from-personal-text via-personal-accent to-personal-text bg-clip-text text-transparent">{t('settings.title')}</h1>
+          </div>
+          <p className="text-xl text-personal-text/80 bg-personal-card/50 backdrop-blur-sm px-8 py-4 rounded-2xl border border-personal-border/30 max-w-3xl mx-auto">{t('settings.subtitle')}</p>
+        </div>
 
-      <form onSubmit={handleSubmit} className="space-y-6">
+        <form onSubmit={handleSubmit} className="space-y-6">
         {/* Notification Preferences Section */}
-        <section className="bg-white/80 backdrop-blur-sm rounded-xl shadow-lg p-8 border border-teal-100 hover:border-teal-200 transition-all duration-300">
-          <h2 className="text-xl font-semibold mb-6 text-teal-700 border-b border-teal-100 pb-2">{t('settings.sections.notifications')}</h2>
+        <section className="bg-gradient-to-br from-personal-card via-white to-personal-card backdrop-blur-sm rounded-2xl shadow-personal p-10 border border-personal-border/30 hover:border-personal-border/50 transition-all duration-300">
+          <div className="flex items-center mb-8">
+            <div className="bg-gradient-to-br from-personal-accent via-personal-info to-personal-accent p-4 rounded-full mr-6 shadow-soft">
+              <span className="text-white text-2xl">🔔</span>
+            </div>
+            <h2 className="text-3xl font-bold bg-gradient-to-r from-personal-text via-personal-accent to-personal-text bg-clip-text text-transparent">{t('settings.notifications.title')}</h2>
+          </div>
           <div className="space-y-4">
             <div className="flex items-center justify-between">
-              <label className="text-teal-600 font-medium">{t('settings.notifications.quizReminders')}</label>
+              <label className="text-teal-700 font-medium">{t('settings.notifications.quizReminders')}</label>
               <input
                 type="checkbox"
                 checked={preferences.notification_preferences.quiz_reminders}
@@ -157,7 +172,7 @@ export default function SettingsPage() {
             </div>
 
             <div className="flex items-center justify-between">
-              <label className="text-teal-600 font-medium">{t('settings.notifications.challengeUpdates')}</label>
+              <label className="text-teal-700 font-medium">{t('settings.notifications.challengeUpdates')}</label>
               <input
                 type="checkbox"
                 checked={preferences.notification_preferences.challenge_updates}
@@ -167,7 +182,7 @@ export default function SettingsPage() {
             </div>
 
             <div className="flex items-center justify-between">
-              <label className="text-teal-600 font-medium">{t('settings.notifications.achievementAlerts')}</label>
+              <label className="text-teal-700 font-medium">{t('settings.notifications.achievementAlerts')}</label>
               <input
                 type="checkbox"
                 checked={preferences.notification_preferences.achievement_alerts}
@@ -177,7 +192,7 @@ export default function SettingsPage() {
             </div>
 
             <div className="flex items-center justify-between">
-              <label className="text-teal-600 font-medium">{t('settings.notifications.weeklySummaries')}</label>
+              <label className="text-teal-700 font-medium">{t('settings.notifications.weeklySummaries')}</label>
               <input
                 type="checkbox"
                 checked={preferences.notification_preferences.weekly_summaries}
@@ -187,7 +202,7 @@ export default function SettingsPage() {
             </div>
 
             <div className="flex items-center justify-between">
-              <label className="text-teal-600 font-medium">{t('settings.notifications.marketingEmails')}</label>
+              <label className="text-teal-700 font-medium">{t('settings.notifications.marketingEmails')}</label>
               <input
                 type="checkbox"
                 checked={preferences.notification_preferences.marketing_emails}
@@ -197,11 +212,11 @@ export default function SettingsPage() {
             </div>
 
             <div className="space-y-2">
-                <label className="block text-gray-700">{t('settings.notifications.channel')}</label>
+                <label className="block text-teal-600">{t('settings.notifications.channel')}</label>
                 <select
                   value={preferences.notification_preferences.channel}
                   onChange={(e) => handlePreferenceChange('notification_preferences', 'channel', e.target.value)}
-                  className="select select-bordered w-full bg-white/70 border-teal-200 focus:border-teal-400 text-teal-700"
+                  className="select select-bordered w-full bg-gradient-to-r from-white to-teal-50 border-teal-200 focus:border-teal-400 text-teal-700"
                 >
                   <option value="email">{t('settings.notifications.channels.email')}</option>
                   <option value="push">{t('settings.notifications.channels.push')}</option>
@@ -211,11 +226,11 @@ export default function SettingsPage() {
               </div>
 
               <div className="space-y-2">
-                <label className="block text-gray-700">{t('settings.notifications.emailFrequency')}</label>
+                <label className="block text-teal-600">{t('settings.notifications.emailFrequency')}</label>
                 <select
                   value={preferences.notification_preferences.email_frequency}
                   onChange={(e) => handlePreferenceChange('notification_preferences', 'email_frequency', e.target.value)}
-                  className="select select-bordered w-full bg-white/70 border-teal-200 focus:border-teal-400 text-teal-700"
+                  className="select select-bordered w-full bg-gradient-to-r from-white to-teal-50 border-teal-200 focus:border-teal-400 text-teal-700"
                 >
                   <option value="daily">{t('settings.notifications.frequency.daily')}</option>
                   <option value="three_days">{t('settings.notifications.frequency.threeDays')}</option>
@@ -226,15 +241,20 @@ export default function SettingsPage() {
         </section>
 
         {/* Privacy Settings Section */}
-        <section className="bg-white/80 backdrop-blur-sm rounded-xl shadow-lg p-8 border border-teal-100 hover:border-teal-200 transition-all duration-300">
-          <h2 className="text-xl font-semibold mb-4">{t('settings.sections.privacy')}</h2>
+        <section className="bg-gradient-to-br from-personal-card via-white to-personal-card backdrop-blur-sm rounded-2xl shadow-personal p-10 border border-personal-border/30 hover:border-personal-border/50 transition-all duration-300">
+          <div className="flex items-center mb-8">
+            <div className="bg-gradient-to-br from-personal-info via-personal-accent to-personal-info p-4 rounded-full mr-6 shadow-soft">
+              <span className="text-white text-2xl">🔒</span>
+            </div>
+            <h2 className="text-3xl font-bold bg-gradient-to-r from-personal-text via-personal-info to-personal-text bg-clip-text text-transparent">{t('settings.privacy.title')}</h2>
+          </div>
           <div className="space-y-4">
             <div className="space-y-2">
-              <label className="block text-gray-700">{t('settings.privacy.profileVisibility')}</label>
+              <label className="block text-green-600">{t('settings.privacy.profileVisibility')}</label>
               <select
                 value={preferences.privacy_settings.profile_visibility}
                 onChange={(e) => handlePreferenceChange('privacy_settings', 'profile_visibility', e.target.value)}
-                className="select select-bordered w-full bg-white/70 border-teal-200 focus:border-teal-400 text-teal-700"
+                className="select select-bordered w-full bg-gradient-to-r from-white to-green-50 border-green-200 focus:border-green-400 text-green-700"
               >
                 <option value="public">{t('settings.privacy.visibility.public')}</option>
                 <option value="friends">{t('settings.privacy.visibility.friends')}</option>
@@ -243,33 +263,38 @@ export default function SettingsPage() {
             </div>
 
             <div className="flex items-center justify-between">
-              <label className="text-teal-600 font-medium">{t('settings.privacy.shareAchievements')}</label>
+              <label className="text-green-700 font-medium">{t('settings.privacy.shareAchievements')}</label>
               <input
                 type="checkbox"
                 checked={preferences.privacy_settings.share_achievements}
                 onChange={(e) => handlePreferenceChange('privacy_settings', 'share_achievements', e.target.checked)}
-                className="toggle toggle-success bg-teal-100"
+                className="toggle toggle-success bg-green-100"
               />
             </div>
 
             <div className="flex items-center justify-between">
-              <label className="text-teal-600 font-medium">{t('settings.privacy.shareProgress')}</label>
+              <label className="text-green-700 font-medium">{t('settings.privacy.shareProgress')}</label>
               <input
                 type="checkbox"
                 checked={preferences.privacy_settings.share_progress}
                 onChange={(e) => handlePreferenceChange('privacy_settings', 'share_progress', e.target.checked)}
-                className="toggle toggle-success bg-teal-100"
+                className="toggle toggle-success bg-green-100"
               />
             </div>
           </div>
         </section>
 
         {/* Data Processing Consents Section */}
-        <section className="bg-white/80 backdrop-blur-sm rounded-xl shadow-lg p-8 border border-teal-100 hover:border-teal-200 transition-all duration-300">
-          <h2 className="text-xl font-semibold mb-4">{t('settings.sections.dataProcessing')}</h2>
+        <section className="bg-gradient-to-br from-personal-card via-white to-personal-card backdrop-blur-sm rounded-2xl shadow-personal p-10 border border-personal-border/30 hover:border-personal-border/50 transition-all duration-300">
+          <div className="flex items-center mb-8">
+            <div className="bg-gradient-to-br from-personal-warning via-personal-accent to-personal-warning p-4 rounded-full mr-6 shadow-soft">
+              <span className="text-white text-2xl">📊</span>
+            </div>
+            <h2 className="text-3xl font-bold bg-gradient-to-r from-personal-text via-personal-warning to-personal-text bg-clip-text text-transparent">{t('settings.sections.dataProcessing')}</h2>
+          </div>
           <div className="space-y-4">
             <div className="flex items-center justify-between">
-              <label className="text-teal-600 font-medium">{t('settings.dataProcessing.analytics')}</label>
+              <label className="text-teal-700 font-medium">{t('settings.dataProcessing.analytics')}</label>
               <input
                 type="checkbox"
                 checked={preferences.data_processing_consents.analytics}
@@ -279,7 +304,7 @@ export default function SettingsPage() {
             </div>
 
             <div className="flex items-center justify-between">
-              <label className="text-teal-600 font-medium">{t('settings.dataProcessing.personalization')}</label>
+              <label className="text-teal-700 font-medium">{t('settings.dataProcessing.personalization')}</label>
               <input
                 type="checkbox"
                 checked={preferences.data_processing_consents.personalization}
@@ -289,7 +314,7 @@ export default function SettingsPage() {
             </div>
 
             <div className="flex items-center justify-between">
-              <label className="text-teal-600 font-medium">{t('settings.dataProcessing.thirdPartySharing')}</label>
+              <label className="text-teal-700 font-medium">{t('settings.dataProcessing.thirdPartySharing')}</label>
               <input
                 type="checkbox"
                 checked={preferences.data_processing_consents.third_party_sharing}
@@ -301,9 +326,9 @@ export default function SettingsPage() {
         </section>
 
         {/* Interests Section */}
-        <section className="bg-white/80 backdrop-blur-sm rounded-xl shadow-lg p-8 border border-teal-100 hover:border-teal-200 transition-all duration-300">
-          <h2 className="text-xl font-semibold mb-4">{t('settings.sections.interests')}</h2>
-          <p className="text-gray-600 mb-4">{t('settings.interests.description')}</p>
+        <section className="bg-gradient-to-br from-white to-green-50 rounded-xl shadow-xl p-8 border border-green-200 hover:border-green-300 transition-all duration-300">
+          <h2 className="text-xl font-semibold mb-4 text-green-800">{t('settings.sections.interests')}</h2>
+          <p className="text-green-600 mb-4">{t('settings.interests.description')}</p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {preferences.available_interest_categories?.map((category) => (
               <div key={category} className="flex items-center space-x-2">
@@ -327,7 +352,7 @@ export default function SettingsPage() {
                   }}
                   className="checkbox checkbox-success"
                 />
-                <label htmlFor={`interest-${category}`} className="text-teal-600 capitalize">
+                <label htmlFor={`interest-${category}`} className="text-green-700 capitalize">
                   {preferences.available_interest_categories_translated?.[category] || category}
                 </label>
               </div>
@@ -335,21 +360,38 @@ export default function SettingsPage() {
           </div>
         </section>
 
-        <div className="flex items-center justify-end space-x-4">
-          {saveStatus === 'success' && (
-            <span className="text-teal-600 font-medium">{t('settings.messages.saveSuccess')}</span>
-          )}
-          {saveStatus === 'error' && (
-            <span className="text-red-600 font-medium">{t('settings.messages.saveError')}</span>
-          )}
-          <button
-            type="submit"
-            disabled={isSaving}
-            className={`btn bg-teal-600 hover:bg-teal-700 text-white border-none ${isSaving ? 'loading' : ''}`}>
-            {isSaving ? t('settings.buttons.saving') : t('settings.buttons.save')}
-          </button>
-        </div>
-      </form>
+         {/* Save Button */}
+         <div className="flex justify-center pt-12">
+           <button
+             type="submit"
+             disabled={isSaving}
+             className="bg-gradient-to-r from-personal-accent via-personal-info to-personal-accent hover:from-personal-accent/90 hover:to-personal-accent/90 text-white font-bold py-5 px-16 rounded-2xl shadow-personal hover:shadow-glow transform hover:scale-105 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none text-lg"
+           >
+             {isSaving ? (
+               <div className="flex items-center">
+                 <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-white mr-3"></div>
+                 {t('settings.buttons.saving')}
+               </div>
+             ) : (
+               <div className="flex items-center">
+                 <span className="mr-2">💾</span>
+                 {t('settings.buttons.save')}
+               </div>
+             )}
+           </button>
+         </div>
+         
+         {/* Status Messages */}
+         <div className="flex justify-center pt-4">
+           {saveStatus === 'success' && (
+             <span className="text-green-600 font-medium">{t('settings.messages.saveSuccess')}</span>
+           )}
+           {saveStatus === 'error' && (
+             <span className="text-red-600 font-medium">{t('settings.messages.saveError')}</span>
+           )}
+         </div>
+        </form>
+      </div>
     </div>
   );
 }
