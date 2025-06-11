@@ -65,7 +65,7 @@ export default function ProfilePage() {
     }, [user, isLoading, router]);
 
     if (isLoading || loading) {
-        return <p className="text-center text-teal-700 mt-20 text-xl">{t('profile.loading')}</p>;
+        return <p className="text-center text-personal-accent mt-20 text-xl">{t('profile.loading')}</p>;
     }
 
     if (!user) {
@@ -73,17 +73,22 @@ export default function ProfilePage() {
     }
 
     return (
-        <section className="min-h-screen bg-teal-50 px-6 py-10 font-sans">
-            <div className="max-w-4xl mx-auto space-y-8">
+        <div className="min-h-screen bg-gradient-to-br from-personal-bg via-primary-50 to-personal-bg py-12">
+            <div className="container mx-auto px-6 max-w-6xl">
                 {/* Header */}
-                <div className="bg-white shadow-lg rounded-xl p-6 border border-teal-200">
-                    <h1 className="text-3xl font-bold text-teal-800">{t('profile.title')}</h1>
-                    <p className="text-gray-600 mt-1">{t('profile.subtitle')}</p>
+                <div className="text-center mb-12">
+                    <div className="flex items-center justify-center mb-6">
+                        <div className="bg-gradient-to-br from-personal-accent via-personal-info to-personal-accent w-16 h-16 rounded-full flex items-center justify-center mr-4 shadow-soft">
+                            <span className="text-white text-2xl">👤</span>
+                        </div>
+                        <h1 className="text-5xl font-bold bg-gradient-to-r from-personal-text via-personal-accent to-personal-text bg-clip-text text-transparent">{t('profile.title')}</h1>
+                    </div>
+                    <p className="text-xl text-personal-text/80 bg-personal-card/50 backdrop-blur-sm px-8 py-4 rounded-2xl border border-personal-border/30 max-w-3xl mx-auto">{t('profile.subtitle')}</p>
                 </div>
 
                 {error && (
-                    <div className="bg-red-50 border-l-4 border-red-400 p-4">
-                        <p className="text-red-700">{error}</p>
+                    <div className="bg-personal-error/20 border-l-4 border-personal-error p-4">
+                        <p className="text-personal-error">{error}</p>
                     </div>
                 )}
 
@@ -91,25 +96,26 @@ export default function ProfilePage() {
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                         {/* Información Personal */}
                         <div className="md:col-span-1">
-                            <div className="bg-white rounded-xl shadow p-6 border border-teal-200">
+                            <div className="bg-gradient-to-br from-personal-card via-white to-personal-card backdrop-blur-sm rounded-2xl shadow-personal p-8 border border-personal-border/30">
                                 <div className="flex flex-col items-center">
-                                    <div className="w-24 h-24 rounded-full bg-teal-600 flex items-center justify-center text-white text-3xl font-bold mb-4">
+                                    <div className="w-32 h-32 rounded-full bg-gradient-to-br from-personal-accent via-personal-info to-personal-accent flex items-center justify-center text-white text-4xl font-bold mb-6 shadow-glow">
                                         {user.name.charAt(0).toUpperCase()}
                                     </div>
-                                    <h2 className="text-xl font-semibold text-teal-800">{user.name}</h2>
-                                    <p className="text-gray-600">{user.email}</p>
-                                    <div className="mt-4 text-center">
-                                        <p className="text-sm text-gray-500">{t('profile.memberSince')}</p>
-                                        <p className="font-medium text-teal-700">
+                                    <h2 className="text-2xl font-bold bg-gradient-to-r from-personal-text via-personal-accent to-personal-text bg-clip-text text-transparent mb-2">{user.name}</h2>
+                                    <p className="text-personal-text/70 text-lg">{user.email}</p>
+                                    <div className="mt-6 text-center bg-personal-card/30 backdrop-blur-sm p-4 rounded-xl border border-personal-border/20">
+                                        <p className="text-sm text-personal-text/60 font-semibold">{t('profile.memberSince')}</p>
+                                        <p className="font-bold text-xl text-personal-accent mt-1">
                                             {new Date(profile.created_at).toLocaleDateString(locale)}
                                         </p>
                                     </div>
                                 </div>
-                                <div className="mt-6 pt-6 border-t border-teal-100">
+                                <div className="mt-8 pt-6 border-t border-personal-border/30">
                                     <button
                                         onClick={() => router.push('/settings')}
-                                        className="w-full py-2 bg-teal-600 hover:bg-teal-700 text-white rounded-md transition"
+                                        className="w-full py-4 bg-gradient-to-r from-personal-accent via-personal-info to-personal-accent hover:from-personal-accent/90 hover:to-personal-accent/90 text-white rounded-xl transition shadow-personal hover:shadow-glow font-bold text-lg transform hover:scale-105"
                                     >
+                                        <span className="mr-2">⚙️</span>
                                         {t('profile.buttons.editPreferences')}
                                     </button>
                                 </div>
@@ -119,21 +125,26 @@ export default function ProfilePage() {
                         {/* Estadísticas y Progreso */}
                         <div className="md:col-span-2 space-y-6">
                             {/* Nivel y Puntos */}
-                            <div className="bg-white rounded-xl shadow p-6 border border-teal-200">
-                                <h3 className="text-lg font-semibold text-teal-800 mb-4">{t('profile.sections.levelProgress')}</h3>
-                                <div className="flex items-center mb-4">
-                                    <div className="w-16 h-16 rounded-full bg-teal-100 flex items-center justify-center text-teal-800 text-2xl font-bold mr-4">
+                            <div className="bg-gradient-to-br from-personal-card via-white to-personal-card backdrop-blur-sm rounded-2xl shadow-personal p-8 border border-personal-border/30">
+                                <div className="flex items-center mb-6">
+                                    <div className="bg-gradient-to-br from-personal-accent via-personal-info to-personal-accent p-3 rounded-full mr-4 shadow-soft">
+                                        <span className="text-white text-xl">📊</span>
+                                    </div>
+                                    <h3 className="text-2xl font-bold bg-gradient-to-r from-personal-text via-personal-accent to-personal-text bg-clip-text text-transparent">{t('profile.sections.levelProgress')}</h3>
+                                </div>
+                                <div className="flex items-center mb-6">
+                                    <div className="w-20 h-20 rounded-full bg-gradient-to-br from-personal-accent via-personal-info to-personal-accent flex items-center justify-center text-white text-3xl font-bold mr-6 shadow-glow">
                                         {profile.level}
                                     </div>
                                     <div className="flex-1">
-                                        <p className="text-gray-700">{t('profile.level')} {profile.level}</p>
-                                        <div className="w-full bg-gray-200 rounded-full h-2.5 mt-2">
+                                        <p className="text-xl font-bold text-personal-text mb-3">{t('profile.level')} {profile.level}</p>
+                                        <div className="w-full bg-personal-bg/50 rounded-full h-4 shadow-inner">
                                             <div 
-                                                className="bg-teal-600 h-2.5 rounded-full" 
+                                                className="bg-gradient-to-r from-personal-accent via-personal-info to-personal-accent h-4 rounded-full shadow-soft transition-all duration-500" 
                                                 style={{ width: `${profile.level_progress}%` }}
                                             ></div>
                                         </div>
-                                        <p className="text-sm text-gray-600 mt-1">
+                                        <p className="text-sm text-personal-text/70 mt-2 font-semibold">
                                             {profile.points} {t('profile.points')} • {profile.points_to_next_level} {t('profile.pointsToNextLevel')}
                                         </p>
                                     </div>
@@ -141,57 +152,67 @@ export default function ProfilePage() {
                             </div>
 
                             {/* Estadísticas */}
-                            <div className="bg-white rounded-xl shadow p-6 border border-teal-200">
-                                <h3 className="text-lg font-semibold text-teal-800 mb-4">{t('profile.sections.statistics')}</h3>
-                                <div className="grid grid-cols-2 gap-4">
-                                    <div className="p-4 bg-teal-50 rounded-lg">
-                                        <p className="text-sm text-gray-600">{t('profile.stats.completedChallenges')}</p>
-                                        <p className="text-2xl font-bold text-teal-700">{profile.completed_challenges}</p>
+                            <div className="bg-gradient-to-br from-personal-card via-white to-personal-card backdrop-blur-sm rounded-2xl shadow-personal p-8 border border-personal-border/30">
+                                <div className="flex items-center mb-6">
+                                    <div className="bg-gradient-to-br from-personal-info via-personal-accent to-personal-info p-3 rounded-full mr-4 shadow-soft">
+                                        <span className="text-white text-xl">📈</span>
                                     </div>
-                                    <div className="p-4 bg-teal-50 rounded-lg">
-                                        <p className="text-sm text-gray-600">{t('profile.stats.completedQuizzes')}</p>
-                                        <p className="text-2xl font-bold text-teal-700">{profile.completed_quizzes}</p>
+                                    <h3 className="text-2xl font-bold bg-gradient-to-r from-personal-text via-personal-info to-personal-text bg-clip-text text-transparent">{t('profile.sections.statistics')}</h3>
+                                </div>
+                                <div className="grid grid-cols-2 gap-6">
+                                    <div className="p-6 bg-gradient-to-br from-personal-accent/20 via-personal-info/20 to-personal-accent/20 backdrop-blur-sm rounded-xl border border-personal-accent/30 hover:shadow-glow transition-all duration-300">
+                                        <p className="text-sm text-personal-text/70 font-semibold mb-2">{t('profile.stats.completedChallenges')}</p>
+                                        <p className="text-3xl font-bold bg-gradient-to-r from-personal-accent via-personal-info to-personal-accent bg-clip-text text-transparent">{profile.completed_challenges}</p>
                                     </div>
-                                    <div className="p-4 bg-teal-50 rounded-lg">
-                                        <p className="text-sm text-gray-600">{t('profile.stats.badgesEarned')}</p>
-                                        <p className="text-2xl font-bold text-teal-700">{profile.badges_count}</p>
+                                    <div className="p-6 bg-gradient-to-br from-personal-info/20 via-personal-accent/20 to-personal-info/20 backdrop-blur-sm rounded-xl border border-personal-info/30 hover:shadow-glow transition-all duration-300">
+                                        <p className="text-sm text-personal-text/70 font-semibold mb-2">{t('profile.stats.completedQuizzes')}</p>
+                                        <p className="text-3xl font-bold bg-gradient-to-r from-personal-info via-personal-accent to-personal-info bg-clip-text text-transparent">{profile.completed_quizzes}</p>
                                     </div>
-                                    <div className="p-4 bg-teal-50 rounded-lg">
-                                        <p className="text-sm text-gray-600">{t('profile.stats.activeDays')}</p>
-                                        <p className="text-2xl font-bold text-teal-700">{profile.active_days}</p>
+                                    <div className="p-6 bg-gradient-to-br from-personal-warning/20 via-personal-accent/20 to-personal-warning/20 backdrop-blur-sm rounded-xl border border-personal-warning/30 hover:shadow-glow transition-all duration-300">
+                                        <p className="text-sm text-personal-text/70 font-semibold mb-2">{t('profile.stats.badgesEarned')}</p>
+                                        <p className="text-3xl font-bold bg-gradient-to-r from-personal-warning via-personal-accent to-personal-warning bg-clip-text text-transparent">{profile.badges_count}</p>
+                                    </div>
+                                    <div className="p-6 bg-gradient-to-br from-personal-success/20 via-personal-accent/20 to-personal-success/20 backdrop-blur-sm rounded-xl border border-personal-success/30 hover:shadow-glow transition-all duration-300">
+                                        <p className="text-sm text-personal-text/70 font-semibold mb-2">{t('profile.stats.activeDays')}</p>
+                                        <p className="text-3xl font-bold bg-gradient-to-r from-personal-success via-personal-accent to-personal-success bg-clip-text text-transparent">{profile.active_days}</p>
                                     </div>
                                 </div>
                             </div>
 
                             {/* Insignias Recientes */}
-                            <div className="bg-white rounded-xl shadow p-6 border border-teal-200">
-                                <div className="flex justify-between items-center mb-4">
-                                    <h3 className="text-lg font-semibold text-teal-800">{t('profile.sections.recentBadges')}</h3>
+                            <div className="bg-gradient-to-br from-personal-card via-white to-personal-card backdrop-blur-sm rounded-2xl shadow-personal p-8 border border-personal-border/30">
+                                <div className="flex justify-between items-center mb-6">
+                                    <div className="flex items-center">
+                                        <div className="bg-gradient-to-br from-personal-warning via-personal-accent to-personal-warning p-3 rounded-full mr-4 shadow-soft">
+                                            <span className="text-white text-xl">🏆</span>
+                                        </div>
+                                        <h3 className="text-2xl font-bold bg-gradient-to-r from-personal-text via-personal-warning to-personal-text bg-clip-text text-transparent">{t('profile.sections.recentBadges')}</h3>
+                                    </div>
                                     <button 
                                         onClick={() => router.push('/badges')}
-                                        className="text-teal-600 hover:text-teal-700 text-sm font-medium"
+                                        className="bg-gradient-to-r from-personal-accent via-personal-info to-personal-accent hover:from-personal-accent/90 hover:to-personal-accent/90 text-white px-4 py-2 rounded-xl font-semibold shadow-soft hover:shadow-glow transition-all duration-300 transform hover:scale-105"
                                     >
                                         {t('profile.buttons.viewAll')} →
                                     </button>
                                 </div>
                                 {profile.recent_badges && profile.recent_badges.length > 0 ? (
-                                    <div className="grid grid-cols-3 gap-4">
+                                    <div className="grid grid-cols-3 gap-6">
                                         {profile.recent_badges.map((badge, index) => (
-                                            <div key={index} className="flex flex-col items-center p-3 bg-teal-50 rounded-lg">
-                                                <div className="text-3xl mb-2">{badge.icon}</div>
-                                                <span className="text-sm font-medium text-teal-900 text-center">{badge.name}</span>
+                                            <div key={index} className="flex flex-col items-center p-6 bg-gradient-to-br from-personal-accent/20 via-personal-warning/20 to-personal-accent/20 backdrop-blur-sm rounded-xl border border-personal-accent/30 hover:shadow-glow transition-all duration-300 transform hover:scale-105">
+                                                <div className="text-4xl mb-3 filter drop-shadow-lg">{badge.icon}</div>
+                                                <span className="text-sm font-bold text-personal-text text-center">{badge.name}</span>
                                             </div>
                                         ))}
                                     </div>
                                 ) : (
-                                    <p className="text-center text-gray-600 py-4">{t('profile.noBadges')}</p>
+                                    <p className="text-center text-personal-text/70 py-8 text-lg font-medium">{t('profile.noBadges')}</p>
                                 )}
                             </div>
                             
                             {/* Points History */}
-                            <div className="bg-white rounded-xl shadow p-6 border border-teal-200 mt-6">
+                            <div className="bg-personal-card rounded-xl shadow-soft p-6 border border-personal-border mt-6">
                                 <div className="flex justify-between items-center mb-4">
-                                    <h3 className="text-lg font-semibold text-teal-800 mb-4">{t('profile.sections.pointsHistory')}</h3>
+                                    <h3 className="text-lg font-semibold text-personal-text mb-4">{t('profile.sections.pointsHistory')}</h3>
                                 </div>
                                 <PointsHistory onDataUpdate={refreshProfile} />
                             </div>
@@ -199,6 +220,6 @@ export default function ProfilePage() {
                     </div>
                 )}
             </div>
-        </section>
+        </div>
     );
 }

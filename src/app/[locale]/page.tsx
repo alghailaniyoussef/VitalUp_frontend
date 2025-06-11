@@ -10,7 +10,7 @@ export default function Home() {
   return (
     <section className="flex flex-col-reverse md:flex-row items-center justify-between px-6 md:px-20 py-20">
       <div className="max-w-xl space-y-6">
-        <h2 className="text-3xl md:text-4xl font-extrabold text-teal-400 leading-tight">
+        <h2 className="text-3xl md:text-4xl font-extrabold bg-gradient-to-r from-teal-500 to-teal-700 bg-clip-text text-transparent leading-tight">
           {t('home.hero.title')}
         </h2>
         <p className="text-lg text-teal-700">
@@ -19,13 +19,13 @@ export default function Home() {
         <div className="flex flex-wrap gap-4">
           <Link 
             href={`/${locale}/auth/register`} 
-            className="bg-teal-500 text-white px-6 py-3 rounded-full shadow-md hover:bg-teal-800 transition"
+            className="bg-gradient-to-r from-teal-500 to-teal-600 text-white px-6 py-3 rounded-full shadow-lg hover:from-teal-600 hover:to-teal-700 transition-all duration-300 transform hover:scale-105"
           >
             {t('home.hero.cta.primary')}
           </Link>
           <Link 
             href={`/${locale}/features`} 
-            className="text-teal-700 underline underline-offset-4 hover:text-teal-900 transition"
+            className="bg-gradient-to-r from-teal-100 to-teal-200 text-teal-800 px-6 py-3 rounded-full border border-teal-300 hover:from-teal-200 hover:to-teal-300 transition-all duration-300 transform hover:scale-105"
           >
             {t('home.hero.cta.secondary')}
           </Link>
@@ -37,7 +37,7 @@ export default function Home() {
           alt={t('home.hero.imageAlt')}
           width={500}
           height={400}
-          className="rounded-xl shadow-2xl border-5 border-teal-200"
+          className="rounded-xl shadow-2xl border-2 border-gradient-to-r from-teal-200 to-teal-300"
         />
       </div>
     </section>
