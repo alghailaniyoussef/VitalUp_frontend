@@ -124,12 +124,18 @@ export default function AdminQuizzes() {
                 };
             
             console.log('Submitting quiz data:', quizData);
-            
+            const token = localStorage.getItem('auth_token');
+            if (!token) {
+                router.push(`/${locale}/auth/signin`);
+                setLoading(false);
+                return;
+            }
             const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/admin/quizzes`, {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`,
                 },
                 body: JSON.stringify(quizData),
             });
@@ -150,12 +156,18 @@ export default function AdminQuizzes() {
     };
 
     const handleUpdateQuiz = async (quizId, updates) => {
-        try {
+        try {   const token = localStorage.getItem('auth_token');
+            if (!token) {
+                router.push(`/${locale}/auth/signin`);
+                setLoading(false);
+                return;
+            }
             const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/admin/quizzes/${quizId}`, {
                 method: 'PUT',
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`,
                 },
                 body: JSON.stringify(updates),
             });
@@ -174,11 +186,18 @@ export default function AdminQuizzes() {
     const handleDeleteQuiz = async (quizId) => {
         if (!window.confirm(t('admin.quizzes.confirmDelete'))) return;
 
-        try {
+        try {   const token = localStorage.getItem('auth_token');
+            if (!token) {
+                router.push(`/${locale}/auth/signin`);
+                setLoading(false);
+                return;
+            }
             const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/admin/quizzes/${quizId}`, {
                 method: 'DELETE',
                 headers: {
                     'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`,
                 },
             });
 
@@ -191,7 +210,14 @@ export default function AdminQuizzes() {
     };
 
     if (isLoading || loading) {
-        return <p className="text-center text-teal-700 mt-20 text-xl">{t('admin.quizzes.loading')}</p>;
+        return (
+            <div className="min-h-screen bg-admin-bg flex items-center justify-center">
+                <div className="flex items-center space-x-3">
+                    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-admin-accent"></div>
+                    <p className="text-admin-text text-xl">{t('admin.quizzes.loading')}</p>
+                </div>
+            </div>
+        );
     }
 
     if (!user || !user.is_admin) {
@@ -199,14 +225,14 @@ export default function AdminQuizzes() {
     }
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-slate-50 via-gray-50 to-blue-50">
+        <div className="min-h-screen bg-admin-bg">
             {/* Header */}
-            <div className="bg-white/80 backdrop-blur-sm border-b border-gray-200 sticky top-16 z-30">
+            <div className="bg-admin-card/80 backdrop-blur-sm border-b border-admin-border sticky top-16 z-30">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
                     <div className="flex justify-between items-center">
                         <div className="text-center flex-1">
-                            <h1 className="text-4xl font-bold text-gray-800 mb-2">{t('admin.quizzes.title')}</h1>
-                            <p className="text-gray-600 text-lg">{t('admin.quizzes.subtitle')}</p>
+                            <h1 className="text-4xl font-bold text-admin-text mb-2">{t('admin.quizzes.title')}</h1>
+                            <p className="text-admin-text/70 text-lg">{t('admin.quizzes.subtitle')}</p>
                             
                             {/* Language Switch */}
                             <div className="flex justify-center mt-4 space-x-2">
@@ -214,8 +240,8 @@ export default function AdminQuizzes() {
                                     onClick={() => handleLocaleChange('en')}
                                     className={`px-4 py-2 rounded-lg font-medium transition-colors ${
                                         locale === 'en'
-                                            ? 'bg-blue-600 text-white shadow-md'
-                                            : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                                            ? 'bg-admin-accent text-white shadow-soft'
+                                            : 'bg-admin-border text-admin-text/70 hover:bg-admin-border/70'
                                     }`}
                                 >
                                     English
@@ -224,8 +250,8 @@ export default function AdminQuizzes() {
                                     onClick={() => handleLocaleChange('es')}
                                     className={`px-4 py-2 rounded-lg font-medium transition-colors ${
                                         locale === 'es'
-                                            ? 'bg-blue-600 text-white shadow-md'
-                                            : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                                            ? 'bg-admin-accent text-white shadow-soft'
+                                            : 'bg-admin-border text-admin-text/70 hover:bg-admin-border/70'
                                     }`}
                                 >
                                     Español
@@ -252,7 +278,7 @@ export default function AdminQuizzes() {
                                 });
                                 setIsEditing(true);
                             }}
-                            className="bg-blue-600 text-white px-6 py-3 rounded-xl hover:bg-blue-700 transition-colors font-semibold shadow-lg"
+                            className="bg-gradient-to-r from-admin-accent to-admin-info text-white px-6 py-3 rounded-xl hover:from-admin-accent/90 hover:to-admin-info/90 transition-all font-semibold shadow-glow"
                         >
                             {t('admin.quizzes.createButton')}
                         </button>
@@ -265,26 +291,26 @@ export default function AdminQuizzes() {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
 
                 {error && (
-                    <div className="bg-red-50 border-l-4 border-red-400 p-4">
-                        <p className="text-red-700">{error}</p>
+                    <div className="bg-admin-error/10 border-l-4 border-admin-error p-4 rounded-r-lg">
+                        <p className="text-admin-error">{error}</p>
                     </div>
                 )}
 
                 {/* Quiz Stats */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div className="bg-white p-6 rounded-xl shadow border border-gray-200">
-                        <h3 className="text-lg font-semibold text-gray-700">{t('admin.quizzes.stats.total')}</h3>
-                        <p className="text-4xl font-bold text-gray-900 mt-2">{quizzes.length}</p>
+                    <div className="bg-admin-card p-6 rounded-xl shadow-soft border border-admin-border">
+                        <h3 className="text-lg font-semibold text-admin-text/70">{t('admin.quizzes.stats.total')}</h3>
+                        <p className="text-4xl font-bold text-admin-text mt-2">{quizzes.length}</p>
                     </div>
-                    <div className="bg-white p-6 rounded-xl shadow border border-gray-200">
-                        <h3 className="text-lg font-semibold text-gray-700">{t('admin.quizzes.stats.active')}</h3>
-                        <p className="text-4xl font-bold text-gray-900 mt-2">
+                    <div className="bg-admin-card p-6 rounded-xl shadow-soft border border-admin-border">
+                        <h3 className="text-lg font-semibold text-admin-text/70">{t('admin.quizzes.stats.active')}</h3>
+                        <p className="text-4xl font-bold text-admin-text mt-2">
                             {quizzes.filter(q => q.is_active).length}
                         </p>
                     </div>
-                    <div className="bg-white p-6 rounded-xl shadow border border-gray-200">
-                        <h3 className="text-lg font-semibold text-gray-700">{t('admin.quizzes.stats.totalQuestions')}</h3>
-                        <p className="text-4xl font-bold text-gray-900 mt-2">
+                    <div className="bg-admin-card p-6 rounded-xl shadow-soft border border-admin-border">
+                        <h3 className="text-lg font-semibold text-admin-text/70">{t('admin.quizzes.stats.totalQuestions')}</h3>
+                        <p className="text-4xl font-bold text-admin-text mt-2">
                             {quizzes.reduce((sum, q) => sum + (q.questions?.length || 0), 0)}
                         </p>
                     </div>
@@ -293,18 +319,18 @@ export default function AdminQuizzes() {
                 {/* Quiz Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {quizzes.map((quiz) => (
-                        <div key={quiz.id} className="bg-white rounded-xl shadow-lg border border-gray-200 p-6">
+                        <div key={quiz.id} className="bg-admin-card rounded-xl shadow-soft hover:shadow-glow border border-admin-border p-6 transition-all">
                             <div className="flex justify-between items-start mb-4">
                                 <div>
-                                    <h3 className="text-lg font-semibold text-gray-900">{quiz.title}</h3>
-                                    <p className="text-sm text-gray-500">{quiz.questions?.length || 0} {t('admin.quizzes.questions')}</p>
+                                    <h3 className="text-lg font-semibold text-admin-text">{quiz.title}</h3>
+                                    <p className="text-sm text-admin-text/60">{quiz.questions?.length || 0} {t('admin.quizzes.questions')}</p>
                                 </div>
-                                <span className={`px-2 py-1 text-xs font-semibold rounded-full ${quiz.is_active ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}`}>
+                                <span className={`px-2 py-1 text-xs font-semibold rounded-full ${quiz.is_active ? 'bg-admin-success/20 text-admin-success' : 'bg-admin-error/20 text-admin-error'}`}>
                                     {quiz.is_active ? t('admin.quizzes.status.active') : t('admin.quizzes.status.inactive')}
                                 </span>
                             </div>
-                            <p className="text-gray-600 text-sm mb-4">{quiz.description}</p>
-                            <div className="space-y-2 text-sm text-gray-500 mb-4">
+                            <p className="text-admin-text/70 text-sm mb-4">{quiz.description}</p>
+                            <div className="space-y-2 text-sm text-admin-text/60 mb-4">
                                 <div className="flex justify-between">
                                     <span>{t('admin.quizzes.pointsPerQuestion')}:</span>
                                     <span>{quiz.points_per_question}</span>
@@ -345,13 +371,13 @@ export default function AdminQuizzes() {
                                         });
                                         setIsEditing(true);
                                     }}
-                                    className="text-teal-600 hover:text-teal-900"
+                                    className="text-admin-accent hover:text-admin-accent/80 hover:bg-admin-accent/10 px-3 py-1 rounded transition-all"
                                 >
                                     {t('common.edit')}
                                 </button>
                                 <button
                                     onClick={() => handleDeleteQuiz(quiz.id)}
-                                    className="text-red-600 hover:text-red-900"
+                                    className="text-admin-error hover:text-admin-error/80 hover:bg-admin-error/10 px-3 py-1 rounded transition-all"
                                 >
                                     {t('common.delete')}
                                 </button>
@@ -360,26 +386,26 @@ export default function AdminQuizzes() {
                     ))}                </div>
 
                 {/* Pagination */}
-                <div className="bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6 mt-8">
+                <div className="bg-admin-card px-4 py-3 flex items-center justify-between border-t border-admin-border sm:px-6 mt-8 rounded-lg">
                     <div className="flex-1 flex justify-between sm:hidden">
                         <button
                             onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
                             disabled={currentPage === 1}
-                            className="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 disabled:opacity-50"
+                            className="relative inline-flex items-center px-4 py-2 border border-admin-border text-sm font-medium rounded-md text-admin-text bg-admin-card hover:bg-admin-accent/10 disabled:opacity-50"
                         >
                             {t('common.previous')}
                         </button>
                         <button
                             onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
                             disabled={currentPage === totalPages}
-                            className="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 disabled:opacity-50"
+                            className="ml-3 relative inline-flex items-center px-4 py-2 border border-admin-border text-sm font-medium rounded-md text-admin-text bg-admin-card hover:bg-admin-accent/10 disabled:opacity-50"
                         >
                             {t('common.next')}
                         </button>
                     </div>
                     <div className="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
                         <div>
-                            <p className="text-sm text-gray-700">
+                            <p className="text-sm text-admin-text/70">
                                 {t('admin.quizzes.pagination.showing', { current: currentPage, total: totalPages })}
                             </p>
                         </div>
@@ -388,7 +414,7 @@ export default function AdminQuizzes() {
                                 <button
                                     onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
                                     disabled={currentPage === 1}
-                                    className="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 disabled:opacity-50"
+                                    className="relative inline-flex items-center px-2 py-2 rounded-l-md border border-admin-border bg-admin-card text-sm font-medium text-admin-text/60 hover:bg-admin-accent/10 disabled:opacity-50"
                                 >
                                     <span className="sr-only">{t('common.previous')}</span>
                                     &larr;
@@ -397,7 +423,7 @@ export default function AdminQuizzes() {
                                     <button
                                         key={page}
                                         onClick={() => setCurrentPage(page)}
-                                        className={`relative inline-flex items-center px-4 py-2 border ${currentPage === page ? 'bg-indigo-50 border-indigo-500 text-indigo-600' : 'border-gray-300 bg-white text-gray-500 hover:bg-gray-50'} text-sm font-medium`}
+                                        className={`relative inline-flex items-center px-4 py-2 border ${currentPage === page ? 'bg-admin-accent/20 border-admin-accent text-admin-accent' : 'border-admin-border bg-admin-card text-admin-text/60 hover:bg-admin-accent/10'} text-sm font-medium`}
                                     >
                                         {page}
                                     </button>
@@ -405,7 +431,7 @@ export default function AdminQuizzes() {
                                 <button
                                     onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
                                     disabled={currentPage === totalPages}
-                                    className="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 disabled:opacity-50"
+                                    className="relative inline-flex items-center px-2 py-2 rounded-r-md border border-admin-border bg-admin-card text-sm font-medium text-admin-text/60 hover:bg-admin-accent/10 disabled:opacity-50"
                                 >
                                     <span className="sr-only">{t('common.next')}</span>
                                     &rarr;
@@ -417,76 +443,76 @@ export default function AdminQuizzes() {
 
                 {/* Edit/Create Quiz Modal */}
                 {isEditing && selectedQuiz && (
-                    <div className="fixed inset-0 bg-black/20 backdrop-blur-sm overflow-y-auto h-full w-full flex items-center justify-center p-4 z-50">
-                        <div className="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
+                    <div className="fixed inset-0 bg-black/50 backdrop-blur-sm overflow-y-auto h-full w-full flex items-center justify-center p-4 z-50">
+                        <div className="relative top-20 mx-auto p-5 border border-admin-border w-96 shadow-glow rounded-md bg-admin-card">
                             <div className="mt-3">
-                                <h3 className="text-lg font-medium text-gray-900 mb-4">
+                                <h3 className="text-lg font-medium text-admin-text mb-4">
                                     {selectedQuiz.id ? t('admin.quizzes.modal.editTitle') : t('admin.quizzes.modal.createTitle')}
                                 </h3>
                                 <div className="space-y-4">
                                     <div>
-                                        <label className="block text-sm font-medium text-gray-700">{t('admin.quizzes.modal.title')}</label>
+                                        <label className="block text-sm font-medium text-admin-text">{t('admin.quizzes.modal.title')}</label>
                                         <input
                                             type="text"
                                             value={selectedQuiz.title}
                                             onChange={(e) => setSelectedQuiz({ ...selectedQuiz, title: e.target.value })}
-                                            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-teal-500 focus:ring-teal-500"
+                                            className="mt-1 block w-full rounded-md border border-admin-border bg-admin-card text-admin-text shadow-sm focus:border-admin-accent focus:ring-2 focus:ring-admin-accent/20 px-3 py-2"
                                         />
                                     </div>
                                     <div>
-                                        <label className="block text-sm font-medium text-gray-700">{t('admin.quizzes.modal.description')}</label>
+                                        <label className="block text-sm font-medium text-admin-text">{t('admin.quizzes.modal.description')}</label>
                                         <textarea
                                             value={selectedQuiz.description}
                                             onChange={(e) => setSelectedQuiz({ ...selectedQuiz, description: e.target.value })}
                                             rows={3}
-                                            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-teal-500 focus:ring-teal-500"
+                                            className="mt-1 block w-full rounded-md border border-admin-border bg-admin-card text-admin-text shadow-sm focus:border-admin-accent focus:ring-2 focus:ring-admin-accent/20 px-3 py-2"
                                         />
                                     </div>
                                     <div>
-                                        <label className="block text-sm font-medium text-gray-700">{t('admin.quizzes.modal.pointsPerQuestion')}</label>
+                                        <label className="block text-sm font-medium text-admin-text">{t('admin.quizzes.modal.pointsPerQuestion')}</label>
                                         <input
                                             type="number"
                                             value={selectedQuiz.points_per_question}
                                             onChange={(e) => setSelectedQuiz({ ...selectedQuiz, points_per_question: parseInt(e.target.value) })}
                                             min="1"
-                                            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-teal-500 focus:ring-teal-500"
+                                            className="mt-1 block w-full rounded-md border border-admin-border bg-admin-card text-admin-text shadow-sm focus:border-admin-accent focus:ring-2 focus:ring-admin-accent/20 px-3 py-2"
                                         />
                                     </div>
                                     <div>
-                                            <label className="block text-sm font-medium text-gray-700">{t('admin.quizzes.modal.availableFrom')}</label>
+                                            <label className="block text-sm font-medium text-admin-text">{t('admin.quizzes.modal.availableFrom')}</label>
                                             <input
                                                 type="date"
                                                 value={selectedQuiz.available_from ? selectedQuiz.available_from.split('T')[0] : ''}
                                                 onChange={(e) => setSelectedQuiz({ ...selectedQuiz, available_from: e.target.value })}
-                                                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-teal-500 focus:ring-teal-500"
+                                                className="mt-1 block w-full rounded-md border border-admin-border bg-admin-card text-admin-text shadow-sm focus:border-admin-accent focus:ring-2 focus:ring-admin-accent/20 px-3 py-2"
                                             />
                                         </div>
                                         <div>
-                                            <label className="block text-sm font-medium text-gray-700">{t('admin.quizzes.modal.availableUntil')}</label>
+                                            <label className="block text-sm font-medium text-admin-text">{t('admin.quizzes.modal.availableUntil')}</label>
                                             <input
                                                 type="date"
                                                 value={selectedQuiz.available_until ? selectedQuiz.available_until.split('T')[0] : ''}
                                                 onChange={(e) => setSelectedQuiz({ ...selectedQuiz, available_until: e.target.value })}
-                                                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-teal-500 focus:ring-teal-500"
+                                                className="mt-1 block w-full rounded-md border border-admin-border bg-admin-card text-admin-text shadow-sm focus:border-admin-accent focus:ring-2 focus:ring-admin-accent/20 px-3 py-2"
                                             />
                                         </div>
                                     <div>
-                                        <label className="block text-sm font-medium text-gray-700">{t('admin.quizzes.modal.status')}</label>
+                                        <label className="block text-sm font-medium text-admin-text">{t('admin.quizzes.modal.status')}</label>
                                         <select
                                             value={selectedQuiz.is_active ? 'active' : 'inactive'}
                                             onChange={(e) => setSelectedQuiz({ ...selectedQuiz, is_active: e.target.value === 'active' })}
-                                            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-teal-500 focus:ring-teal-500"
+                                            className="mt-1 block w-full rounded-md border border-admin-border bg-admin-card text-admin-text shadow-sm focus:border-admin-accent focus:ring-2 focus:ring-admin-accent/20 px-3 py-2"
                                         >
                                             <option value="active">{t('admin.quizzes.status.active')}</option>
                                             <option value="inactive">{t('admin.quizzes.status.inactive')}</option>
                                         </select>
                                     </div>
                                     <div>
-                                        <label className="block text-sm font-medium text-gray-700">{t('admin.quizzes.modal.difficulty')}</label>
+                                        <label className="block text-sm font-medium text-admin-text">{t('admin.quizzes.modal.difficulty')}</label>
                                         <select
                                             value={selectedQuiz.difficulty || 'medium'}
                                             onChange={(e) => setSelectedQuiz({ ...selectedQuiz, difficulty: e.target.value })}
-                                            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-teal-500 focus:ring-teal-500"
+                                            className="mt-1 block w-full rounded-md border border-admin-border bg-admin-card text-admin-text shadow-sm focus:border-admin-accent focus:ring-2 focus:ring-admin-accent/20 px-3 py-2"
                                         >
                                             <option value="easy">{t('admin.quizzes.difficulties.easy')}</option>
                                             <option value="medium">{t('admin.quizzes.difficulties.medium')}</option>
@@ -494,21 +520,21 @@ export default function AdminQuizzes() {
                                         </select>
                                     </div>
                                     <div>
-                                        <label className="block text-sm font-medium text-gray-700">{t('admin.quizzes.modal.category')}</label>
+                                        <label className="block text-sm font-medium text-admin-text">{t('admin.quizzes.modal.category')}</label>
                                         <input
                                             type="text"
                                             value={selectedQuiz.category || ''}
                                             onChange={(e) => setSelectedQuiz({ ...selectedQuiz, category: e.target.value })}
                                             placeholder={t('admin.quizzes.modal.categoryPlaceholder')}
-                                            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-teal-500 focus:ring-teal-500"
+                                            className="mt-1 block w-full rounded-md border border-admin-border bg-admin-card text-admin-text shadow-sm focus:border-admin-accent focus:ring-2 focus:ring-admin-accent/20 px-3 py-2"
                                         />
                                     </div>
                                     <div>
-                                        <label className="block text-sm font-medium text-gray-700">{t('admin.quizzes.modal.locale')}</label>
+                                        <label className="block text-sm font-medium text-admin-text">{t('admin.quizzes.modal.locale')}</label>
                                         <select
                                             value={selectedQuiz.locale || 'en'}
                                             onChange={(e) => setSelectedQuiz({ ...selectedQuiz, locale: e.target.value })}
-                                            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-teal-500 focus:ring-teal-500"
+                                            className="mt-1 block w-full rounded-md border border-admin-border bg-admin-card text-admin-text shadow-sm focus:border-admin-accent focus:ring-2 focus:ring-admin-accent/20 px-3 py-2"
                                         >
                                             <option value="en">{t('admin.quizzes.locales.en')}</option>
                                             <option value="es">{t('admin.quizzes.locales.es')}</option>
@@ -516,10 +542,10 @@ export default function AdminQuizzes() {
                                     </div>
 
                                     <div>
-                                        <label className="block text-sm font-medium text-gray-700 mb-2">{t('admin.quizzes.modal.questions')}</label>
+                                        <label className="block text-sm font-medium text-admin-text mb-2">{t('admin.quizzes.modal.questions')}</label>
                                         <div className="space-y-4">
                                             {selectedQuiz.questions?.map((question, index) => (
-                                                <div key={question.id || index} className="border rounded-md p-4 bg-gray-50">
+                                                <div key={question.id || index} className="border border-admin-border rounded-md p-4 bg-admin-card/50">
                                                     <div className="flex justify-between items-start mb-2">
                                                         <input
                                                             type="text"
@@ -529,7 +555,7 @@ export default function AdminQuizzes() {
                                                                 updatedQuestions[index] = { ...question, text: e.target.value };
                                                                 setSelectedQuiz({ ...selectedQuiz, questions: updatedQuestions });
                                                             }}
-                                                            className="flex-1 rounded-md border-gray-300 shadow-sm focus:border-teal-500 focus:ring-teal-500 text-sm"
+                                                            className="flex-1 rounded-md border border-admin-border bg-admin-card text-admin-text shadow-sm focus:border-admin-accent focus:ring-admin-accent/20 text-sm px-3 py-2"
                                                             placeholder={t('admin.quizzes.modal.questionPlaceholder')}
                                                         />
                                                         <button
@@ -537,7 +563,7 @@ export default function AdminQuizzes() {
                                                                 const updatedQuestions = selectedQuiz.questions?.filter((_, i) => i !== index) || [];
                                                                 setSelectedQuiz({ ...selectedQuiz, questions: updatedQuestions });
                                                             }}
-                                                            className="ml-2 text-red-600 hover:text-red-800"
+                                                            className="ml-2 text-admin-error hover:text-admin-error/80 hover:bg-admin-error/10 px-2 py-1 rounded"
                                                         >
                                                             {t('admin.quizzes.modal.remove')}
                                                         </button>
@@ -553,7 +579,7 @@ export default function AdminQuizzes() {
                                                                         updatedQuestions[index] = { ...question, correct_answer: optionIndex };
                                                                         setSelectedQuiz({ ...selectedQuiz, questions: updatedQuestions });
                                                                     }}
-                                                                    className="text-teal-600 focus:ring-teal-500"
+                                                                    className="text-admin-accent focus:ring-admin-accent/20"
                                                                 />
                                                                 <input
                                                                     type="text"
@@ -565,7 +591,7 @@ export default function AdminQuizzes() {
                                                                         updatedQuestions[index] = { ...question, options: updatedOptions };
                                                                         setSelectedQuiz({ ...selectedQuiz, questions: updatedQuestions });
                                                                     }}
-                                                                    className="flex-1 rounded-md border-gray-300 shadow-sm focus:border-teal-500 focus:ring-teal-500 text-sm"
+                                                                    className="flex-1 rounded-md border border-admin-border bg-admin-card text-admin-text shadow-sm focus:border-admin-accent focus:ring-admin-accent/20 text-sm px-3 py-2"
                                                                     placeholder={t('admin.quizzes.modal.optionPlaceholder', { number: optionIndex + 1 })}
                                                                 />
                                                                 {question.options.length > 2 && (
@@ -582,7 +608,7 @@ export default function AdminQuizzes() {
                                                                             };
                                                                             setSelectedQuiz({ ...selectedQuiz, questions: updatedQuestions });
                                                                         }}
-                                                                        className="text-red-600 hover:text-red-800"
+                                                                        className="text-admin-error hover:text-admin-error/80 hover:bg-admin-error/10 px-2 py-1 rounded text-sm"
                                                                     >
                                                                         {t('admin.quizzes.modal.remove')}
                                                                     </button>
@@ -597,7 +623,7 @@ export default function AdminQuizzes() {
                                                                     updatedQuestions[index] = { ...question, options: updatedOptions };
                                                                     setSelectedQuiz({ ...selectedQuiz, questions: updatedQuestions });
                                                                 }}
-                                                                className="text-teal-600 hover:text-teal-800 text-sm"
+                                                                className="text-admin-accent hover:text-admin-accent/80 hover:bg-admin-accent/10 px-2 py-1 rounded text-sm"
                                                             >
                                                                 {t('admin.quizzes.modal.addOption')}
                                                             </button>
@@ -617,7 +643,7 @@ export default function AdminQuizzes() {
                                                         questions: [...(selectedQuiz.questions || []), newQuestion]
                                                     });
                                                 }}
-                                                className="w-full py-2 px-4 border border-teal-600 text-teal-600 hover:bg-teal-50 rounded-md text-sm font-medium"
+                                                className="w-full py-2 px-4 border border-admin-accent text-admin-accent hover:bg-admin-accent/10 rounded-md text-sm font-medium"
                                             >
                                                 {t('admin.quizzes.modal.addQuestion')}
                                             </button>
@@ -630,7 +656,7 @@ export default function AdminQuizzes() {
                                             setIsEditing(false);
                                             setSelectedQuiz(null);
                                         }}
-                                        className="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-800 text-sm font-medium rounded-md"
+                                        className="px-4 py-2 bg-admin-border hover:bg-admin-border/80 text-admin-text text-sm font-medium rounded-md"
                                     >
                                         {t('common.cancel')}
                                     </button>
@@ -642,7 +668,7 @@ export default function AdminQuizzes() {
                                                 handleCreateQuiz(selectedQuiz);
                                             }
                                         }}
-                                        className="px-4 py-2 bg-teal-600 hover:bg-teal-700 text-white text-sm font-medium rounded-md"
+                                        className="px-4 py-2 bg-gradient-to-r from-admin-accent to-admin-info hover:from-admin-accent/90 hover:to-admin-info/90 text-white text-sm font-medium rounded-md shadow-glow"
                                     >
                                         {selectedQuiz.id ? t('admin.quizzes.modal.saveChanges') : t('admin.quizzes.modal.createQuiz')}
                                     </button>
