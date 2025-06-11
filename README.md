@@ -8,13 +8,13 @@ VitalUp Frontend is a modern, responsive web application built with Next.js that
 - React 19.0.0
 - TypeScript 5
 - Tailwind CSS 4
-- NextAuth.js 4.24.11 (Authentication)
+- Laravel Sanctum (Authentication via API)
 - Axios 1.8.4 (API calls)
 - Framer Motion 12.12.2 (Animations)
 - React Toastify 11.0.5 (Notifications)
 
 ## Features
-- 🔐 Secure user authentication
+- 🔐 Secure user authentication with Laravel Sanctum
 - 📊 Interactive health data dashboard
 - 📱 Fully responsive design
 - 🎨 Modern UI with smooth animations
@@ -56,8 +56,8 @@ VitalUp Frontend is a modern, responsive web application built with Next.js that
 4. Configure environment variables in `.env.local`
    ```env
    NEXT_PUBLIC_API_URL=http://localhost:8000/api
-   NEXTAUTH_URL=http://localhost:3000
-   NEXTAUTH_SECRET=your_nextauth_secret
+   NEXT_PUBLIC_API_URL=http://localhost:8000
+NEXT_PUBLIC_FRONTEND_URL=http://localhost:3000
    NEXT_PUBLIC_APP_NAME=VitalUp
    ```
 
@@ -109,8 +109,8 @@ src/
 ### Required Variables
 ```env
 NEXT_PUBLIC_API_URL=http://localhost:8000/api
-NEXTAUTH_URL=http://localhost:3000
-NEXTAUTH_SECRET=your_nextauth_secret
+NEXT_PUBLIC_API_URL=http://localhost:8000
+NEXT_PUBLIC_FRONTEND_URL=http://localhost:3000
 ```
 
 ### Optional Variables
@@ -125,7 +125,7 @@ NEXT_PUBLIC_SENTRY_DSN=your_sentry_dsn
 
 The frontend connects to the VitalUp Backend via REST API. Key integration points:
 
-- **Authentication**: JWT-based authentication with NextAuth.js
+- **Authentication**: Token-based authentication with Laravel Sanctum
 - **Data Fetching**: Axios for API calls with interceptors
 - **Real-time Updates**: WebSocket connections for live data
 - **Error Handling**: Centralized error handling with toast notifications
@@ -165,8 +165,8 @@ This application is optimized for deployment on Vercel:
 #### Environment Variables for Production
 ```env
 NEXT_PUBLIC_API_URL=https://your-railway-backend.railway.app/api
-NEXTAUTH_URL=https://your-vercel-domain.vercel.app
-NEXTAUTH_SECRET=your_production_nextauth_secret
+NEXT_PUBLIC_API_URL=https://your-railway-backend.up.railway.app
+NEXT_PUBLIC_FRONTEND_URL=https://your-vercel-domain.vercel.app
 NEXT_PUBLIC_APP_NAME=VitalUp
 ```
 
