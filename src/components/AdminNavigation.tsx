@@ -49,16 +49,16 @@ export default function AdminNavigation({ className = '' }: AdminNavigationProps
   ];
 
   const isActive = (href: string) => {
-    if (href === '/admin') {
-      return pathname === '/admin';
+    if (href === `/${locale}/admin`) {
+      return pathname === `/${locale}/admin`;
     }
     return pathname.startsWith(href);
   };
 
   return (
-    <nav className={`bg-white/90 backdrop-blur-sm border-b border-gray-200 sticky top-16 z-20 ${className}`}>
+    <nav className={`bg-gradient-to-r from-admin-surface via-admin-surface-light to-admin-surface backdrop-blur-sm border-b border-admin-border sticky top-16 z-20 shadow-admin ${className}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex space-x-1 py-4 overflow-x-auto">
+        <div className="flex justify-center space-x-2 py-6 overflow-x-auto">
           {navItems.map((item) => {
             const active = isActive(item.href);
             return (
@@ -68,21 +68,27 @@ export default function AdminNavigation({ className = '' }: AdminNavigationProps
                 className="relative flex-shrink-0"
               >
                 <motion.div
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
+                  whileHover={{ scale: 1.05, y: -2 }}
+                  whileTap={{ scale: 0.95 }}
                   className={`
-                    relative px-4 py-3 rounded-xl transition-all duration-200 min-w-[140px]
+                    relative px-6 py-4 rounded-2xl transition-all duration-300 min-w-[160px] group
                     ${active 
-                      ? 'bg-gradient-to-r from-blue-500 to-blue-600 text-white shadow-lg' 
-                      : 'bg-gray-50 hover:bg-gray-100 text-gray-700 hover:text-gray-900'
+                      ? 'bg-gradient-to-br from-admin-accent via-admin-info to-admin-accent text-white shadow-glow transform scale-105' 
+                      : 'bg-admin-card hover:bg-admin-card-hover text-admin-text hover:text-white border border-admin-border/30 hover:border-admin-accent/50'
                     }
                   `}
                 >
                   <div className="flex flex-col items-center text-center">
-                    <span className="text-2xl mb-1">{item.icon}</span>
-                    <span className="font-semibold text-sm">{item.label}</span>
-                    <span className={`text-xs mt-1 ${
-                      active ? 'text-blue-100' : 'text-gray-500'
+                    <motion.span 
+                      className="text-3xl mb-2 filter drop-shadow-sm"
+                      animate={active ? { rotate: [0, 5, -5, 0] } : {}}
+                      transition={{ duration: 0.5 }}
+                    >
+                      {item.icon}
+                    </motion.span>
+                    <span className="font-bold text-sm tracking-wide">{item.label}</span>
+                    <span className={`text-xs mt-1 font-medium transition-colors duration-200 ${
+                      active ? 'text-white/90' : 'text-admin-text-muted group-hover:text-admin-accent'
                     }`}>
                       {item.description}
                     </span>
@@ -91,11 +97,16 @@ export default function AdminNavigation({ className = '' }: AdminNavigationProps
                   {active && (
                     <motion.div
                       layoutId="activeTab"
-                      className="absolute inset-0 bg-gradient-to-r from-blue-500 to-blue-600 rounded-xl"
+                      className="absolute inset-0 bg-gradient-to-br from-admin-accent via-admin-info to-admin-accent rounded-2xl"
                       style={{ zIndex: -1 }}
                       transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                     />
                   )}
+                  
+                  {/* Hover glow effect */}
+                  <div className={`absolute inset-0 rounded-2xl transition-opacity duration-300 ${
+                    active ? 'opacity-0' : 'opacity-0 group-hover:opacity-100'
+                  } bg-gradient-to-br from-admin-accent/20 via-transparent to-admin-info/20`} />
                 </motion.div>
               </Link>
             );

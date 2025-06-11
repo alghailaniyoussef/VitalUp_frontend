@@ -181,10 +181,11 @@ export default function EnhancedNavigation() {
 
 
 
-  const isAdminActive = pathname.startsWith('/admin');
+  const isAdminActive = pathname.startsWith('/admin') || pathname.includes('/admin');
+  const isOnAdminPage = pathname.startsWith('/admin') || pathname.includes('/admin');
 
   return (
-    <nav className="bg-white shadow-lg border-b border-gray-200 sticky top-0 z-40">
+    <nav className={`${isOnAdminPage ? 'bg-admin-surface border-admin-border' : 'bg-white border-gray-200'} shadow-lg border-b sticky top-0 z-40`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           {/* Logo and brand */}
@@ -194,7 +195,7 @@ export default function EnhancedNavigation() {
                 <Image src="/logo.png" alt={t('alt.logo')} width={120} height={56} className="h-auto w-auto" />
               </div>
               <div className="hidden sm:block">
-                <p className="text-xs text-gray-500 -mt-1">{t('common.tagline')}</p>
+                <p className={`text-xs -mt-1 ${isOnAdminPage ? 'text-admin-text-muted' : 'text-gray-500'}`}>{t('common.tagline')}</p>
               </div>
             </Link>
           </div>
@@ -206,8 +207,8 @@ export default function EnhancedNavigation() {
                 key={item.href}
                 href={item.href}
                 className={`px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 flex items-center space-x-2 ${isActive(item.href)
-                  ? 'bg-teal-50 text-teal-700 border border-teal-200'
-                  : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
+                  ? (isOnAdminPage ? 'bg-admin-accent/20 text-admin-accent border border-admin-accent/30' : 'bg-teal-50 text-teal-700 border border-teal-200')
+                  : (isOnAdminPage ? 'text-admin-text hover:text-admin-accent hover:bg-admin-card' : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50')
                   }`}
               >
                 <span>{item.label}</span>
@@ -217,10 +218,10 @@ export default function EnhancedNavigation() {
 
             {user?.is_admin && (
               <Link
-                href="/admin"
+                href={`/${locale}/admin`}
                 className={`px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 flex items-center space-x-2 ${isAdminActive
-                  ? 'bg-purple-50 text-purple-700 border border-purple-200'
-                  : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
+                  ? (isOnAdminPage ? 'bg-admin-accent text-white border border-admin-accent shadow-glow' : 'bg-purple-50 text-purple-700 border border-purple-200')
+                  : (isOnAdminPage ? 'text-admin-text hover:text-admin-accent hover:bg-admin-card' : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50')
                   }`}
               >
                 <span>{t('navigation.admin')}</span>
@@ -242,10 +243,10 @@ export default function EnhancedNavigation() {
                 {/* User info - Desktop */}
                 <div className="hidden md:flex items-center space-x-3">
                   <div className="text-right">
-                    <p className="text-sm font-medium text-gray-900">{user.name}</p>
+                    <p className={`text-sm font-medium ${isOnAdminPage ? 'text-admin-text' : 'text-gray-900'}`}>{user.name}</p>
                     <div className="flex items-center space-x-2">
-                      <span className="text-xs text-gray-500">{t('common.level')} {level}</span>
-                      <span className="text-xs text-teal-600 font-medium">{points} {t('common.points')}</span>
+                      <span className={`text-xs ${isOnAdminPage ? 'text-admin-text-muted' : 'text-gray-500'}`}>{t('common.level')} {level}</span>
+                      <span className={`text-xs font-medium ${isOnAdminPage ? 'text-admin-accent' : 'text-teal-600'}`}>{points} {t('common.points')}</span>
                     </div>
                   </div>
 
@@ -315,7 +316,11 @@ export default function EnhancedNavigation() {
                 {/* Mobile menu button */}
                 <button
                   onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                  className="md:hidden p-2 rounded-lg text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors"
+                  className={`md:hidden p-2 rounded-lg transition-colors ${
+                    isOnAdminPage 
+                      ? 'text-admin-text hover:text-admin-accent hover:bg-admin-card' 
+                      : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
+                  }`}
                 >
                   <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     {isMobileMenuOpen ? (
@@ -359,7 +364,11 @@ export default function EnhancedNavigation() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-white border-t border-gray-200"
+            className={`md:hidden border-t ${
+              isOnAdminPage 
+                ? 'bg-admin-surface border-admin-border' 
+                : 'bg-white border-gray-200'
+            }`}
           >
             <div className="px-4 py-3 space-y-1">
               {/* User info - Mobile */}
@@ -368,10 +377,10 @@ export default function EnhancedNavigation() {
                   {user.name.charAt(0).toUpperCase()}
                 </div>
                 <div className="flex-1">
-                  <p className="font-medium text-gray-900">{user.name}</p>
+                  <p className={`font-medium ${isOnAdminPage ? 'text-admin-text' : 'text-gray-900'}`}>{user.name}</p>
                   <div className="flex items-center space-x-3">
-                    <span className="text-sm text-gray-500">{t('common.level')} {level}</span>
-                    <span className="text-sm text-teal-600 font-medium">{points} {t('common.points')}</span>
+                    <span className={`text-sm ${isOnAdminPage ? 'text-admin-text-muted' : 'text-gray-500'}`}>{t('common.level')} {level}</span>
+                    <span className={`text-sm font-medium ${isOnAdminPage ? 'text-admin-accent' : 'text-teal-600'}`}>{points} {t('common.points')}</span>
                   </div>
                 </div>
                 {loading ? (
@@ -398,8 +407,8 @@ export default function EnhancedNavigation() {
                   key={item.href}
                   href={item.href}
                   className={`flex items-center space-x-3 px-3 py-2 rounded-lg text-base font-medium transition-colors ${isActive(item.href)
-                    ? 'bg-teal-50 text-teal-700'
-                    : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
+                    ? (isOnAdminPage ? 'bg-admin-accent/20 text-admin-accent' : 'bg-teal-50 text-teal-700')
+                    : (isOnAdminPage ? 'text-admin-text hover:text-admin-accent hover:bg-admin-card' : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50')
                     }`}
                 >
                   <span>{item.label}</span>
@@ -408,10 +417,10 @@ export default function EnhancedNavigation() {
 
               {user.is_admin && (
                 <Link
-                  href="/admin"
-                  className={`flex items-center space-x-3 px-3 py-2 rounded-lg text-base font-medium transition-colors ${isActive('/admin')
-                    ? 'bg-purple-50 text-purple-700'
-                    : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
+                  href={`/${locale}/admin`}
+                  className={`flex items-center space-x-3 px-3 py-2 rounded-lg text-base font-medium transition-colors ${isAdminActive
+                    ? (isOnAdminPage ? 'bg-admin-accent/20 text-admin-accent' : 'bg-purple-50 text-purple-700')
+                    : (isOnAdminPage ? 'text-admin-text hover:text-admin-accent hover:bg-admin-card' : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50')
                     }`}
                 >
                   <span>{t('navigation.admin')}</span>
@@ -422,7 +431,11 @@ export default function EnhancedNavigation() {
 
               <button
                 onClick={handleLogout}
-                className="flex items-center space-x-3 px-3 py-2 rounded-lg text-base font-medium text-red-600 hover:bg-red-50 transition-colors w-full"
+                className={`flex items-center space-x-3 px-3 py-2 rounded-lg text-base font-medium transition-colors w-full ${
+                  isOnAdminPage 
+                    ? 'text-red-400 hover:bg-red-900/20' 
+                    : 'text-red-600 hover:bg-red-50'
+                }`}
               >
                 <span>{t('auth.logout')}</span>
               </button>
