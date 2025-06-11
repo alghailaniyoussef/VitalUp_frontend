@@ -93,11 +93,11 @@ function SignInContent() {
     };
 
     return (
-        <section className="min-h-screen flex items-center justify-center px-4">
-            <div className="max-w-md w-full bg-white shadow-lg rounded-lg p-8">
-                <h2 className="text-2xl font-bold text-green-700 mb-6 text-center">{t('auth.signinTitle')}</h2>
-                {error && <p className="text-red-500 text-center mb-4">{error}</p>}
-                {success && <p className="text-green-500 text-center mb-4">{success}</p>}
+        <section className="min-h-screen bg-gradient-to-br from-teal-50 via-white to-green-50 flex items-center justify-center px-4">
+            <div className="max-w-md w-full bg-gradient-to-br from-white to-teal-50 shadow-xl rounded-2xl p-8 border border-teal-200">
+                <h2 className="text-2xl font-bold bg-gradient-to-r from-teal-600 to-green-600 bg-clip-text text-transparent mb-6 text-center">{t('auth.signinTitle')}</h2>
+                {error && <p className="text-red-500 bg-red-50 border border-red-200 rounded-lg p-3 text-center mb-4">{error}</p>}
+                {success && <p className="text-green-600 bg-green-50 border border-green-200 rounded-lg p-3 text-center mb-4">{success}</p>}
                 <form onSubmit={handleLogin} className="space-y-4">
                     <input
                         type="email"
@@ -105,7 +105,7 @@ function SignInContent() {
                         placeholder={t('auth.emailPlaceholder')}
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
-                        className="w-full px-4 py-2 border rounded-lg"
+                        className="w-full px-4 py-3 border border-teal-200 rounded-lg bg-gradient-to-r from-white to-teal-50 focus:border-teal-400 focus:ring-2 focus:ring-teal-200 transition-all"
                         required
                     />
                     <input
@@ -114,12 +114,12 @@ function SignInContent() {
                         placeholder={t('auth.passwordPlaceholder')}
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
-                        className="w-full px-4 py-2 border rounded-lg"
+                        className="w-full px-4 py-3 border border-teal-200 rounded-lg bg-gradient-to-r from-white to-teal-50 focus:border-teal-400 focus:ring-2 focus:ring-teal-200 transition-all"
                         required
                     />
                     <button
                         type="submit"
-                        className="w-full bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 disabled:bg-green-400"
+                        className="w-full bg-gradient-to-r from-teal-600 to-green-600 text-white py-3 rounded-lg hover:from-teal-700 hover:to-green-700 disabled:from-teal-400 disabled:to-green-400 transition-all duration-300 transform hover:scale-105 shadow-lg"
                         disabled={isLoading}
                     >
                         {isLoading ? t('auth.signingIn') : t('auth.signin')}
@@ -127,7 +127,7 @@ function SignInContent() {
                 </form>
                 <p className="mt-4 text-center text-sm">
                     {t('auth.noAccount')}{' '}
-                    <Link href={`/${locale}/auth/register`} className="text-green-600 hover:underline">
+                    <Link href={`/${locale}/auth/register`} className="bg-gradient-to-r from-teal-600 to-green-600 bg-clip-text text-transparent font-semibold hover:from-teal-700 hover:to-green-700">
                         {t('auth.registerHere')}
                     </Link>
                 </p>
