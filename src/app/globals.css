@@ -1,17 +1,105 @@
 @import "tailwindcss";
 
 @theme {
-  --color-background: #ffffff;
-  --color-foreground: #171717;
-  --color-background-dark: #0a0a0a;
-  --color-foreground-dark: #ededed;
+  /* Colors */
+  --color-primary-50: #f0fdfa;
+  --color-primary-100: #ccfbf1;
+  --color-primary-200: #99f6e4;
+  --color-primary-300: #5eead4;
+  --color-primary-400: #2dd4bf;
+  --color-primary-500: #14b8a6;
+  --color-primary-600: #0d9488;
+  --color-primary-700: #0f766e;
+  --color-primary-800: #115e59;
+  --color-primary-900: #134e4a;
+
+  --color-secondary-50: #f7fee7;
+  --color-secondary-100: #ecfccb;
+  --color-secondary-200: #d9f99d;
+  --color-secondary-300: #bef264;
+  --color-secondary-400: #a3e635;
+  --color-secondary-500: #84cc16;
+  --color-secondary-600: #65a30d;
+  --color-secondary-700: #4d7c0f;
+  --color-secondary-800: #365314;
+  --color-secondary-900: #1a2e05;
+
+  --color-admin-bg: #0f172a;
+  --color-admin-card: #1e293b;
+  --color-admin-accent: #14b8a6;
+  --color-admin-info: #3b82f6;
+  --color-admin-success: #10b981;
+  --color-admin-warning: #f59e0b;
+  --color-admin-error: #ef4444;
+  --color-admin-text: #f8fafc;
+  --color-admin-text-muted: #94a3b8;
+  --color-admin-border: #475569;
+  --color-admin-hover: #64748b;
+  --color-admin-gradient-primary: linear-gradient(135deg, #14b8a6 0%, #3b82f6 100%);
+  --color-admin-gradient-secondary: linear-gradient(135deg, #10b981 0%, #14b8a6 100%);
+  --color-admin-gradient-accent: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+  --color-admin-card-hover: #334155;
+  --color-admin-surface: #0f172a;
+  --color-admin-surface-light: #1e293b;
+
+  --color-dashboard-bg: #f0fdfa;
+  --color-dashboard-card: #ffffff;
+  --color-dashboard-accent: #14b8a6;
+  --color-dashboard-text: #0f766e;
+  --color-dashboard-border: #99f6e4;
+
+  --color-gamified-bg: #f7fee7;
+  --color-gamified-card: #ffffff;
+  --color-gamified-accent: #84cc16;
+  --color-gamified-text: #4d7c0f;
+  --color-gamified-border: #bef264;
+  --color-gamified-success: #22c55e;
+  --color-gamified-warning: #f59e0b;
+
+  --color-personal-bg: #f8fafc;
+  --color-personal-card: #ffffff;
+  --color-personal-accent: #0d9488;
+  --color-personal-text: #475569;
+  --color-personal-border: #cbd5e1;
+
+  /* Font Families */
+  --font-family-sans: Inter, system-ui, sans-serif;
+
+  /* Box Shadows */
+  --shadow-soft: 0 2px 15px -3px rgba(0, 0, 0, 0.07), 0 10px 20px -2px rgba(0, 0, 0, 0.04);
+  --shadow-glow: 0 0 20px rgba(20, 184, 166, 0.15);
+  --shadow-admin: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+
+  /* Animations */
+  --animate-fade-in: fadeIn 0.5s ease-in-out;
+  --animate-slide-up: slideUp 0.3s ease-out;
+  --animate-pulse-soft: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
+
+/* Custom Keyframes */
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes slideUp {
+  0% { 
+    transform: translateY(10px); 
+    opacity: 0; 
+  }
+  100% { 
+    transform: translateY(0); 
+    opacity: 1; 
+  }
+}
+
 @media (prefers-color-scheme: dark) {
   body {
     color: #000 !important;
     background-color: #fff !important;
   }
 }
+
 @media (prefers-color-scheme: dark) {
   :root {
     --color-background: var(--color-background-dark);
