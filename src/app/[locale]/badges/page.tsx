@@ -211,7 +211,7 @@ export default function BadgesPage() {
           transition={{ delay: 0.2 }}
           className="space-y-8"
         >
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-4 m-10">
             <div className="bg-gradient-to-br from-gamified-success via-gamified-accent to-gamified-success w-12 h-12 rounded-full flex items-center justify-center shadow-glow">
               <span className="text-white text-xl">✨</span>
             </div>
@@ -289,7 +289,7 @@ export default function BadgesPage() {
           transition={{ delay: 0.4 }}
           className="space-y-8"
         >
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-4 m-10">
             <div className="bg-gradient-to-br from-gamified-accent via-gamified-warning to-gamified-accent w-12 h-12 rounded-full flex items-center justify-center shadow-glow">
               <span className="text-white text-xl">🎯</span>
             </div>
@@ -364,9 +364,9 @@ export default function BadgesPage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5 }}
-          className="bg-white/80 backdrop-blur-sm rounded-xl shadow-lg p-6 border border-teal-200"
+          className="bg-white/80 backdrop-blur-sm m-10 rounded-xl shadow-lg p-6 border border-teal-200"
         >
-          <h2 className="text-xl font-bold text-teal-800 mb-4 flex items-center">
+          <h2 className="text-xl  font-bold text-teal-800 mb-4 flex items-center">
             <span className="mr-2">📊</span>
             {t('badges.sections.categories')}
           </h2>

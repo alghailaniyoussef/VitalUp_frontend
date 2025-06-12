@@ -69,7 +69,7 @@ export default function AboutPage() {
         style={{ backgroundImage: 'url(/hero-background2.png)' }}
       >
         {/* Overlay */}
-        <div className="absolute inset-0  bg-opacity-50 backdrop-blur-sm z-0"></div>
+        <div className="absolute inset-0  bg-opacity-70 backdrop-blur-sm z-0"></div>
 
         {/* Content container */}
         <div className="relative z-10 max-w-6xl mx-auto text-center">
@@ -88,7 +88,7 @@ export default function AboutPage() {
                 className="h-auto w-auto"
               />
             </div>
-            <h1 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-teal-400 via-blue-500 to-green-400 bg-clip-text text-transparent mb-6 drop-shadow-lg">
+            <h1 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-teal-400 via-teal-500 to-green-400 bg-clip-text text-transparent mb-6 drop-shadow-lg">
               {t('about.hero.title')}
             </h1>
             <p className="text-xl md:text-2xl text-gray-200 max-w-3xl mx-auto leading-relaxed drop-shadow">
