@@ -145,8 +145,15 @@ export default function EnhancedNavigation() {
     const handleStorageChange = async (e: StorageEvent) => {
       if (e.key === 'auth_user' && e.newValue) {
         try {
-          const updatedUser = JSON.parse(e.newValue);
-          setUser(updatedUser);
+          const parsedUser = JSON.parse(e.newValue);
+          // Ensure is_admin is properly set as a boolean
+          const userData = {
+            ...parsedUser,
+            is_admin: Boolean(parsedUser.is_admin),
+            level: parsedUser.level || 1,
+            points: parsedUser.points || 0
+          };
+          setUser(userData);
           // Also refresh from server to ensure data is current
           await refreshUser();
         } catch (error) {
@@ -201,6 +208,19 @@ export default function EnhancedNavigation() {
       fetchProgress();
     }
   }, [user?.is_admin, user?.id, isLoading, getProgressToNextLevel]);
+
+  // Force re-render when user admin status changes
+  useEffect(() => {
+    // This effect will run whenever the user object changes
+    // ensuring the navigation updates when admin status is available
+    if (user) {
+      console.log('User state updated in navigation:', { 
+        id: user.id, 
+        is_admin: user.is_admin, 
+        name: user.name 
+      });
+    }
+  }, [user?.is_admin, user?.id]);
 
 
   

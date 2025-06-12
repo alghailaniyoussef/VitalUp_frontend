@@ -72,7 +72,13 @@ function SignInContent() {
                 Cookies.set('auth_token', data.token, { expires: 7, secure: true, sameSite: 'strict' });
                 
                 // Update UserContext with the logged-in user
-                setUser(data.user);
+                const userData = {
+                    ...data.user,
+                    is_admin: Boolean(data.user.is_admin),
+                    level: data.user.level || 1,
+                    points: data.user.points || 0
+                };
+                setUser(userData);
                 
                 // Refresh user data to ensure admin status is properly loaded
                 await refreshUser();
