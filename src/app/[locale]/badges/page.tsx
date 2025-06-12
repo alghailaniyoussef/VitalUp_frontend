@@ -164,7 +164,7 @@ export default function BadgesPage() {
                   {Math.round(earnedBadges.length > 0 ? (earnedBadges.length / (earnedBadges.length + badges.length)) * 100 : 0)}%
                 </span>
               </CircularProgress>
-              <div className="text-xs text-gamified-text/60 font-medium mt-2">Progress</div>
+              <div className="text-xs text-gamified-text/60 font-medium mt-2">{t('common.progress')}</div>
             </div>
           </div>
         </motion.div>
@@ -243,7 +243,8 @@ export default function BadgesPage() {
 
                   <div className="flex items-center w-16 h-16 justify-center mb-4 text-4xl relative z-10">
                     {predefinedIcons.find(icon => icon.value === badge.icon_path)?.icon || badge.icon_path}
-                  </div>
+                 
+                    </div>
 
                   <h3 className="text-lg font-semibold text-teal-700 text-center mb-2 relative z-10">{badge.name}</h3>
                   <p className="text-gray-600 text-center text-sm mb-4 relative z-10">{badge.description}</p>

@@ -20,8 +20,26 @@ export default function LanguageToggle({ className = '', showLabels = true }: La
   };
 
   const languageFlags = {
-    en: '🇺🇸',
-    es: '🇪🇸'
+    en: (
+      <svg className="w-5 h-4" viewBox="0 0 640 480" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <clipPath id="us">
+            <path d="M0 0h640v480H0z"/>
+          </clipPath>
+        </defs>
+        <g clipPath="url(#us)">
+          <path d="M0 0h640v480H0z" fill="#fff"/>
+          <path d="M0 0h640v37h-640zM0 74h640v37h-640zM0 148h640v37h-640zM0 222h640v37h-640zM0 296h640v37h-640zM0 370h640v37h-640zM0 444h640v36h-640z" fill="#d22630"/>
+          <path d="M0 0h364v258H0z" fill="#46467f"/>
+        </g>
+      </svg>
+    ),
+    es: (
+      <svg className="w-5 h-4" viewBox="0 0 750 500" xmlns="http://www.w3.org/2000/svg">
+        <rect width="750" height="500" fill="#c60b1e"/>
+        <rect width="750" height="250" y="125" fill="#ffc400"/>
+      </svg>
+    )
   };
 
   return (
@@ -41,9 +59,9 @@ export default function LanguageToggle({ className = '', showLabels = true }: La
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
-          <span className="text-lg">{languageFlags[lang]}</span>
+          <span className="flex items-center justify-center">{languageFlags[lang]}</span>
           {showLabels && (
-            <span className="text-sm font-medium">
+            <span className="text-sm font-medium ml-2">
               {languages[lang]}
             </span>
           )}
@@ -61,9 +79,27 @@ export function LanguageToggleCompact({ className = '' }: { className?: string }
     setLocale(locale === 'en' ? 'es' : 'en');
   };
 
-  const languageFlags = {
-    en: '🇺🇸',
-    es: '🇪🇸'
+  const compactLanguageFlags = {
+    en: (
+      <svg className="w-4 h-3" viewBox="0 0 640 480" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <clipPath id="us-compact">
+            <path d="M0 0h640v480H0z"/>
+          </clipPath>
+        </defs>
+        <g clipPath="url(#us-compact)">
+          <path d="M0 0h640v480H0z" fill="#fff"/>
+          <path d="M0 0h640v37h-640zM0 74h640v37h-640zM0 148h640v37h-640zM0 222h640v37h-640zM0 296h640v37h-640zM0 370h640v37h-640zM0 444h640v36h-640z" fill="#d22630"/>
+          <path d="M0 0h364v258H0z" fill="#46467f"/>
+        </g>
+      </svg>
+    ),
+    es: (
+      <svg className="w-4 h-3" viewBox="0 0 750 500" xmlns="http://www.w3.org/2000/svg">
+        <rect width="750" height="500" fill="#c60b1e"/>
+        <rect width="750" height="250" y="125" fill="#ffc400"/>
+      </svg>
+    )
   };
 
   return (
@@ -78,7 +114,7 @@ export function LanguageToggleCompact({ className = '' }: { className?: string }
       whileTap={{ scale: 0.9 }}
       title={`Switch to ${locale === 'en' ? 'Español' : 'English'}`}
     >
-      <span className="text-lg">{languageFlags[locale]}</span>
+      <span className="flex items-center justify-center">{compactLanguageFlags[locale]}</span>
     </motion.button>
   );
 }

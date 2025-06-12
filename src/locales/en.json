@@ -11,7 +11,8 @@
     "users": "Users",
     "signin": "Sign In",
     "register": "Register",
-    "logout": "Logout"
+    "logout": "Logout",
+    "about": "About"
   },
   "common": {
     "loading": "Loading...",
@@ -36,7 +37,24 @@
     "sort": "Sort",
     "actions": "Actions",
     "view": "View",
-    "tagline": "Level up, live better"
+    "tagline": "Level up, live better",
+    "totalEarned": "Total Earned",
+    "currentLevel": "Current Level",
+    "achievements": "Achievements",
+    "completed": "Completed",
+    "progress": "Progress",
+    "overallProgress": "Overall Progress",
+    "english": "English",
+    "spanish": "Español",
+    "quizCompleted": "Quiz Completed! 🎉",
+    "finalScore": "Your final score: {{score}} points",
+    "loginRequired": "Please log in to access quizzes",
+    "loginRequiredDesc": "You need to be logged in to view and take quizzes.",
+    "tryAgainLater": "Please try again later.",
+    "questionOf": "Question {{current}} of {{total}}",
+    "noChallengesFound": "No challenges found for {{locale}} locale",
+    "noBadgesFound": "No badges found for {{locale}} locale",
+    "levelNumber": "Level {{level}}"
   },
   "dashboard": {
     "loading": "Loading your dashboard...",
@@ -50,6 +68,7 @@
     "recentQuizzes": "Recent Quizzes",
     "activeChallenges": "Active Challenges",
     "recentBadges": "Recent Badges",
+    "badgesShowcase": "Badges Showcase",
     "dailyTip": "Daily Tip 💡",
     "viewAll": "View All →",
     "defaultTip": "Take a deep breath, nourish your body and mind."
@@ -71,7 +90,6 @@
     "verificationInvalid": "The verification link is invalid or has expired.",
     "emailAlreadyVerified": "Your email is already verified. You can sign in.",
     "registrationSuccess": "Registration successful! Please verify your email before signing in. Check your inbox.",
-
     "authVerificationError": "Error verifying authentication",
     "emailVerificationRequired": "Please verify your email before signing in. Check your inbox.",
     "loginError": "Error signing in",
@@ -117,7 +135,7 @@
       "submitFailed": "An error occurred while submitting your answer",
       "loginRequired": "Please log in to access quizzes."
     },
-       "availableQuizzes": "Available Quizzes",
+    "availableQuizzes": "Available Quizzes",
     "completedQuizzes": "Completed Quizzes",
     "incompleteQuizzes": "Incomplete Quizzes",
     "startQuiz": "Start Quiz",
@@ -132,13 +150,14 @@
     "incorrect": "Incorrect",
     "quizCompleted": "Quiz Completed!",
     "congratulations": "Congratulations!",
-    "alreadyCompleted": "You have already completed this quiz"
+    "alreadyCompleted": "You have already completed this quiz",
+    "close": "Close"
   },
-
   "badges": {
     "loading": "Loading badges...",
     "loginRequired": "Please log in to view badges.",
     "title": "Badge Collection",
+    "subtitle": "Discover and collect achievement badges! 🏆✨",
     "stats": {
       "earned": "Earned",
       "available": "Available"
@@ -220,93 +239,99 @@
     },
     "noBadges": "You haven't earned any badges yet",
     "errors": {
-      "loadFailed": "Failed to load profile data"
+      "loadFailed": "Failed to load profile data",
+      "noToken": "No authentication token found"
     }
   },
   "admin": {
-        "loading": "Loading admin dashboard...",
-        "title": "Admin Dashboard",
-        "subtitle": "Manage your platform and view analytics 🔧📊",
-        "stats": {
-            "totalUsers": "Total Users",
-            "activeUsers": "Active Users",
-            "totalChallenges": "Total Challenges",
-            "totalQuizzes": "Total Quizzes"
-        },
-        "navigation": {
-            "manageUsers": "Manage Users",
-            "manageUsersDesc": "View and edit user accounts",
-            "manageChallenges": "Manage Challenges",
-            "manageChallengesDesc": "Create and edit challenges",
-            "manageBadges": "Manage Badges",
-            "manageBadgesDesc": "Create and edit badges",
-            "manageQuizzes": "Manage Quizzes",
-            "manageQuizzesDesc": "Create and edit quizzes"
-        },
-        "charts": {
-            "usersByLevel": "Users by Level",
-            "level": "Level",
-            "topChallenges": "Top Challenges",
-            "challenge": "Challenge",
-            "completions": "completions"
-        },
-        "quizzes": {
-            "loading": "Loading quizzes...",
-            "title": "Manage Quizzes",
-            "subtitle": "Create and manage quiz content 📝⚙️",
-            "createButton": "+ Create Quiz",
-            "confirmDelete": "Are you sure you want to delete this quiz?",
-            "questions": "questions",
-            "pointsPerQuestion": "Points per Question",
-            "availableFrom": "Available From",
-            "availableUntil": "Available Until",
-            "stats": {
-                "total": "Total Quizzes",
-                "active": "Active Quizzes",
-                "totalQuestions": "Total Questions"
-            },
-            "status": {
-                "active": "Active",
-                "inactive": "Inactive"
-            },
-            "difficulties": {
-                "easy": "Easy",
-                "medium": "Medium",
-                "hard": "Hard"
-            },
-            "pagination": {
-                "showing": "Showing page {{current}} of {{total}}"
-            },
-            "modal": {
-                "editTitle": "Edit Quiz",
-                "createTitle": "Create Quiz",
-                "title": "Title",
-                "description": "Description",
-                "pointsPerQuestion": "Points per Question",
-                "availableFrom": "Available From",
-                "availableUntil": "Available Until",
-                "status": "Status",
-                "difficulty": "Difficulty",
-                "category": "Category",
-                "categoryPlaceholder": "general",
-                "questions": "Questions",
-                "questionPlaceholder": "Question text",
-                "optionPlaceholder": "Option {{number}}",
-                "addOption": "Add Option",
-                "addQuestion": "Add Question",
-                "remove": "Remove",
-                "saveChanges": "Save Changes",
-                "createQuiz": "Create Quiz"
-            },
-            "errors": {
-                "loadFailed": "Failed to load quizzes. Please try again later.",
-                "unexpectedFormat": "Received unexpected data format from server",
-                "processingError": "Error processing server response",
-                "createFailed": "Failed to create quiz",
-                "updateFailed": "Failed to update quiz",
-                "deleteFailed": "Failed to delete quiz"
-            }
-        },
+    "loading": "Loading admin dashboard...",
+    "title": "Admin Dashboard",
+    "subtitle": "Manage your platform and view analytics 🔧📊",
+    "stats": {
+      "totalUsers": "Total Users",
+      "activeUsers": "Active Users",
+      "totalChallenges": "Total Challenges",
+      "totalQuizzes": "Total Quizzes"
+    },
+    "navigation": {
+      "manageUsers": "Manage Users",
+      "manageUsersDesc": "View and edit user accounts",
+      "manageChallenges": "Manage Challenges",
+      "manageChallengesDesc": "Create and edit challenges",
+      "manageBadges": "Manage Badges",
+      "manageBadgesDesc": "Create and edit badges",
+      "manageQuizzes": "Manage Quizzes",
+      "manageQuizzesDesc": "Create and edit quizzes"
+    },
+    "charts": {
+      "usersByLevel": "Users by Level",
+      "level": "Level",
+      "topChallenges": "Top Challenges",
+      "challenge": "Challenge",
+      "completions": "completions"
+    },
+    "quizzes": {
+      "loading": "Loading quizzes...",
+      "title": "Manage Quizzes",
+      "subtitle": "Create and manage quiz content 📝⚙️",
+      "createButton": "+ Create Quiz",
+      "confirmDelete": "Are you sure you want to delete this quiz?",
+      "questions": "questions",
+      "pointsPerQuestion": "Points per Question",
+      "availableFrom": "Available From",
+      "availableUntil": "Available Until",
+      "stats": {
+        "total": "Total Quizzes",
+        "active": "Active Quizzes",
+        "totalQuestions": "Total Questions"
+      },
+      "status": {
+        "active": "Active",
+        "inactive": "Inactive"
+      },
+      "difficulties": {
+        "easy": "Easy",
+        "medium": "Medium",
+        "hard": "Hard"
+      },
+      "pagination": {
+        "showing": "Showing page {{current}} of {{total}}"
+      },
+      "modal": {
+        "editTitle": "Edit Quiz",
+        "createTitle": "Create Quiz",
+        "title": "Title",
+        "description": "Description",
+        "pointsPerQuestion": "Points per Question",
+        "availableFrom": "Available From",
+        "availableUntil": "Available Until",
+        "status": "Status",
+        "difficulty": "Difficulty",
+        "category": "Category",
+        "categoryPlaceholder": "general",
+        "locale": "Locale",
+        "questions": "Questions",
+        "questionPlaceholder": "Question text",
+        "optionPlaceholder": "Option {{number}}",
+        "addOption": "Add Option",
+        "addQuestion": "Add Question",
+        "remove": "Remove",
+        "saveChanges": "Save Changes",
+        "createQuiz": "Create Quiz"
+      },
+      "locales": {
+        "en": "English",
+        "es": "Spanish"
+      },
+      "errors": {
+        "loadFailed": "Failed to load quizzes. Please try again later.",
+        "unexpectedFormat": "Received unexpected data format from server",
+        "processingError": "Error processing server response",
+        "createFailed": "Failed to create quiz",
+        "updateFailed": "Failed to update quiz",
+        "deleteFailed": "Failed to delete quiz"
+      }
+    },
     "users": {
       "loading": "Loading users...",
       "title": "Manage Users",
@@ -358,11 +383,11 @@
       }
     },
     "challenges": {
-        "loading": "Loading challenges...",
-        "title": "Manage Challenges",
-        "subtitle": "Create and manage wellness challenges 💪⚙️",
-        "createButton": "+ Create Challenge",
-        "confirmDelete": "Are you sure you want to delete this challenge?",
+      "loading": "Loading challenges...",
+      "title": "Manage Challenges",
+      "subtitle": "Create and manage wellness challenges 💪⚙️",
+      "createButton": "+ Create Challenge",
+      "confirmDelete": "Are you sure you want to delete this challenge?",
       "updateSuccess": "Challenge updated successfully",
       "createSuccess": "Challenge created successfully",
       "deleteSuccess": "Challenge deleted successfully",
@@ -397,6 +422,11 @@
         "difficulty": "Difficulty",
         "points": "Points Reward",
         "duration": "Duration (Days)",
+        "locale": "Locale",
+        "locales": {
+          "en": "English",
+          "es": "Spanish"
+        },
         "startDate": "Start Date",
         "endDate": "End Date",
         "endDatePlaceholder": "Select end date and time",
@@ -506,7 +536,6 @@
       "description": "Join others in weekly and monthly challenges."
     }
   },
- 
   "home": {
     "hero": {
       "title": "Transform your wellness with VitalUp",
@@ -519,45 +548,46 @@
     }
   },
   "challenges": {
-        "title": "Health Challenges",
-        "subtitle": "Transform your life with our wellness challenges! 💪✨",
-        "collection": "Challenge Collection",
-        "loginRequired": "Please log in to access challenges.",
-        "stats": {
-            "completed": "Completed",
-            "available": "Available",
-            "inProgress": "In Progress"
-        },
-        "sections": {
-            "active": "Active Challenges",
-            "available": "Available Challenges",
-            "completed": "Completed Challenges"
-        },
-        "progress": {
-            "label": "Progress",
-            "complete": "Challenge Complete!",
-            "almostThere": "Almost there! Keep going!",
-            "halfway": "Halfway there! Great progress!",
-            "goodStart": "Good start! Keep it up!",
-            "justStarted": "Just getting started"
-        },
-        "buttons": {
-            "join": "Join Challenge",
-            "joining": "Joining..."
-        },
-        "completedOn": "Completed on",
-        "points": "points",
-        "days": "days",
-        "error": {
-            "fetch": "Failed to fetch challenges",
-            "join": "Failed to join challenge"
-        },
-        "success": {
-            "joined": "Challenge joined successfully! Good luck!"
-        }
+    "title": "Health Challenges",
+    "subtitle": "Transform your life with our wellness challenges! 💪✨",
+    "collection": "Challenge Collection",
+    "loginRequired": "Please log in to access challenges.",
+    "stats": {
+      "completed": "Completed",
+      "available": "Available",
+      "inProgress": "In Progress"
     },
+    "sections": {
+      "active": "Active Challenges",
+      "available": "Available Challenges",
+      "completed": "Completed Challenges"
+    },
+    "progress": {
+      "label": "Progress",
+      "complete": "Challenge Complete!",
+      "almostThere": "Almost there! Keep going!",
+      "halfway": "Halfway there! Great progress!",
+      "goodStart": "Good start! Keep it up!",
+      "justStarted": "Just getting started"
+    },
+    "buttons": {
+      "join": "Join Challenge",
+      "joining": "Joining..."
+    },
+    "completedOn": "Completed on",
+    "points": "points",
+    "days": "days",
+    "error": {
+      "fetch": "Failed to fetch challenges",
+      "join": "Failed to join challenge"
+    },
+    "success": {
+      "joined": "Challenge joined successfully! Good luck!"
+    }
+  },
   "settings": {
     "title": "User Settings",
+    "subtitle": "Manage your personal information and preferences",
     "sections": {
       "notifications": "Notification Preferences",
       "privacy": "Privacy Settings",
@@ -565,6 +595,7 @@
       "interests": "Interests"
     },
     "notifications": {
+      "title": "Notification Preferences",
       "quizReminders": "Quiz Reminders",
       "challengeUpdates": "Challenge Updates",
       "achievementAlerts": "Achievement Alerts",
@@ -585,6 +616,7 @@
       }
     },
     "privacy": {
+      "title": "Privacy Settings",
       "profileVisibility": "Profile Visibility",
       "showActivityStatus": "Show Activity Status",
       "allowFriendRequests": "Allow Friend Requests",
@@ -603,6 +635,11 @@
     },
     "interests": {
       "description": "Select your interests to get personalized challenge recommendations"
+    },
+    "language": {
+      "title": "Language Preferences",
+      "preferredLanguage": "Preferred Language",
+      "description": "Choose your preferred language for the interface"
     },
     "buttons": {
       "save": "Save Changes",
@@ -655,8 +692,118 @@
   "alt": {
     "logo": "VitalUp Logo"
   },
+  "welcome": {
+    "title": "Welcome to VitalUp!",
+    "subtitle": "We're excited to have you on board",
+    "gettingStarted": "Getting Started:",
+    "modal": {
+      "title": "Welcome to VitalUp, {{name}}!",
+      "subtitle": "We're excited to have you on board",
+      "gettingStarted": "Getting Started:",
+      "step1": "Explore challenges and quizzes",
+      "step2": "Earn points and badges",
+      "step3": "Track your progress",
+      "step4": "Compete with friends",
+      "learnMore": "Learn More",
+      "getStarted": "Get Started"
+    },
+    "steps": {
+      "explore": "Explore challenges and quizzes",
+      "earn": "Earn points and badges",
+      "track": "Track your progress",
+      "compete": "Compete with friends"
+    },
+    "buttons": {
+      "learnMore": "Learn More",
+      "getStarted": "Get Started"
+    }
+  },
+  "about": {
+    "title": "About VitalUp",
+    "subtitle": "Empowering your journey to better health and wellness",
+    "hero": {
+      "title": "About VitalUp",
+      "subtitle": "Empowering your journey to better health and wellness",
+      "joinNow": "Join Now",
+      "signIn": "Sign In",
+      "goToDashboard": "Go to Dashboard"
+    },
+    "whoWeAre": {
+      "title": "Who We Are",
+      "description": "VitalUp is designed to make health and wellness engaging through gamification. We believe that taking care of your health should be fun, rewarding, and social."
+    },
+    "mission": {
+      "title": "Our Mission",
+      "description": "VitalUp is designed to make health and wellness engaging through gamification. We believe that taking care of your health should be fun, rewarding, and social."
+    },
+    "features": {
+      "title": "What We Offer",
+      "challenges": {
+        "title": "Health Challenges",
+        "description": "Participate in daily and weekly challenges designed to improve your physical and mental well-being."
+      },
+      "quizzes": {
+        "title": "Educational Quizzes",
+        "description": "Test your knowledge with interactive quizzes about nutrition, fitness, and wellness."
+      },
+      "badges": {
+        "title": "Achievement System",
+        "description": "Earn badges and points as you complete challenges and reach your health goals."
+      },
+      "progress": {
+        "title": "Progress Tracking",
+        "description": "Track your progress and celebrate milestones on your wellness journey."
+      },
+      "community": {
+        "title": "Community Support",
+        "description": "Connect with like-minded individuals on their wellness journey."
+      }
+    },
+    "howToPlay": {
+      "title": "How to Play",
+      "subtitle": "Get started with VitalUp in 4 simple steps",
+      "step1": {
+        "title": "Sign Up & Set Goals",
+        "description": "Create your account and set your health goals"
+      },
+      "step2": {
+        "title": "Take Quizzes",
+        "description": "Test your knowledge with interactive quizzes"
+      },
+      "step3": {
+        "title": "Join Challenges",
+        "description": "Participate in wellness challenges"
+      },
+      "step4": {
+        "title": "Earn Rewards",
+        "description": "Collect badges and track your progress"
+      }
+    },
+    "howItWorks": {
+      "title": "How It Works",
+      "steps": {
+        "signup": "Sign up and set your health goals",
+        "participate": "Participate in challenges and quizzes",
+        "earn": "Earn points and unlock achievements",
+        "track": "Track your progress and celebrate milestones"
+      }
+    },
+    "cta": {
+      "title": "Ready to Start Your Journey?",
+      "subtitle": "Join thousands of users who are already improving their health with VitalUp.",
+      "description": "Join thousands of users who are already improving their health with VitalUp.",
+      "signUp": "Sign Up Now",
+      "signIn": "Sign In",
+      "dashboard": "Go to Dashboard",
+      "startJourney": "Start Your Journey",
+      "alreadyMember": "Already a member?",
+      "continuePlaying": "Continue Playing"
+    }
+  },
+  "placeholder": {
+    "selectStartDateTime": "Select start date and time"
+  },
   "placeholders": {
     "selectStartDateTime": "Select start date and time"
   }
- 
 }

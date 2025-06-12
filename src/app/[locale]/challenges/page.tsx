@@ -258,7 +258,7 @@ export default function ChallengesPage() {
                   {Math.round(completedChallenges.length > 0 ? (completedChallenges.length / (completedChallenges.length + availableChallenges.length + activeChallenges.length)) * 100 : 0)}%
                 </span>
               </CircularProgress>
-              <div className="text-xs text-gamified-text/60 font-medium mt-2">Overall Progress</div>
+              <div className="text-xs text-gamified-text/60 font-medium mt-2">{t('common.overallProgress')}</div>
             </div>
           </div>
         </motion.div>

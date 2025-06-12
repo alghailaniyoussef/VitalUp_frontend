@@ -169,6 +169,39 @@ export default function EnhancedNavigation() {
     return () => window.removeEventListener('userDataUpdated', handleUserDataUpdate);
   }, [refreshUser]);
 
+  // Force re-render when user data changes, especially admin status
+  useEffect(() => {
+    if (user) {
+      const fetchProgress = async () => {
+        if (!user || isLoading) {
+          setLoading(false);
+          setPercentage(0);
+          return;
+        }
+    
+        try {
+          setLoading(true);
+          setError(null);
+          const data = await getProgressToNextLevel();
+          const currentLevelPoints = (data.level - 1) * 100;
+          const nextLevelPoints = data.level * 100;
+          const progress = ((data.points - currentLevelPoints) / (nextLevelPoints - currentLevelPoints)) * 100;
+          const percentaje =Math.min(Math.max(progress, 0), 100);
+          setPercentage(percentaje);
+          setLevel(data.level);
+          setPoints(data.points);
+        } catch (err) {
+          setError(err instanceof Error ? err.message : 'Failed to fetch progress data');
+          console.error('Error fetching progress:', err);
+          setPercentage(0);
+        } finally {
+          setLoading(false);
+        }
+      };
+      fetchProgress();
+    }
+  }, [user?.is_admin, user?.id, isLoading, getProgressToNextLevel]);
+
 
   
   const navigationItems = [
@@ -176,7 +209,12 @@ export default function EnhancedNavigation() {
     { href: `/${locale}/quiz`, label: t('navigation.quizzes') },
     { href: `/${locale}/challenges`, label: t('navigation.challenges') },
     { href: `/${locale}/badges`, label: t('navigation.badges') },
+    { href: `/${locale}/about`, label: t('navigation.about') },
     { href: `/${locale}/settings`, label: t('navigation.settings') }
+  ];
+
+  const publicNavigationItems = [
+    { href: `/${locale}/about`, label: t('navigation.about') }
   ];
 
 
@@ -215,8 +253,22 @@ export default function EnhancedNavigation() {
               </Link>
             ))}
             
+            {/* Public navigation for non-authenticated users */}
+            {!user && publicNavigationItems.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={`px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 flex items-center space-x-2 ${isActive(item.href)
+                  ? 'bg-teal-50 text-teal-700 border border-teal-200'
+                  : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
+                  }`}
+              >
+                <span>{item.label}</span>
+              </Link>
+            ))}
 
-            {user?.is_admin && (
+            {/* Admin navigation - show immediately when user has admin rights */}
+            {user && user.is_admin && (
               <Link
                 href={`/${locale}/admin`}
                 className={`px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 flex items-center space-x-2 ${isAdminActive
@@ -289,7 +341,7 @@ export default function EnhancedNavigation() {
                           className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 py-1"
                         >
                           <Link
-                            href="/profile"
+                            href={`/${locale}/profile`}
                             className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 transition-colors"
                           >
                             👤 {t('navigation.profile')}
@@ -334,8 +386,8 @@ export default function EnhancedNavigation() {
             ) : (
               <div className="flex items-center space-x-3">
                 <Link
-                  href="/"
-                  className={`inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium ${isActive('/') ? 'border-teal-500 text-teal-900' : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700'}`}
+                  href={`/${locale}`}
+                  className={`inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium ${isActive(`/${locale}`) ? 'border-teal-500 text-teal-900' : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700'}`}
                 >
                   {t('navigation.home')}
                 </Link>
@@ -402,7 +454,7 @@ export default function EnhancedNavigation() {
               </div>
 
               {/* Navigation items */}
-              {navigationItems.map((item) => (
+              {user && navigationItems.map((item) => (
                 <Link
                   key={item.href}
                   href={item.href}
@@ -415,7 +467,22 @@ export default function EnhancedNavigation() {
                 </Link>
               ))}
 
-              {user.is_admin && (
+              {/* Public navigation for non-authenticated users */}
+              {!user && publicNavigationItems.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className={`flex items-center space-x-3 px-3 py-2 rounded-lg text-base font-medium transition-colors ${isActive(item.href)
+                    ? 'bg-teal-50 text-teal-700'
+                    : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
+                    }`}
+                >
+                  <span>{item.label}</span>
+                </Link>
+              ))}
+
+              {/* Admin navigation - show immediately when user has admin rights */}
+              {user && user.is_admin && (
                 <Link
                   href={`/${locale}/admin`}
                   className={`flex items-center space-x-3 px-3 py-2 rounded-lg text-base font-medium transition-colors ${isAdminActive

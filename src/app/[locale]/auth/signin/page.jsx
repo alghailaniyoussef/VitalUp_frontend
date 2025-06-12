@@ -15,7 +15,7 @@ function SignInContent() {
     const [error, setError] = useState(null);
     const [success, setSuccess] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
-    const { setUser } = useUser();
+    const { setUser, refreshUser } = useUser();
     const { t, locale } = useI18n();
     
     useEffect(() => {
@@ -73,6 +73,27 @@ function SignInContent() {
                 
                 // Update UserContext with the logged-in user
                 setUser(data.user);
+                
+                // Refresh user data to ensure admin status is properly loaded
+                await refreshUser();
+                
+                // Set flag to show welcome modal on dashboard
+                localStorage.setItem('showWelcomeModal', 'true');
+                
+                // Send welcome email for new users or returning users
+                try {
+                    await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/send-welcome-email`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${data.token}`,
+                        },
+                        body: JSON.stringify({ user_id: data.user.id, email: data.user.email }),
+                    });
+                } catch (emailError) {
+                    console.log('Welcome email sending failed:', emailError);
+                    // Don't block login if email fails
+                }
                 
                 // Redirect to dashboard
                 router.push(`/${locale}/dashboard`);
@@ -138,7 +159,7 @@ function SignInContent() {
 
 export default function SignIn() {
     return (
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={<div>{/* Loading will be handled by I18n context */}</div>}>
             <SignInContent />
         </Suspense>
     );

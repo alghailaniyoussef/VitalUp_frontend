@@ -229,7 +229,7 @@ export default function AdminDashboard() {
                         whileHover={{ scale: 1.02, y: -2 }}
                         className="group"
                     >
-                        <Link href="/admin/users" className="block bg-admin-card p-6 rounded-xl shadow-soft border border-admin-border hover:shadow-glow transition-all duration-300 hover:border-admin-accent/50">
+                        <Link href={`/${locale}/admin/users`} className="block bg-admin-card p-6 rounded-xl shadow-soft border border-admin-border hover:shadow-glow transition-all duration-300 hover:border-admin-accent/50">
                             <div className="flex items-center mb-3">
                                 <div className="bg-admin-accent/20 p-2 rounded-lg group-hover:bg-admin-accent/30 transition-colors">
                                     <svg className="w-6 h-6 text-admin-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -249,7 +249,7 @@ export default function AdminDashboard() {
                         whileHover={{ scale: 1.02, y: -2 }}
                         className="group"
                     >
-                        <Link href="/admin/challenges" className="block bg-admin-card p-6 rounded-xl shadow-soft border border-admin-border hover:shadow-glow transition-all duration-300 hover:border-admin-warning/50">
+                        <Link href={`/${locale}/admin/challenges`} className="block bg-admin-card p-6 rounded-xl shadow-soft border border-admin-border hover:shadow-glow transition-all duration-300 hover:border-admin-warning/50">
                             <div className="flex items-center mb-3">
                                 <div className="bg-admin-warning/20 p-2 rounded-lg group-hover:bg-admin-warning/30 transition-colors">
                                     <svg className="w-6 h-6 text-admin-warning" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -269,7 +269,7 @@ export default function AdminDashboard() {
                         whileHover={{ scale: 1.02, y: -2 }}
                         className="group"
                     >
-                        <Link href="/admin/badges" className="block bg-admin-card p-6 rounded-xl shadow-soft border border-admin-border hover:shadow-glow transition-all duration-300 hover:border-admin-success/50">
+                        <Link href={`/${locale}/admin/badges`} className="block bg-admin-card p-6 rounded-xl shadow-soft border border-admin-border hover:shadow-glow transition-all duration-300 hover:border-admin-success/50">
                             <div className="flex items-center mb-3">
                                 <div className="bg-admin-success/20 p-2 rounded-lg group-hover:bg-admin-success/30 transition-colors">
                                     <svg className="w-6 h-6 text-admin-success" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -289,7 +289,7 @@ export default function AdminDashboard() {
                         whileHover={{ scale: 1.02, y: -2 }}
                         className="group"
                     >
-                        <Link href="/admin/quizzes" className="block bg-admin-card p-6 rounded-xl shadow-soft border border-admin-border hover:shadow-glow transition-all duration-300 hover:border-admin-info/50">
+                        <Link href={`/${locale}/admin/quizzes`} className="block bg-admin-card p-6 rounded-xl shadow-soft border border-admin-border hover:shadow-glow transition-all duration-300 hover:border-admin-info/50">
                             <div className="flex items-center mb-3">
                                 <div className="bg-admin-info/20 p-2 rounded-lg group-hover:bg-admin-info/30 transition-colors">
                                     <svg className="w-6 h-6 text-admin-info" fill="none" stroke="currentColor" viewBox="0 0 24 24">

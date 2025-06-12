@@ -403,7 +403,7 @@ export default function QuizPage() {
               transition={{ duration: 0.3 }}
               className="mb-8"
             >
-              <p className="text-lg font-medium text-gamified-accent mb-4">Question {currentQuestionIndex + 1} of {currentQuiz.questions.length}</p>
+              <p className="text-lg font-medium text-gamified-accent mb-4">{t('common.questionOf', { current: currentQuestionIndex + 1, total: currentQuiz.questions.length })}</p>
               <h3 className="text-xl font-semibold text-gamified-text mb-6">{currentQuestion.text}</h3>
               <div className="space-y-4">
                 {currentQuestion.options.map((option, index) => (
@@ -474,8 +474,8 @@ export default function QuizPage() {
                 exit={{ opacity: 0 }}
                 className="p-6 mb-4 rounded-lg bg-gamified-success/20 text-gamified-success text-center border border-gamified-success/30 shadow-soft"
               >
-                <h3 className="text-xl font-bold mb-2">Quiz Completed! 🎉</h3>
-                <p className="mb-4">Your final score: {score} points</p>
+                <h3 className="text-xl font-bold mb-2">{t('common.quizCompleted')}</h3>
+                <p className="mb-4">{t('common.finalScore', { score })}</p>
                 <button
                   onClick={() => {
                     // Reset all quiz state
@@ -536,8 +536,8 @@ export default function QuizPage() {
     return (
       <div className="min-h-screen bg-gradient-to-br from-teal-50 via-white to-green-50 flex items-center justify-center">
         <div className="text-center">
-          <h1 className="text-2xl font-bold text-teal-700 mb-4">Please log in to access quizzes</h1>
-          <p className="text-gray-600">You need to be logged in to view and take quizzes.</p>
+          <h1 className="text-2xl font-bold text-teal-700 mb-4">{t('common.loginRequired')}</h1>
+          <p className="text-gray-600">{t('common.loginRequiredDesc')}</p>
         </div>
       </div>
     );
@@ -754,7 +754,7 @@ export default function QuizPage() {
         <div className="text-center py-20">
           <div className="text-red-500 text-5xl mb-4">⚠️</div>
           <h3 className="text-xl font-semibold text-gray-700">{error}</h3>
-          <p className="text-gray-500 mt-2">Please try again later.</p>
+          <p className="text-gray-500 mt-2">{t('common.tryAgainLater')}</p>
         </div>
       ) : availableQuizzes.length === 0 && completedQuizzes.length === 0 && incompleteQuizzes.length === 0 ? (
         <div className="text-center py-20">
@@ -776,4 +776,4 @@ export default function QuizPage() {
   {/* Quiz lists are now conditionally rendered above */ }
     </div > 
   );
-}       
+}

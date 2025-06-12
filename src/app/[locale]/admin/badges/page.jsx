@@ -350,7 +350,7 @@ export default function AdminBadges() {
                     </div>
                 ) : badges.length === 0 ? (
                     <div className="text-center py-12">
-                        <p className="text-admin-text/60 text-lg">No badges found for {locale.toUpperCase()} locale</p>
+                        <p className="text-admin-text/60 text-lg">{t('common.noBadgesFound', { locale: locale.toUpperCase() })}</p>
                     </div>
                 ) : (
                     /* Badges Grid */
@@ -581,7 +581,7 @@ export default function AdminBadges() {
                                         </div>
 
                                         <div>
-                                            <label className="block text-sm font-semibold text-admin-text mb-2">{t('admin.badges.modal.locale')}</label>
+                                            <label className="block text-sm font-semibold text-admin-text mb-2">{t('admin.challenges.modal.locale')}</label>
                                             <select
                                                 name="locale"
                                                 value={selectedBadge.locale || locale}
@@ -589,9 +589,9 @@ export default function AdminBadges() {
                                                 className="w-full px-4 py-3 border border-admin-border rounded-xl focus:ring-2 focus:ring-admin-accent/20 focus:border-admin-accent transition-all bg-admin-card text-admin-text"
                                                 required
                                             >
-                                                <option value="en">{t('admin.badges.modal.locales.en')}</option>
-                                                <option value="es">{t('admin.badges.modal.locales.es')}</option>
-                                            </select>
+                                                                    <option value="en">{t('admin.challenges.modal.locales.en')}</option>
+                                                                    <option value="es">{t('admin.challenges.modal.locales.es')}</option>
+                                                                     </select>
                                         </div>
 
                                         {editingBadge && (

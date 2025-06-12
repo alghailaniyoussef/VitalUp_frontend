@@ -5,13 +5,27 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { useI18n } from '@/context/I18nContext';
 import { useUser } from '@/context/UserContext';
+import WelcomeModal from '@/components/WelcomeModal';
 
 export default function Dashboard() {
     const { user, isLoading: userLoading } = useUser();
     const [dashboard, setDashboard] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [showWelcomeModal, setShowWelcomeModal] = useState(false);
     const router = useRouter();
     const { t, locale } = useI18n();
+
+    // Show welcome modal only on new login
+    useEffect(() => {
+        if (user && !userLoading) {
+            // Check if welcome modal should be shown from login redirect
+            const shouldShowWelcome = localStorage.getItem('showWelcomeModal');
+            if (shouldShowWelcome === 'true') {
+                setShowWelcomeModal(true);
+                localStorage.removeItem('showWelcomeModal');
+            }
+        }
+    }, [user, userLoading]);
 
     useEffect(() => {
         // Wait for UserContext to finish loading
@@ -74,7 +88,7 @@ export default function Dashboard() {
                         <p className="text-dashboard-text/80 mt-2 text-lg font-medium">{t('dashboard.subtitle')}</p>
                         <div className="flex items-center mt-3 justify-center md:justify-start">
                             <span className="text-2xl mr-2">🌟</span>
-                            <span className="text-dashboard-accent font-semibold">Level {dashboard?.level ?? 1}</span>
+                            <span className="text-dashboard-accent font-semibold">{t('common.levelNumber', { level: dashboard?.level ?? 1 })}</span>
                         </div>
                     </div>
                     <button 
@@ -93,7 +107,7 @@ export default function Dashboard() {
                         </div>
                         <h3 className="text-lg font-bold text-dashboard-text/90 mb-2">{t('dashboard.totalPoints')}</h3>
                         <p className="text-4xl font-bold bg-gradient-to-r from-dashboard-accent to-primary-600 bg-clip-text text-transparent">{dashboard?.points ?? 0}</p>
-                        <div className="mt-2 text-sm text-dashboard-text/60 font-medium">Total Earned</div>
+                        <div className="mt-2 text-sm text-dashboard-text/60 font-medium">{t('common.totalEarned')}</div>
                     </div>
                     <div className="bg-gradient-to-br from-dashboard-card via-white to-secondary-50 p-8 rounded-2xl text-center shadow-soft border border-dashboard-border/30 hover:shadow-glow transition-all duration-300 animate-slide-up group hover:scale-105">
                         <div className="bg-gradient-to-br from-secondary-500 to-secondary-600 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
@@ -101,7 +115,7 @@ export default function Dashboard() {
                         </div>
                         <h3 className="text-lg font-bold text-dashboard-text/90 mb-2">{t('dashboard.level')}</h3>
                         <p className="text-4xl font-bold bg-gradient-to-r from-secondary-500 to-secondary-600 bg-clip-text text-transparent">{dashboard?.level ?? 1}</p>
-                        <div className="mt-2 text-sm text-dashboard-text/60 font-medium">Current Level</div>
+                        <div className="mt-2 text-sm text-dashboard-text/60 font-medium">{t('common.currentLevel')}</div>
                     </div>
                     <div className="bg-gradient-to-br from-dashboard-card via-white to-primary-50 p-8 rounded-2xl text-center shadow-soft border border-dashboard-border/30 hover:shadow-glow transition-all duration-300 animate-slide-up group hover:scale-105">
                         <div className="bg-gradient-to-br from-primary-500 to-dashboard-accent w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
@@ -109,7 +123,7 @@ export default function Dashboard() {
                         </div>
                         <h3 className="text-lg font-bold text-dashboard-text/90 mb-2">{t('dashboard.badges')}</h3>
                         <p className="text-4xl font-bold bg-gradient-to-r from-primary-500 to-dashboard-accent bg-clip-text text-transparent">{dashboard?.badges_count ?? 0}</p>
-                        <div className="mt-2 text-sm text-dashboard-text/60 font-medium">Achievements</div>
+                        <div className="mt-2 text-sm text-dashboard-text/60 font-medium">{t('common.achievements')}</div>
                     </div>
                     <div className="bg-gradient-to-br from-dashboard-card via-white to-secondary-50 p-8 rounded-2xl text-center shadow-soft border border-dashboard-border/30 hover:shadow-glow transition-all duration-300 animate-slide-up group hover:scale-105">
                         <div className="bg-gradient-to-br from-secondary-400 to-primary-500 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
@@ -117,7 +131,7 @@ export default function Dashboard() {
                         </div>
                         <h3 className="text-lg font-bold text-dashboard-text/90 mb-2">{t('dashboard.challenges')}</h3>
                         <p className="text-4xl font-bold bg-gradient-to-r from-secondary-400 to-primary-500 bg-clip-text text-transparent">{dashboard?.completed_challenges ?? 0}</p>
-                        <div className="mt-2 text-sm text-dashboard-text/60 font-medium">Completed</div>
+                        <div className="mt-2 text-sm text-dashboard-text/60 font-medium">{t('common.completed')}</div>
                     </div>
                 </div>
 
@@ -207,6 +221,13 @@ export default function Dashboard() {
                     </p>
                 </div>
             </div>
+
+            {/* Welcome Modal */}
+            <WelcomeModal 
+                isOpen={showWelcomeModal}
+                onClose={() => setShowWelcomeModal(false)}
+                userName={user?.name || ''}
+            />
         </section>
     );
 }

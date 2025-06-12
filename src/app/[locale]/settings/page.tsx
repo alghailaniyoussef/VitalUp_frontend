@@ -33,7 +33,7 @@ interface UserPreferences {
 
 export default function SettingsPage() {
   const { user } = useUser();
-  const { t, locale } = useI18n();
+  const { t, locale, setLocale } = useI18n();
   const [preferences, setPreferences] = useState<UserPreferences | null>(null);
   const [isSaving, setIsSaving] = useState(false);
   const [saveStatus, setSaveStatus] = useState<'idle' | 'success' | 'error'>('idle');
@@ -357,6 +357,64 @@ export default function SettingsPage() {
                 </label>
               </div>
             ))}
+          </div>
+        </section>
+
+        {/* Language Preferences Section */}
+        <section className="bg-gradient-to-br from-personal-card via-white to-personal-card backdrop-blur-sm rounded-2xl shadow-personal p-10 border border-personal-border/30 hover:border-personal-border/50 transition-all duration-300">
+          <div className="flex items-center mb-8">
+            <div className="bg-gradient-to-br from-personal-accent via-personal-info to-personal-accent p-4 rounded-full mr-6 shadow-soft">
+              <span className="text-white text-2xl">🌐</span>
+            </div>
+            <h2 className="text-3xl font-bold bg-gradient-to-r from-personal-text via-personal-accent to-personal-text bg-clip-text text-transparent">{t('settings.language.title')}</h2>
+          </div>
+          <div className="space-y-6">
+            <div className="flex items-center justify-between">
+              <div>
+                <label className="text-teal-700 font-medium text-lg">{t('settings.language.preferredLanguage')}</label>
+                <p className="text-teal-600 text-sm mt-1">{t('settings.language.description')}</p>
+              </div>
+              <div className="flex space-x-4">
+                <button
+                   type="button"
+                   onClick={() => setLocale('en')}
+                   className={`flex items-center space-x-2 px-4 py-2 rounded-xl border-2 transition-all duration-300 ${
+                     locale === 'en'
+                       ? 'border-personal-accent bg-personal-accent text-white shadow-glow'
+                       : 'border-personal-border bg-white text-personal-text hover:border-personal-accent'
+                   }`}
+                 >
+                   <svg className="w-5 h-4" viewBox="0 0 640 480" xmlns="http://www.w3.org/2000/svg">
+                     <defs>
+                       <clipPath id="us-settings">
+                         <path d="M0 0h640v480H0z"/>
+                       </clipPath>
+                     </defs>
+                     <g clipPath="url(#us-settings)">
+                       <path d="M0 0h640v480H0z" fill="#fff"/>
+                       <path d="M0 0h640v37h-640zM0 74h640v37h-640zM0 148h640v37h-640zM0 222h640v37h-640zM0 296h640v37h-640zM0 370h640v37h-640zM0 444h640v36h-640z" fill="#d22630"/>
+                       <path d="M0 0h364v258H0z" fill="#46467f"/>
+                     </g>
+                   </svg>
+                   <span className="font-medium">{t('common.english')}</span>
+                 </button>
+                 <button
+                   type="button"
+                   onClick={() => setLocale('es')}
+                   className={`flex items-center space-x-2 px-4 py-2 rounded-xl border-2 transition-all duration-300 ${
+                     locale === 'es'
+                       ? 'border-personal-accent bg-personal-accent text-white shadow-glow'
+                       : 'border-personal-border bg-white text-personal-text hover:border-personal-accent'
+                   }`}
+                 >
+                   <svg className="w-5 h-4" viewBox="0 0 750 500" xmlns="http://www.w3.org/2000/svg">
+                     <rect width="750" height="500" fill="#c60b1e"/>
+                     <rect width="750" height="250" y="125" fill="#ffc400"/>
+                   </svg>
+                   <span className="font-medium">{t('common.spanish')}</span>
+                 </button>
+              </div>
+            </div>
           </div>
         </section>
 

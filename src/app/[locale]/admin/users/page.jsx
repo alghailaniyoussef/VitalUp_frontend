@@ -446,7 +446,7 @@ export default function AdminUsers() {
                                         disabled={currentPage === 1}
                                         className="relative inline-flex items-center px-2 py-2 rounded-l-md border border-admin-border bg-admin-card text-sm font-medium text-admin-text/70 hover:bg-admin-card/80 disabled:opacity-50"
                                     >
-                                        <span className="sr-only">Previous</span>
+                                        <span className="sr-only">{t('common.previous')}</span>
                                         &larr;
                                     </button>
                                     {Array.from({ length: totalPages }, (_, i) => i + 1).map(page => (
@@ -463,7 +463,7 @@ export default function AdminUsers() {
                                         disabled={currentPage === totalPages}
                                         className="relative inline-flex items-center px-2 py-2 rounded-r-md border border-admin-border bg-admin-card text-sm font-medium text-admin-text/70 hover:bg-admin-card/80 disabled:opacity-50"
                                     >
-                                        <span className="sr-only">Next</span>
+                                        <span className="sr-only">{t('common.next')}</span>
                                         &rarr;
                                     </button>
                                 </nav>

@@ -297,7 +297,7 @@ export default function AdminChallenges() {
                     </div>
                 ) : challenges.filter(challenge => challenge.locale === locale).length === 0 ? (
                     <div className="text-center py-12">
-                        <p className="text-admin-text/60 text-lg">No challenges found for {locale.toUpperCase()} locale</p>
+                        <p className="text-admin-text/60 text-lg">{t('common.noChallengesFound', { locale: locale.toUpperCase() })}</p>
                     </div>
                 ) : (
                     /* Challenges Grid */

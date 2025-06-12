@@ -7,67 +7,59 @@
     "badges": "Insignias",
     "profile": "Perfil",
     "settings": "Configuración",
-    "admin": "Administración",
+    "admin": "Administrador",
     "users": "Usuarios",
-    "logout": "Cerrar sesión"
+    "signin": "Iniciar Sesión",
+    "register": "Registrarse",
+    "logout": "Cerrar Sesión",
+    "about": "Acerca de"
   },
   "common": {
     "loading": "Cargando...",
     "error": "Error",
     "success": "Éxito",
+    "level": "Nivel",
     "cancel": "Cancelar",
     "save": "Guardar",
-    "delete": "Eliminar",
+    "points": "Puntos",
     "edit": "Editar",
-    "view": "Ver",
+    "delete": "Eliminar",
+    "submit": "Enviar",
     "back": "Atrás",
     "next": "Siguiente",
-    "level": "Nivel",
     "previous": "Anterior",
-    "search": "Buscar",
-    "points": "Puntos",
-    "filter": "Filtrar",
-    "sort": "Ordenar",
-    "actions": "Acciones",
+    "close": "Cerrar",
     "confirm": "Confirmar",
     "yes": "Sí",
     "no": "No",
-    "tagline": "Sube de nivel, vive mejor"
-  },
-  "auth": {
-    "signin": "Iniciar Sesión",
-    "signup": "Registrarse",
-    "register": "Registrarse",
-    "logout": "Cerrar Sesión",
-    "email": "Correo electrónico",
-    "password": "Contraseña",
-    "signinTitle": "Iniciar sesión",
-    "emailPlaceholder": "Correo electrónico",
-    "passwordPlaceholder": "Contraseña",
-    "signingIn": "Iniciando sesión...",
-    "noAccount": "¿No tienes cuenta?",
-    "registerHere": "Regístrate aquí",
-    "emailVerifiedSuccess": "¡Email verificado exitosamente! Ya puedes iniciar sesión.",
-    "verificationInvalid": "El enlace de verificación es inválido o ha expirado.",
-    "emailAlreadyVerified": "Tu email ya está verificado. Puedes iniciar sesión.",
-    "registrationSuccess": "¡Registro exitoso! Por favor verifica tu email antes de iniciar sesión. Revisa tu bandeja de entrada.",
-
-    "authVerificationError": "Error verificando autenticación",
-    "emailVerificationRequired": "Por favor verifica tu email antes de iniciar sesión. Revisa tu bandeja de entrada.",
-    "loginError": "Error al iniciar sesión",
-    "connectionError": "Fallo en la conexión con el servidor",
-    "registerTitle": "Registrarse",
-    "namePlaceholder": "Nombre",
-    "confirmPasswordPlaceholder": "Confirmar contraseña",
-    "processing": "Procesando...",
-    "registerError": "Error al registrarse",
-    "alreadyHaveAccount": "¿Ya tienes una cuenta?",
-    "signinHere": "Inicia sesión"
+    "search": "Buscar",
+    "filter": "Filtrar",
+    "sort": "Ordenar",
+    "actions": "Acciones",
+    "view": "Ver",
+    "tagline": "Sube de nivel, vive mejor",
+    "totalEarned": "Total Ganado",
+    "currentLevel": "Nivel Actual",
+    "achievements": "Logros",
+    "completed": "Completado",
+    "progress": "Progreso",
+    "overallProgress": "Progreso General",
+    "english": "Inglés",
+    "spanish": "Español",
+    "quizCompleted": "¡Cuestionario Completado! 🎉",
+    "finalScore": "Tu puntuación final: {{score}} puntos",
+    "loginRequired": "Por favor inicia sesión para acceder a los cuestionarios",
+    "loginRequiredDesc": "Necesitas estar conectado para ver y realizar cuestionarios.",
+    "tryAgainLater": "Por favor intenta de nuevo más tarde.",
+    "questionOf": "Pregunta {{current}} de {{total}}",
+    "noChallengesFound": "No se encontraron desafíos para el idioma {{locale}}",
+    "noBadgesFound": "No se encontraron insignias para el idioma {{locale}}",
+    "levelNumber": "Nivel {{level}}"
   },
   "dashboard": {
     "loading": "Cargando tu panel...",
     "welcome": "Bienvenido, {{name}}",
-    "subtitle": "Tu Panel de Salud y Fitness 🌿",
+    "subtitle": "Tu Panel de Salud y Bienestar 🌿",
     "editProfile": "Editar Perfil",
     "totalPoints": "Puntos Totales",
     "level": "Nivel",
@@ -76,37 +68,61 @@
     "recentQuizzes": "Cuestionarios Recientes",
     "activeChallenges": "Desafíos Activos",
     "recentBadges": "Insignias Recientes",
+    "badgesShowcase": "Vitrina de Insignias",
     "dailyTip": "Consejo Diario 💡",
     "viewAll": "Ver Todo →",
     "defaultTip": "Respira profundo, nutre tu cuerpo y mente."
   },
-  
+  "auth": {
+    "signin": "Iniciar Sesión",
+    "signup": "Registrarse",
+    "register": "Registrarse",
+    "logout": "Cerrar Sesión",
+    "email": "Correo Electrónico",
+    "password": "Contraseña",
+    "signinTitle": "Iniciar Sesión",
+    "emailPlaceholder": "Dirección de correo electrónico",
+    "passwordPlaceholder": "Contraseña",
+    "signingIn": "Iniciando sesión...",
+    "noAccount": "¿No tienes una cuenta?",
+    "registerHere": "Regístrate aquí",
+    "emailVerifiedSuccess": "¡Correo verificado exitosamente! Ahora puedes iniciar sesión.",
+    "verificationInvalid": "El enlace de verificación es inválido o ha expirado.",
+    "emailAlreadyVerified": "Tu correo ya está verificado. Puedes iniciar sesión.",
+    "registrationSuccess": "¡Registro exitoso! Por favor verifica tu correo antes de iniciar sesión. Revisa tu bandeja de entrada.",
+    "authVerificationError": "Error verificando autenticación",
+    "emailVerificationRequired": "Por favor verifica tu correo antes de iniciar sesión. Revisa tu bandeja de entrada.",
+    "loginError": "Error al iniciar sesión",
+    "connectionError": "Falló la conexión al servidor",
+    "registerTitle": "Registrarse",
+    "namePlaceholder": "Nombre",
+    "confirmPasswordPlaceholder": "Confirmar contraseña",
+    "processing": "Procesando...",
+    "registerError": "Error al registrarse",
+    "alreadyHaveAccount": "¿Ya tienes una cuenta?",
+    "signinHere": "Iniciar sesión"
+  },
   "quiz": {
     "title": "Cuestionarios",
     "header": "Cuestionarios de Conocimiento",
-    "subtitle": "¡Pon a prueba tus conocimientos y gana puntos! 🧠✨",
+    "subtitle": "¡Pon a prueba tu conocimiento y gana puntos! 🧠✨",
     "stats": {
       "completed": "Completados",
       "available": "Disponibles",
       "inProgress": "En Progreso"
     },
     "error": "Ocurrió un error al cargar los cuestionarios",
-    "availableQuizzes": "Cuestionarios Disponibles",
     "questions": "Preguntas",
-    "pointsEach": "pts cada uno",
-    "startQuiz": "Comenzar Cuestionario",
-    "inProgressQuizzes": "Cuestionarios En Progreso",
+    "pointsEach": "pts cada una",
+    "inProgressQuizzes": "Cuestionarios en Progreso",
     "question": "Pregunta",
     "of": "de",
     "completed": "completado",
-    "resumeQuiz": "Continuar Cuestionario",
-    "completedQuizzes": "Cuestionarios Completados",
     "completedStatus": "Completado ✓",
-    "points": "Puntos",
     "pts": "pts",
     "loading": {
       "title": "Cargando cuestionarios...",
-      "message": "¡Espera mientras obtenemos tus cuestionarios!"
+      "message": "¡Por favor espera mientras obtenemos tus cuestionarios!"
     },
     "noQuizzes": {
       "title": "No hay cuestionarios disponibles",
@@ -115,63 +131,463 @@
     "feedback": {
       "correct": "¡Correcto! +{{points}} puntos. Haz clic en \"Siguiente Pregunta\" para continuar.",
       "incorrect": "Incorrecto. La respuesta correcta está resaltada en verde. Debes responder correctamente para continuar.",
-      "submitError": "Ocurrió un error al enviar tu respuesta",
-      "submitFailed": "Error al enviar respuesta",
+      "submitError": "Error: {{error}}",
+      "submitFailed": "Ocurrió un error al enviar tu respuesta",
       "loginRequired": "Por favor inicia sesión para acceder a los cuestionarios."
     },
+    "availableQuizzes": "Cuestionarios Disponibles",
+    "completedQuizzes": "Cuestionarios Completados",
     "incompleteQuizzes": "Cuestionarios Incompletos",
+    "startQuiz": "Iniciar Cuestionario",
+    "resumeQuiz": "Continuar Cuestionario",
     "retakeQuiz": "Repetir Cuestionario",
     "submitAnswer": "Enviar Respuesta",
     "nextQuestion": "Siguiente Pregunta",
     "completeQuiz": "Completar Cuestionario",
     "score": "Puntuación",
+    "points": "Puntos",
     "correct": "¡Correcto!",
     "incorrect": "Incorrecto",
     "quizCompleted": "¡Cuestionario Completado!",
     "congratulations": "¡Felicitaciones!",
-    "alreadyCompleted": "Ya has completado este cuestionario"
-
-},
-"challenges": {
+    "alreadyCompleted": "Ya has completado este cuestionario",
+    "close": "Cerrar"
+  },
+  "badges": {
+    "loading": "Cargando insignias...",
+    "loginRequired": "Por favor inicia sesión para ver las insignias.",
+    "title": "Colección de Insignias",
+    "subtitle": "¡Descubre y colecciona insignias de logros! 🏆✨",
+    "stats": {
+      "earned": "Ganadas",
+      "available": "Disponibles"
+    },
+    "categories": {
+      "all": "Todas las Insignias",
+      "quiz": "Maestro de Cuestionarios",
+      "challenge": "Héroe de Desafíos",
+      "points": "Coleccionista de Puntos",
+      "level": "Alcanzador de Niveles"
+    },
+    "sections": {
+      "earned": "Insignias Ganadas",
+      "available": "Insignias Disponibles",
+      "categories": "Categorías de Insignias",
+      "benefits": "Beneficios de Ganar Insignias"
+    },
+    "points": "puntos",
+    "earnedOn": "Ganada el",
+    "completeToEarn": "Completa los requisitos para ganar",
+    "empty": {
+      "allEarned": "Aún no has ganado ninguna insignia. ¡Completa desafíos y cuestionarios para ganar insignias!",
+      "categoryEarned": "Aún no has ganado insignias de {{category}}.",
+      "allAvailable": "¡Todas las insignias han sido ganadas! ¡Excelente trabajo!",
+      "categoryAvailable": "¡Todas las insignias de {{category}} han sido ganadas!"
+    },
+    "categoryTypes": {
+      "wellness": {
+        "title": "Logros de Bienestar",
+        "description": "Insignias ganadas manteniendo hábitos saludables y completando desafíos de bienestar."
+      },
+      "fitness": {
+        "title": "Hitos de Fitness",
+        "description": "Insignias otorgadas por alcanzar metas específicas de fitness y niveles de actividad."
+      },
+      "knowledge": {
+        "title": "Maestros del Conocimiento",
+        "description": "Insignias ganadas completando cuestionarios y demostrando conocimiento de salud."
+      }
+    },
+    "benefits": {
+      "unlock": "Desbloquea características y contenido especial",
+      "track": "Rastrea tu progreso en diferentes áreas de salud",
+      "earn": "Gana puntos bonus por completar colecciones de insignias",
+      "share": "Comparte tus logros con amigos",
+      "recommendations": "Obtén recomendaciones personalizadas basadas en las insignias ganadas"
+    },
+    "error": {
+      "fetch": "Error al obtener insignias"
+    }
+  },
+  "profile": {
+    "loading": "Cargando perfil...",
+    "title": "Mi Perfil",
+    "subtitle": "Gestiona tu información personal y preferencias",
+    "memberSince": "Miembro desde",
+    "buttons": {
+      "editPreferences": "Editar Preferencias",
+      "viewAll": "Ver Todo →"
+    },
+    "sections": {
+      "levelProgress": "Nivel y Progreso",
+      "statistics": "Estadísticas",
+      "recentBadges": "Insignias Recientes",
+      "pointsHistory": "Historial de Puntos"
+    },
+    "level": "Nivel",
+    "points": "puntos",
+    "pointsToNextLevel": "puntos para el siguiente nivel",
+    "stats": {
+      "completedChallenges": "Desafíos Completados",
+      "completedQuizzes": "Cuestionarios Completados",
+      "badgesEarned": "Insignias Ganadas",
+      "activeDays": "Días Activos"
+    },
+    "badges": {
+      "viewAll": "Ver Todo →",
+      "noBadges": "Aún no has ganado ninguna insignia"
+    },
+    "noBadges": "Aún no has ganado ninguna insignia",
+    "errors": {
+      "loadFailed": "Error al cargar datos del perfil",
+      "noToken": "No se encontró token de autenticación"
+    }
+  },
+  "admin": {
+    "loading": "Cargando panel de administrador...",
+    "title": "Panel de Administrador",
+    "subtitle": "Gestiona tu plataforma y ve analíticas 🔧📊",
+    "stats": {
+      "totalUsers": "Total de Usuarios",
+      "activeUsers": "Usuarios Activos",
+      "totalChallenges": "Total de Desafíos",
+      "totalQuizzes": "Total de Cuestionarios"
+    },
+    "navigation": {
+      "manageUsers": "Gestionar Usuarios",
+      "manageUsersDesc": "Ver y editar cuentas de usuario",
+      "manageChallenges": "Gestionar Desafíos",
+      "manageChallengesDesc": "Crear y editar desafíos",
+      "manageBadges": "Gestionar Insignias",
+      "manageBadgesDesc": "Crear y editar insignias",
+      "manageQuizzes": "Gestionar Cuestionarios",
+      "manageQuizzesDesc": "Crear y editar cuestionarios"
+    },
+    "charts": {
+      "usersByLevel": "Usuarios por Nivel",
+      "level": "Nivel",
+      "topChallenges": "Principales Desafíos",
+      "challenge": "Desafío",
+      "completions": "completaciones"
+    },
+    "quizzes": {
+      "loading": "Cargando cuestionarios...",
+      "title": "Gestionar Cuestionarios",
+      "subtitle": "Crear y gestionar contenido de cuestionarios 📝⚙️",
+      "createButton": "+ Crear Cuestionario",
+      "confirmDelete": "¿Estás seguro de que quieres eliminar este cuestionario?",
+      "questions": "preguntas",
+      "pointsPerQuestion": "Puntos por Pregunta",
+      "availableFrom": "Disponible Desde",
+      "availableUntil": "Disponible Hasta",
+      "stats": {
+        "total": "Total de Cuestionarios",
+        "active": "Cuestionarios Activos",
+        "totalQuestions": "Total de Preguntas"
+      },
+      "status": {
+        "active": "Activo",
+        "inactive": "Inactivo"
+      },
+      "difficulties": {
+        "easy": "Fácil",
+        "medium": "Medio",
+        "hard": "Difícil"
+      },
+      "pagination": {
+        "showing": "Mostrando página {{current}} de {{total}}"
+      },
+      "modal": {
+        "editTitle": "Editar Cuestionario",
+        "createTitle": "Crear Cuestionario",
+        "title": "Título",
+        "description": "Descripción",
+        "pointsPerQuestion": "Puntos por Pregunta",
+        "availableFrom": "Disponible Desde",
+        "availableUntil": "Disponible Hasta",
+        "status": "Estado",
+        "difficulty": "Dificultad",
+        "category": "Categoría",
+        "categoryPlaceholder": "general",
+        "locale": "Idioma",
+        "questions": "Preguntas",
+        "questionPlaceholder": "Texto de la pregunta",
+        "optionPlaceholder": "Opción {{number}}",
+        "addOption": "Agregar Opción",
+        "addQuestion": "Agregar Pregunta",
+        "remove": "Eliminar",
+        "saveChanges": "Guardar Cambios",
+        "createQuiz": "Crear Cuestionario"
+      },
+      "locales": {
+        "en": "Inglés",
+        "es": "Español"
+      },
+      "errors": {
+        "loadFailed": "Error al cargar cuestionarios. Por favor intenta de nuevo más tarde.",
+        "unexpectedFormat": "Se recibió formato de datos inesperado del servidor",
+        "processingError": "Error procesando respuesta del servidor",
+        "createFailed": "Error al crear cuestionario",
+        "updateFailed": "Error al actualizar cuestionario",
+        "deleteFailed": "Error al eliminar cuestionario"
+      }
+    },
+    "users": {
+      "loading": "Cargando usuarios...",
+      "title": "Gestionar Usuarios",
+      "subtitle": "Ver y editar cuentas de usuario 👥⚙️",
+      "confirmDelete": "¿Estás seguro de que quieres eliminar este usuario? Esta acción no se puede deshacer.",
+      "deleteSuccess": "Usuario eliminado exitosamente",
+      "deleteError": "Error al eliminar usuario",
+      "updateSuccess": "Usuario actualizado exitosamente",
+      "updateError": "Error al actualizar usuario",
+      "interestsUpdateSuccess": "Intereses del usuario actualizados exitosamente",
+      "interestsUpdateError": "Error al actualizar intereses del usuario",
+      "table": {
+        "id": "ID",
+        "name": "Nombre",
+        "email": "Correo",
+        "level": "Nivel",
+        "points": "Puntos",
+        "admin": "Admin",
+        "badges": "Insignias",
+        "actions": "Acciones",
+        "yes": "Sí",
+        "no": "No",
+        "moreBadges": "+ {{count}} más",
+        "noBadges": "Sin insignias",
+        "edit": "Editar",
+        "interests": "Intereses",
+        "delete": "Eliminar"
+      },
+      "pagination": {
+        "previous": "Anterior",
+        "next": "Siguiente",
+        "showing": "Mostrando página {{current}} de {{total}}"
+      },
+      "editModal": {
+        "title": "Editar Usuario",
+        "name": "Nombre",
+        "email": "Correo",
+        "level": "Nivel",
+        "points": "Puntos",
+        "admin": "Admin",
+        "cancel": "Cancelar",
+        "save": "Guardar"
+      },
+      "interestsModal": {
+        "title": "Editar Intereses del Usuario",
+        "subtitle": "Seleccionar intereses para {{name}}",
+        "cancel": "Cancelar",
+        "save": "Guardar"
+      }
+    },
+    "challenges": {
+      "loading": "Cargando desafíos...",
+      "title": "Gestionar Desafíos",
+      "subtitle": "Crear y gestionar desafíos de bienestar 💪⚙️",
+      "createButton": "+ Crear Desafío",
+      "confirmDelete": "¿Estás seguro de que quieres eliminar este desafío?",
+      "updateSuccess": "Desafío actualizado exitosamente",
+      "createSuccess": "Desafío creado exitosamente",
+      "deleteSuccess": "Desafío eliminado exitosamente",
+      "deleteError": "Error al eliminar desafío",
+      "error": "Ocurrió un error",
+      "categories": {
+        "physical": "Físico",
+        "mental": "Mental",
+        "social": "Social",
+        "environmental": "Ambiental"
+      },
+      "difficulties": {
+        "beginner": "Principiante",
+        "intermediate": "Intermedio",
+        "advanced": "Avanzado"
+      },
+      "status": {
+        "active": "Activo",
+        "inactive": "Inactivo"
+      },
+      "pagination": {
+        "previous": "Anterior",
+        "next": "Siguiente",
+        "showing": "Mostrando página {{current}} de {{total}}"
+      },
+      "modal": {
+        "editTitle": "Editar Desafío",
+        "createTitle": "Crear Nuevo Desafío",
+        "title": "Título",
+        "description": "Descripción",
+        "category": "Categoría",
+        "difficulty": "Dificultad",
+        "points": "Recompensa de Puntos",
+        "duration": "Duración (Días)",
+        "locale": "Idioma",
+        "locales": {
+          "en": "Inglés",
+          "es": "Español"
+        },
+        "startDate": "Fecha de Inicio",
+        "endDate": "Fecha de Fin",
+        "endDatePlaceholder": "Seleccionar fecha y hora de fin",
+        "goals": "Objetivos",
+        "goalPlaceholder": "Ingresa un objetivo",
+        "addGoal": "+ Agregar Objetivo",
+        "badgeRewards": "Recompensas de Insignias (IDs)",
+        "badgeIdPlaceholder": "ID de Insignia",
+        "addBadgeReward": "+ Agregar Recompensa de Insignia",
+        "remove": "×",
+        "activeChallenge": "Desafío Activo",
+        "cancel": "Cancelar",
+        "updateButton": "Actualizar Desafío",
+        "createButton": "Crear Desafío"
+      }
+    },
+    "badges": {
+      "loading": "Cargando insignias...",
+      "title": "Gestionar Insignias",
+      "subtitle": "Crear y gestionar insignias de logros 🏆⚙️",
+      "createButton": "+ Crear Insignia",
+      "confirmDelete": "¿Estás seguro de que quieres eliminar esta insignia?",
+      "updateSuccess": "Insignia actualizada exitosamente",
+      "createSuccess": "Insignia creada exitosamente",
+      "deleteSuccess": "Insignia eliminada exitosamente",
+      "deleteError": "Error al eliminar insignia",
+      "error": "Ocurrió un error",
+      "pointsReward": "Recompensa de Puntos",
+      "requirements": "Requisitos",
+      "items": "elementos",
+      "types": {
+        "quiz": "Cuestionario",
+        "challenge": "Desafío",
+        "points": "Puntos",
+        "level": "Nivel"
+      },
+      "status": {
+        "active": "Activo",
+        "inactive": "Inactivo"
+      },
+      "pagination": {
+        "previous": "Anterior",
+        "next": "Siguiente",
+        "showing": "Mostrando página {{current}} de {{total}}"
+      },
+      "modal": {
+        "editTitle": "Editar Insignia",
+        "createTitle": "Crear Insignia",
+        "name": "Nombre",
+        "description": "Descripción",
+        "selectIcon": "Seleccionar Icono",
+        "selected": "Seleccionado",
+        "type": "Tipo",
+        "pointsReward": "Recompensa de Puntos",
+        "isActive": "Está Activo",
+        "inactiveNote": "Las insignias inactivas no serán visibles para los usuarios",
+        "requirements": "Requisitos",
+        "requirementPlaceholder": "Ingresa requisito",
+        "addRequirement": "+ Agregar Requisito",
+        "remove": "Eliminar",
+        "cancel": "Cancelar",
+        "updateButton": "Actualizar Insignia",
+        "createButton": "Crear Insignia"
+      }
+    }
+  },
+  "footer": {
+    "copyright": "© 2025 VitalUp — Todos los derechos reservados."
+  },
+  "features": {
+    "title": "Características",
+    "subtitle": "Descubre todas las características increíbles que te ayudarán en tu viaje de bienestar",
+    "healthTracking": {
+      "title": "Seguimiento de Salud",
+      "description": "Monitorea tus métricas de salud diarias y rastrea tu progreso a lo largo del tiempo con nuestro sistema integral de seguimiento de salud."
+    },
+    "personalizedPlans": {
+      "title": "Planes Personalizados",
+      "description": "Obtén planes de bienestar personalizados adaptados a tus objetivos específicos, preferencias y estilo de vida para máxima efectividad."
+    },
+    "communitySupport": {
+      "title": "Apoyo Comunitario",
+      "description": "Conéctate con personas afines, comparte tu viaje y motívate con nuestra comunidad de bienestar solidaria."
+    },
+    "expertGuidance": {
+      "title": "Orientación Experta",
+      "description": "Accede a consejos profesionales y orientación de expertos certificados en bienestar para ayudarte a tomar decisiones informadas."
+    },
+    "progressAnalytics": {
+      "title": "Analíticas de Progreso",
+      "description": "Visualiza tu viaje de bienestar con analíticas detalladas e insights para entender tus patrones y mejoras."
+    },
+    "goalSetting": {
+      "title": "Establecimiento de Objetivos",
+      "description": "Establece objetivos de bienestar alcanzables y rastrea tu progreso con nuestro sistema inteligente de establecimiento y monitoreo de objetivos."
+    },
+    "smartReminders": {
+      "title": "Recordatorios Inteligentes",
+      "description": "Recibe recordatorios personalizados para ayudarte a mantenerte en el camino con tus objetivos de bienestar."
+    },
+    "progressTracking": {
+      "title": "Seguimiento de Progreso",
+      "description": "Monitorea tu progreso y ve qué tan lejos has llegado en tu viaje de bienestar."
+    },
+    "communityChallenges": {
+      "title": "Desafíos Comunitarios",
+      "description": "Únete a otros en desafíos semanales y mensuales."
+    }
+  },
+  "home": {
+    "hero": {
+      "title": "Transforma tu bienestar con VitalUp",
+      "description": "Únete a nuestra plataforma para recibir recordatorios de salud personalizados, completar desafíos diarios y desbloquear recompensas que te motivarán a vivir mejor.",
+      "imageAlt": "Ilustración de salud y bienestar",
+      "cta": {
+        "primary": "Comenzar Ahora",
+        "secondary": "Explorar Características"
+      }
+    }
+  },
+  "challenges": {
     "title": "Desafíos de Salud",
     "subtitle": "¡Transforma tu vida con nuestros desafíos de bienestar! 💪✨",
     "collection": "Colección de Desafíos",
     "loginRequired": "Por favor inicia sesión para acceder a los desafíos.",
     "stats": {
-        "completed": "Completados",
-        "available": "Disponibles",
-        "inProgress": "En Progreso"
+      "completed": "Completados",
+      "available": "Disponibles",
+      "inProgress": "En Progreso"
     },
     "sections": {
-        "active": "Desafíos Activos",
-        "available": "Desafíos Disponibles",
-        "completed": "Desafíos Completados"
+      "active": "Desafíos Activos",
+      "available": "Desafíos Disponibles",
+      "completed": "Desafíos Completados"
     },
     "progress": {
-        "label": "Progreso",
-        "complete": "¡Desafío Completado!",
-        "almostThere": "¡Casi ahí! ¡Sigue así!",
-        "halfway": "¡A mitad de camino! ¡Gran progreso!",
-        "goodStart": "¡Buen comienzo! ¡Continúa!",
-        "justStarted": "Recién comenzando"
+      "label": "Progreso",
+      "complete": "¡Desafío Completado!",
+      "almostThere": "¡Casi ahí! ¡Sigue así!",
+      "halfway": "¡A mitad de camino! ¡Gran progreso!",
+      "goodStart": "¡Buen comienzo! ¡Sigue así!",
+      "justStarted": "Apenas comenzando"
     },
     "buttons": {
-        "join": "Unirse al Desafío",
-        "joining": "Uniéndose..."
+      "join": "Unirse al Desafío",
+      "joining": "Uniéndose..."
     },
     "completedOn": "Completado el",
     "points": "puntos",
     "days": "días",
     "error": {
-        "fetch": "Error al cargar los desafíos",
-        "join": "Error al unirse al desafío"
+      "fetch": "Error al obtener desafíos",
+      "join": "Error al unirse al desafío"
     },
     "success": {
-        "joined": "¡Te has unido al desafío exitosamente! ¡Buena suerte!"
+      "joined": "¡Te uniste al desafío exitosamente! ¡Buena suerte!"
     }
   },
   "settings": {
     "title": "Configuración de Usuario",
+    "subtitle": "Gestiona tu información personal y preferencias",
     "sections": {
       "notifications": "Preferencias de Notificación",
       "privacy": "Configuración de Privacidad",
@@ -179,6 +595,7 @@
       "interests": "Intereses"
     },
     "notifications": {
+      "title": "Preferencias de Notificación",
       "quizReminders": "Recordatorios de Cuestionarios",
       "challengeUpdates": "Actualizaciones de Desafíos",
       "achievementAlerts": "Alertas de Logros",
@@ -199,6 +616,7 @@
       }
     },
     "privacy": {
+      "title": "Configuración de Privacidad",
       "profileVisibility": "Visibilidad del Perfil",
       "showActivityStatus": "Mostrar Estado de Actividad",
       "allowFriendRequests": "Permitir Solicitudes de Amistad",
@@ -211,460 +629,181 @@
       }
     },
     "dataProcessing": {
-      "analytics": "Analítica",
+      "analytics": "Analíticas",
       "personalization": "Personalización",
       "thirdPartySharing": "Compartir con Terceros"
     },
     "interests": {
-      "description": "Selecciona tus intereses para obtener recomendaciones personalizadas de desafíos"
+      "description": "Selecciona tus intereses para obtener recomendaciones de desafíos personalizadas"
+    },
+    "language": {
+      "title": "Preferencias de Idioma",
+      "preferredLanguage": "Idioma Preferido",
+      "description": "Elige tu idioma preferido para la interfaz"
     },
     "buttons": {
-       "save": "Guardar Cambios",
-       "saving": "Guardando..."
+      "save": "Guardar Cambios",
+      "saving": "Guardando..."
     },
     "messages": {
       "saveSuccess": "¡Configuración guardada exitosamente!",
-      "saveError": "Error al guardar la configuración. Por favor, inténtalo de nuevo."
-    }
-    },
-    "profile": {
-        "loading": "Cargando perfil...",
-        "title": "Mi Perfil",
-        "subtitle": "Gestiona tu información personal y preferencias",
-        "memberSince": "Miembro desde",
-        "buttons": {
-            "editPreferences": "Editar Preferencias",
-            "viewAll": "Ver Todas →"
-        },
-        "sections": {
-            "levelProgress": "Nivel y Progreso",
-            "statistics": "Estadísticas",
-            "recentBadges": "Insignias Recientes",
-            "pointsHistory": "Historial de Puntos"
-        },
-        "level": "Nivel",
-        "points": "puntos",
-        "pointsToNextLevel": "puntos para el siguiente nivel",
-        "stats": {
-            "completedChallenges": "Desafíos Completados",
-            "completedQuizzes": "Cuestionarios Completados",
-            "badgesEarned": "Insignias Obtenidas",
-            "activeDays": "Días Activos"
-        },
-        "badges": {
-            "viewAll": "Ver Todas →",
-            "noBadges": "Aún no has obtenido ninguna insignia"
-        },
-        "noBadges": "Aún no has obtenido ninguna insignia",
-        "errors": {
-            "loadFailed": "Error al cargar los datos del perfil"
-        }
-    },
-    "admin": {
-        "quizzes": {
-            "loading": "Cargando cuestionarios...",
-            "title": "Gestionar Cuestionarios",
-            "subtitle": "Crear y gestionar contenido de cuestionarios 📝⚙️",
-            "createButton": "+ Crear Cuestionario",
-            "confirmDelete": "¿Estás seguro de que quieres eliminar este cuestionario?",
-            "questions": "preguntas",
-            "pointsPerQuestion": "Puntos por Pregunta",
-            "availableFrom": "Disponible Desde",
-            "availableUntil": "Disponible Hasta",
-            "stats": {
-                "total": "Total de Cuestionarios",
-                "active": "Cuestionarios Activos",
-                "totalQuestions": "Total de Preguntas"
-            },
-            "status": {
-                "active": "Activo",
-                "inactive": "Inactivo"
-            },
-            "difficulties": {
-                "easy": "Fácil",
-                "medium": "Medio",
-                "hard": "Difícil"
-            },
-            "pagination": {
-                "showing": "Mostrando página {{current}} de {{total}}"
-            },
-            "modal": {
-                "editTitle": "Editar Cuestionario",
-                "createTitle": "Crear Cuestionario",
-                "title": "Título",
-                "description": "Descripción",
-                "pointsPerQuestion": "Puntos por Pregunta",
-                "availableFrom": "Disponible Desde",
-                "availableUntil": "Disponible Hasta",
-                "status": "Estado",
-                "difficulty": "Dificultad",
-                "category": "Categoría",
-                "categoryPlaceholder": "general",
-                "questions": "Preguntas",
-                "questionPlaceholder": "Texto de la pregunta",
-                "optionPlaceholder": "Opción {{number}}",
-                "addOption": "Agregar Opción",
-                "addQuestion": "Agregar Pregunta",
-                "remove": "Eliminar",
-                "saveChanges": "Guardar Cambios",
-                "createQuiz": "Crear Cuestionario"
-            },
-            "errors": {
-                "loadFailed": "Error al cargar cuestionarios. Por favor, inténtalo de nuevo más tarde.",
-                "unexpectedFormat": "Se recibió un formato de datos inesperado del servidor",
-                "processingError": "Error al procesar la respuesta del servidor",
-                "createFailed": "Error al crear cuestionario",
-                "updateFailed": "Error al actualizar cuestionario",
-                "deleteFailed": "Error al eliminar cuestionario"
-            }
-        },
-        "badges": {
-            "loading": "Cargando insignias...",
-            "title": "Gestionar Insignias",
-            "subtitle": "Crear y gestionar insignias de logros 🏆⚙️",
-            "createButton": "+ Crear Insignia",
-            "confirmDelete": "¿Estás seguro de que quieres eliminar esta insignia?",
-            "deleteSuccess": "Insignia eliminada exitosamente",
-            "deleteError": "Error al eliminar la insignia",
-            "updateSuccess": "Insignia actualizada exitosamente",
-            "createSuccess": "Insignia creada exitosamente",
-            "error": "Ocurrió un error",
-            "pointsReward": "Recompensa de Puntos",
-            "requirements": "Requisitos",
-            "items": "elementos",
-            "status": {
-                "active": "Activa",
-                "inactive": "Inactiva"
-            },
-            "types": {
-                "quiz": "Cuestionario",
-                "challenge": "Desafío",
-                "points": "Puntos",
-                "level": "Nivel"
-            },
-            "pagination": {
-                "previous": "Anterior",
-                "next": "Siguiente",
-                "showing": "Mostrando página {{current}} de {{total}}"
-            },
-            "modal": {
-                "editTitle": "Editar Insignia",
-                "createTitle": "Crear Nueva Insignia",
-                "name": "Nombre de la Insignia",
-                "description": "Descripción",
-                "selectIcon": "Seleccionar Icono",
-                "selected": "Seleccionado",
-                "type": "Tipo de Insignia",
-                "pointsReward": "Recompensa de Puntos",
-                "isActive": "Insignia Activa",
-                "inactiveNote": "Las insignias inactivas no estarán disponibles para que los usuarios las obtengan",
-                "requirements": "Requisitos",
-                "requirementPlaceholder": "Ingresa un requisito",
-                "remove": "×",
-                "addRequirement": "+ Agregar Requisito",
-                "cancel": "Cancelar",
-                "updateButton": "Actualizar Insignia",
-                "createButton": "Crear Insignia"
-            }
-        },
-        "loading": "Cargando panel de administración...",
-        "title": "Panel de Administración",
-        "subtitle": "Gestiona tu plataforma y visualiza analíticas 🔧📊",
-        "stats": {
-            "totalUsers": "Total de Usuarios",
-            "activeUsers": "Usuarios Activos",
-            "totalChallenges": "Total de Retos",
-            "totalQuizzes": "Total de Cuestionarios"
-        },
-        "navigation": {
-            "manageUsers": "Gestionar Usuarios",
-            "manageUsersDesc": "Ver y editar cuentas de usuario",
-            "manageChallenges": "Gestionar Retos",
-            "manageChallengesDesc": "Crear y editar retos",
-            "manageBadges": "Gestionar Insignias",
-            "manageBadgesDesc": "Crear y editar insignias",
-            "manageQuizzes": "Gestionar Cuestionarios",
-            "manageQuizzesDesc": "Crear y editar cuestionarios"
-        },
-        "charts": {
-            "usersByLevel": "Usuarios por Nivel",
-            "level": "Nivel",
-            "topChallenges": "Mejores Retos",
-            "challenge": "Reto",
-            "completions": "completados"
-        },
-        "users": {
-            "loading": "Cargando usuarios...",
-            "title": "Gestionar Usuarios",
-            "subtitle": "Ver y editar cuentas de usuario 👥⚙️",
-            "confirmDelete": "¿Estás seguro de que quieres eliminar este usuario? Esta acción no se puede deshacer.",
-            "deleteSuccess": "Usuario eliminado exitosamente",
-            "deleteError": "Error al eliminar usuario",
-            "updateSuccess": "Usuario actualizado exitosamente",
-            "updateError": "Error al actualizar usuario",
-            "interestsUpdateSuccess": "Intereses del usuario actualizados exitosamente",
-            "interestsUpdateError": "Error al actualizar intereses del usuario",
-            "table": {
-                "id": "ID",
-                "name": "Nombre",
-                "email": "Correo",
-                "level": "Nivel",
-                "points": "Puntos",
-                "admin": "Admin",
-                "badges": "Insignias",
-                "actions": "Acciones",
-                "yes": "Sí",
-                "no": "No",
-                "moreBadges": "+ {{count}} más",
-                "noBadges": "Sin insignias",
-                "edit": "Editar",
-                "interests": "Intereses",
-                "delete": "Eliminar"
-            },
-            "pagination": {
-                "previous": "Anterior",
-                "next": "Siguiente",
-                "showing": "Mostrando página {{current}} de {{total}}"
-            },
-            "editModal": {
-                "title": "Editar Usuario",
-                "name": "Nombre",
-                "email": "Correo",
-                "level": "Nivel",
-                "points": "Puntos",
-                "admin": "Admin",
-                "cancel": "Cancelar",
-                "save": "Guardar"
-            },
-            "interestsModal": {
-                "title": "Editar Intereses del Usuario",
-                "subtitle": "Seleccionar intereses para {{name}}",
-                "cancel": "Cancelar",
-                "save": "Guardar"
-            }
-        },
-        "challenges": {
-            "loading": "Cargando desafíos...",
-            "title": "Gestionar Desafíos",
-            "subtitle": "Crear y gestionar desafíos de bienestar 💪⚙️",
-            "createButton": "+ Crear Desafío",
-            "confirmDelete": "¿Estás seguro de que quieres eliminar este desafío?",
-            "updateSuccess": "Desafío actualizado exitosamente",
-            "createSuccess": "Desafío creado exitosamente",
-            "deleteSuccess": "Desafío eliminado exitosamente",
-            "deleteError": "Error al eliminar el desafío",
-            "error": "Ocurrió un error",
-            "categories": {
-                "physical": "Físico",
-                "mental": "Mental",
-                "social": "Social",
-                "environmental": "Ambiental"
-            },
-            "difficulties": {
-                "beginner": "Principiante",
-                "intermediate": "Intermedio",
-                "advanced": "Avanzado"
-            },
-            "status": {
-                "active": "Activo",
-                "inactive": "Inactivo"
-            },
-            "pagination": {
-                "previous": "Anterior",
-                "next": "Siguiente",
-                "showing": "Mostrando página {{current}} de {{total}}"
-            },
-            "modal": {
-                "editTitle": "Editar Desafío",
-                "createTitle": "Crear Nuevo Desafío",
-                "title": "Título",
-                "description": "Descripción",
-                "category": "Categoría",
-                "difficulty": "Dificultad",
-                "points": "Recompensa de Puntos",
-                "duration": "Duración (Días)",
-                "startDate": "Fecha de Inicio",
-                "endDate": "Fecha de Fin",
-                "endDatePlaceholder": "Seleccionar fecha y hora de fin",
-                "goals": "Objetivos",
-                "goalPlaceholder": "Ingresa un objetivo",
-                "addGoal": "+ Agregar Objetivo",
-                "badgeRewards": "Recompensas de Insignias (IDs)",
-                "badgeIdPlaceholder": "ID de Insignia",
-                "addBadgeReward": "+ Agregar Recompensa de Insignia",
-                "remove": "×",
-                "activeChallenge": "Desafío Activo",
-                "cancel": "Cancelar",
-                "updateButton": "Actualizar Desafío",
-                "createButton": "Crear Desafío"
-            }
-        }
-    },
-"badges": {
-  "loading": "Cargando insignias...",
-  "loginRequired": "Por favor inicia sesión para ver las insignias.",
-  "title": "Colección de Insignias",
-  "stats": {
-    "earned": "Obtenidas",
-    "available": "Disponibles"
-  },
-  "categories": {
-    "all": "Todas las Insignias",
-    "quiz": "Maestro de Cuestionarios",
-    "challenge": "Héroe de Desafíos",
-    "points": "Coleccionista de Puntos",
-    "level": "Alcanzador de Niveles"
-  },
-  "sections": {
-    "earned": "Insignias Obtenidas",
-    "available": "Insignias Disponibles",
-    "categories": "Categorías de Insignias",
-    "benefits": "Beneficios de Obtener Insignias"
-  },
-  "points": "puntos",
-  "earnedOn": "Obtenida el",
-  "completeToEarn": "Completa los requisitos para obtener",
-  "empty": {
-    "allEarned": "¡Aún no has obtenido ninguna insignia. Completa desafíos y cuestionarios para obtener insignias!",
-    "categoryEarned": "Aún no se han obtenido insignias de {{category}}.",
-    "allAvailable": "¡Todas las insignias han sido obtenidas! ¡Excelente trabajo!",
-    "categoryAvailable": "¡Todas las insignias de {{category}} han sido obtenidas!"
-  },
-  "categoryTypes": {
-    "wellness": {
-      "title": "Logros de Bienestar",
-      "description": "Insignias obtenidas manteniendo hábitos saludables y completando desafíos de bienestar."
-    },
-    "fitness": {
-      "title": "Hitos de Fitness",
-      "description": "Insignias otorgadas por alcanzar objetivos específicos de fitness y niveles de actividad."
-    },
-    "knowledge": {
-      "title": "Maestros del Conocimiento",
-      "description": "Insignias obtenidas completando cuestionarios y demostrando conocimiento de salud."
+      "saveError": "Error al guardar configuración. Por favor intenta de nuevo."
     }
   },
-  "benefits": {
-    "unlock": "Desbloquear características y contenido especial",
-    "track": "Seguir tu progreso en diferentes áreas de salud",
-    "earn": "Ganar puntos bonus por completar colecciones de insignias",
-    "share": "Compartir tus logros con amigos",
-    "recommendations": "Obtener recomendaciones personalizadas basadas en insignias obtenidas"
-  },
-  "error": {
-    "fetch": "Error al cargar las insignias"
-  }
-  },
-  "footer": {
-        "copyright": "© 2025 VitalUp — Todos los derechos reservados."
-    },
-    "pointsHistory": {
-        "title": "Historial de Puntos",
-        "totalPoints": "Puntos Totales",
-        "fromQuizzes": "De Cuestionarios",
-        "fromBadges": "De Insignias",
-        "fromChallenges": "De Retos",
-        "recentTransactions": "Transacciones Recientes",
-        "noHistory": "No hay historial de puntos disponible.",
-        "points": "puntos",
-        "balance": "Balance:",
-        "pagination": {
-            "previous": "Anterior",
-            "next": "Siguiente",
-            "page": "Página",
-            "of": "de"
-        }
-    },
-    "icons": {
-        "trophy": "Trofeo",
-        "medal": "Medalla",
-        "star": "Estrella",
-        "crown": "Corona",
-        "fire": "Fuego",
-        "lightning": "Rayo",
-        "diamond": "Diamante",
-        "shield": "Escudo",
-        "target": "Objetivo",
-        "rocket": "Cohete",
-        "brain": "Cerebro",
-        "heart": "Corazón",
-        "muscle": "Músculo",
-        "book": "Libro",
-        "graduation": "Graduación",
-        "checkmark": "Marca de verificación"
-    },
-    "languages": {
-        "english": "English",
-        "spanish": "Español"
-    },
-    "alt": {
-        "logo": "Logo de VitalUp"
-    },
-    "placeholders": {
-        "selectStartDateTime": "Seleccionar fecha y hora de inicio"
-    },
-  "features": {
-  "title": "¿Qué ofrecemos?",
-  "smartReminders": {
-    "title": "Recordatorios inteligentes",
-    "description": "Recibe correos según tu frecuencia preferida, totalmente personalizados."
-  },
-  "progressTracking": {
-    "title": "Seguimiento de progreso",
-    "description": "Gana puntos, sube de nivel y desbloquea recompensas."
-  },
-  "communityChallenges": {
-      "title": "Desafíos comunitarios",
-      "description": "Únete a otros en retos semanales y mensuales."
-    }
-},
-
-"home": {
-  "hero": {
-    "title": "Transforma tu bienestar con VitalUp",
-    "description": "Únete a nuestra plataforma para recibir recordatorios de salud personalizados, completar desafíos diarios y desbloquear recompensas que te motivarán a vivir mejor.",
-    "imageAlt": "Ilustración salud y bienestar",
-    "cta": {
-      "primary": "Comenzar ahora",
-      "secondary": "Explorar funciones"
+  "pointsHistory": {
+    "title": "Historial de Puntos",
+    "totalPoints": "Puntos Totales",
+    "fromQuizzes": "De Cuestionarios",
+    "fromBadges": "De Insignias",
+    "fromChallenges": "De Desafíos",
+    "recentTransactions": "Transacciones Recientes",
+    "noHistory": "No hay historial de puntos disponible.",
+    "points": "puntos",
+    "balance": "Saldo:",
+    "pagination": {
+      "previous": "Anterior",
+      "next": "Siguiente",
+      "page": "Página",
+      "of": "de"
     }
   },
-  "challenges": {
-    "title": "Desafíos de Salud",
-    "subtitle": "¡Transforma tu vida con nuestros desafíos de bienestar! 💪✨",
-    "collection": "Colección de Desafíos",
-    "loginRequired": "Por favor, inicia sesión para acceder a los desafíos.",
-    "stats": {
-      "completed": "Completados",
-      "available": "Disponibles",
-      "inProgress": "En Progreso"
+  "icons": {
+    "trophy": "Trofeo",
+    "medal": "Medalla",
+    "star": "Estrella",
+    "crown": "Corona",
+    "fire": "Fuego",
+    "lightning": "Rayo",
+    "diamond": "Diamante",
+    "shield": "Escudo",
+    "target": "Objetivo",
+    "rocket": "Cohete",
+    "brain": "Cerebro",
+    "heart": "Corazón",
+    "muscle": "Músculo",
+    "book": "Libro",
+    "graduation": "Graduación",
+    "checkmark": "Marca de Verificación"
+  },
+  "languages": {
+    "english": "Inglés",
+    "spanish": "Español"
+  },
+  "alt": {
+    "logo": "Logo de VitalUp"
+  },
+  "welcome": {
+    "title": "¡Bienvenido a VitalUp!",
+    "subtitle": "Estamos emocionados de tenerte a bordo",
+    "gettingStarted": "Comenzando:",
+    "modal": {
+      "title": "¡Bienvenido a VitalUp, {{name}}!",
+      "subtitle": "Estamos emocionados de tenerte a bordo",
+      "gettingStarted": "Comenzando:",
+      "step1": "Explora desafíos y cuestionarios",
+      "step2": "Gana puntos e insignias",
+      "step3": "Rastrea tu progreso",
+      "step4": "Compite con amigos",
+      "learnMore": "Aprender Más",
+      "getStarted": "Comenzar"
     },
-    "sections": {
-      "active": "Desafíos Activos",
-      "available": "Desafíos Disponibles",
-      "completed": "Desafíos Completados"
-    },
-    "progress": {
-      "label": "Progreso",
-      "complete": "¡Desafío Completado!",
-      "almostThere": "¡Casi ahí! ¡Sigue así!",
-      "halfway": "¡A mitad de camino! ¡Gran progreso!",
-      "goodStart": "¡Buen comienzo! ¡Continúa!",
-      "justStarted": "Apenas comenzando"
+    "steps": {
+      "explore": "Explora desafíos y cuestionarios",
+      "earn": "Gana puntos e insignias",
+      "track": "Rastrea tu progreso",
+      "compete": "Compite con amigos"
     },
     "buttons": {
-      "join": "Unirse al Desafío",
-      "joining": "Uniéndose..."
-    },
-    "completedOn": "Completado el",
-    "points": "puntos",
-    "error": {
-      "fetch": "Error al cargar los desafíos",
-      "join": "Error al unirse al desafío"
-    },
-    "success": {
-      "joined": "¡Te has unido al desafío exitosamente! ¡Buena suerte!"
+      "learnMore": "Aprender Más",
+      "getStarted": "Comenzar"
     }
+  },
+  "about": {
+    "title": "Acerca de VitalUp",
+    "subtitle": "Potenciando tu viaje hacia una mejor salud y bienestar",
+    "hero": {
+      "title": "Acerca de VitalUp",
+      "subtitle": "Potenciando tu viaje hacia una mejor salud y bienestar",
+      "joinNow": "Únete Ahora",
+      "signIn": "Iniciar Sesión",
+      "goToDashboard": "Ir al Panel"
+    },
+    "whoWeAre": {
+      "title": "Quiénes Somos",
+      "description": "VitalUp está diseñado para hacer que la salud y el bienestar sean atractivos a través de la gamificación. Creemos que cuidar tu salud debe ser divertido, gratificante y social."
+    },
+    "mission": {
+      "title": "Nuestra Misión",
+      "description": "VitalUp está diseñado para hacer que la salud y el bienestar sean atractivos a través de la gamificación. Creemos que cuidar tu salud debe ser divertido, gratificante y social."
+    },
+    "features": {
+      "title": "Lo Que Ofrecemos",
+      "challenges": {
+        "title": "Desafíos de Salud",
+        "description": "Participa en desafíos diarios y semanales diseñados para mejorar tu bienestar físico y mental."
+      },
+      "quizzes": {
+        "title": "Cuestionarios Educativos",
+        "description": "Pon a prueba tu conocimiento con cuestionarios interactivos sobre nutrición, fitness y bienestar."
+      },
+      "badges": {
+        "title": "Sistema de Logros",
+        "description": "Gana insignias y puntos mientras completas desafíos y alcanzas tus objetivos de salud."
+      },
+      "progress": {
+        "title": "Seguimiento de Progreso",
+        "description": "Rastrea tu progreso y celebra hitos en tu viaje de bienestar."
+      },
+      "community": {
+        "title": "Apoyo Comunitario",
+        "description": "Conéctate con personas afines en su viaje de bienestar."
+      }
+    },
+    "howToPlay": {
+      "title": "Cómo Jugar",
+      "subtitle": "Comienza con VitalUp en 4 simples pasos",
+      "step1": {
+        "title": "Regístrate y Establece Objetivos",
+        "description": "Crea tu cuenta y establece tus objetivos de salud"
+      },
+      "step2": {
+        "title": "Realiza Cuestionarios",
+        "description": "Pon a prueba tu conocimiento con cuestionarios interactivos"
+      },
+      "step3": {
+        "title": "Únete a Desafíos",
+        "description": "Participa en desafíos de bienestar"
+      },
+      "step4": {
+        "title": "Gana Recompensas",
+        "description": "Colecciona insignias y rastrea tu progreso"
+      }
+    },
+    "howItWorks": {
+      "title": "Cómo Funciona",
+      "steps": {
+        "signup": "Regístrate y establece tus objetivos de salud",
+        "participate": "Participa en desafíos y cuestionarios",
+        "earn": "Gana puntos y desbloquea logros",
+        "track": "Rastrea tu progreso y celebra hitos"
+      }
+    },
+    "cta": {
+      "title": "¿Listo para Comenzar tu Viaje?",
+      "subtitle": "Únete a miles de usuarios que ya están mejorando su salud con VitalUp.",
+      "description": "Únete a miles de usuarios que ya están mejorando su salud con VitalUp.",
+      "signUp": "Regístrate Ahora",
+      "signIn": "Iniciar Sesión",
+      "dashboard": "Ir al Panel",
+      "startJourney": "Comenzar tu Viaje",
+      "alreadyMember": "¿Ya eres miembro?",
+      "continuePlaying": "Continuar Jugando"
+    }
+  },
+  "placeholder": {
+    "selectStartDateTime": "Seleccionar fecha y hora de inicio"
+  },
+  "placeholders": {
+    "selectStartDateTime": "Seleccionar fecha y hora de inicio"
   }
-}
 }
