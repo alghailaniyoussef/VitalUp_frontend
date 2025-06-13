@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
-const locales = ['en', 'es'];
+const locales = ['en', 'es', 'ar'];
 const defaultLocale = 'es';
 
 // Protected routes that require authentication

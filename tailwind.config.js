@@ -6,9 +6,23 @@ module.exports = {
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
-    extend: {
-   
-    },
+    extend: {},
   },
-  plugins: [],
+  plugins: [
+    function({ addUtilities, addVariant }) {
+      // Add RTL/LTR direction utilities
+      addUtilities({
+        '.rtl': {
+          direction: 'rtl',
+        },
+        '.ltr': {
+          direction: 'ltr',
+        },
+      })
+      
+      // Add RTL variant
+      addVariant('rtl', '[dir="rtl"] &')
+      addVariant('ltr', '[dir="ltr"] &')
+    }
+  ],
 }

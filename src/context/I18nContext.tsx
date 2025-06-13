@@ -6,8 +6,9 @@ import { usePathname } from 'next/navigation';
 // Import translation files
 import enTranslations from '@/locales/en.json';
 import esTranslations from '@/locales/es.json';
+import arTranslations from '@/locales/ar.json';
 
-type Locale = 'en' | 'es';
+type Locale = 'en' | 'es' | 'ar';
 
 interface Translations {
   [key: string]: string | Translations;
@@ -23,6 +24,7 @@ interface I18nContextType {
 const translations: Record<Locale, Translations> = {
   en: enTranslations,
   es: esTranslations,
+  ar: arTranslations,
 };
 
 const I18nContext = createContext<I18nContextType | undefined>(undefined);
@@ -41,7 +43,7 @@ export function I18nProvider({ children }: I18nProviderProps) {
     const pathSegments = pathname.split('/');
     const urlLocale = pathSegments[1] as Locale;
     
-    if (urlLocale && ['en', 'es'].includes(urlLocale)) {
+    if (urlLocale && ['en', 'es', 'ar'].includes(urlLocale)) {
       setLocaleState(urlLocale);
       // Store this locale preference
       localStorage.setItem('preferred-locale', urlLocale);
@@ -49,7 +51,7 @@ export function I18nProvider({ children }: I18nProviderProps) {
       // If no locale in URL, check localStorage for preference
       const storedLocale = localStorage.getItem('preferred-locale') as Locale | null;
       
-      if (storedLocale && ['en', 'es'].includes(storedLocale)) {
+      if (storedLocale && ['en', 'es', 'ar'].includes(storedLocale)) {
         // Use stored preference
         setLocaleState(storedLocale);
         // Update URL without page refresh
@@ -64,13 +66,21 @@ export function I18nProvider({ children }: I18nProviderProps) {
     }
   }, [pathname]);
 
+  // Set document direction based on locale
+  useEffect(() => {
+    if (typeof document !== 'undefined') {
+      document.documentElement.dir = locale === 'ar' ? 'rtl' : 'ltr';
+      document.documentElement.lang = locale;
+    }
+  }, [locale]);
+
   // Function to change locale and update URL without page refresh
   const setLocale = (newLocale: Locale) => {
     const pathSegments = pathname.split('/');
     const currentLocale = pathSegments[1];
     
     let newPath;
-    if (['en', 'es'].includes(currentLocale)) {
+    if (['en', 'es', 'ar'].includes(currentLocale)) {
       // Replace existing locale
       pathSegments[1] = newLocale;
       newPath = pathSegments.join('/');
@@ -126,7 +136,7 @@ export function I18nProvider({ children }: I18nProviderProps) {
     return value;
   };
 
-  const availableLocales: Locale[] = ['en', 'es'];
+  const availableLocales: Locale[] = ['en', 'es', 'ar'];
 
   return (
     <I18nContext.Provider value={{ locale, setLocale, t, availableLocales }}>

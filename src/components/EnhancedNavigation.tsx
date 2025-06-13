@@ -245,10 +245,10 @@ export default function EnhancedNavigation() {
   return (
     <nav className={`${isOnAdminPage ? 'bg-admin-surface border-admin-border' : 'bg-white border-gray-200'} shadow-lg border-b sticky top-0 z-40`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between h-16">
+        <div className="flex justify-between h-16 rtl:flex-row-reverse">
           {/* Logo and brand */}
-          <div className="flex items-center">
-            <Link href={`/${locale}`} className="flex items-center space-x-3">
+          <div className="flex items-center rtl:order-2">
+            <Link href={`/${locale}`} className="flex items-center space-x-3 rtl:space-x-reverse">
               <div className="w-30 h-14 bg-gradient-to-br from-teal-50 to-teal-100 rounded-lg flex items-center justify-center">
                 <Image src="/logo.png" alt={t('alt.logo')} width={120} height={56} className="h-auto w-auto" />
               </div>
@@ -259,12 +259,12 @@ export default function EnhancedNavigation() {
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-1">
+          <div className="hidden md:flex items-center space-x-1 rtl:space-x-reverse nav-links">
             {user && navigationItems.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className={`px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 flex items-center space-x-2 ${isActive(item.href)
+                className={`px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 flex items-center space-x-2 rtl:space-x-reverse ${isActive(item.href)
                   ? (isOnAdminPage ? 'bg-admin-accent/20 text-admin-accent border border-admin-accent/30' : 'bg-teal-50 text-teal-700 border border-teal-200')
                   : (isOnAdminPage ? 'text-admin-text hover:text-admin-accent hover:bg-admin-card' : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50')
                   }`}
@@ -278,7 +278,7 @@ export default function EnhancedNavigation() {
               <Link
                 key={item.href}
                 href={item.href}
-                className={`px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 flex items-center space-x-2 ${isActive(item.href)
+                className={`px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 flex items-center space-x-2 rtl:space-x-reverse ${isActive(item.href)
                   ? 'bg-teal-50 text-teal-700 border border-teal-200'
                   : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
                   }`}
@@ -291,7 +291,7 @@ export default function EnhancedNavigation() {
             {user && user.is_admin && (
               <Link
                 href={`/${locale}/admin`}
-                className={`px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 flex items-center space-x-2 ${isAdminActive
+                className={`px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 flex items-center space-x-2 rtl:space-x-reverse ${isAdminActive
                   ? (isOnAdminPage ? 'bg-admin-accent text-white border border-admin-accent shadow-glow' : 'bg-purple-50 text-purple-700 border border-purple-200')
                   : (isOnAdminPage ? 'text-admin-text hover:text-admin-accent hover:bg-admin-card' : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50')
                   }`}
@@ -313,10 +313,10 @@ export default function EnhancedNavigation() {
             ) : user ? (
               <>
                 {/* User info - Desktop */}
-                <div className="hidden md:flex items-center space-x-3">
-                  <div className="text-right">
+                <div className="hidden md:flex items-center space-x-3 rtl:space-x-reverse">
+                  <div className="text-right rtl:text-left">
                     <p className={`text-sm font-medium ${isOnAdminPage ? 'text-admin-text' : 'text-gray-900'}`}>{user.name}</p>
-                    <div className="flex items-center space-x-2">
+                    <div className="flex items-center space-x-2 rtl:space-x-reverse">
                       <span className={`text-xs ${isOnAdminPage ? 'text-admin-text-muted' : 'text-gray-500'}`}>{t('common.level')} {level}</span>
                       <span className={`text-xs font-medium ${isOnAdminPage ? 'text-admin-accent' : 'text-teal-600'}`}>{points} {t('common.points')}</span>
                     </div>
@@ -358,7 +358,7 @@ export default function EnhancedNavigation() {
                           initial={{ opacity: 0, scale: 0.95, y: -10 }}
                           animate={{ opacity: 1, scale: 1, y: 0 }}
                           exit={{ opacity: 0, scale: 0.95, y: -10 }}
-                          className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 py-1"
+                          className="absolute right-0 rtl:right-auto rtl:left-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 py-1"
                         >
                           <Link
                             href={`/${locale}/profile`}
@@ -404,7 +404,7 @@ export default function EnhancedNavigation() {
                 </button>
               </>
             ) : (
-              <div className="flex items-center space-x-3">
+              <div className="flex items-center space-x-3 rtl:space-x-reverse">
                 <Link
                   href={`/${locale}`}
                   className={`inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium ${isActive(`/${locale}`) ? 'border-teal-500 text-teal-900' : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700'}`}

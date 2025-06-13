@@ -374,11 +374,11 @@ export default function SettingsPage() {
                 <label className="text-teal-700 font-medium text-lg">{t('settings.language.preferredLanguage')}</label>
                 <p className="text-teal-600 text-sm mt-1">{t('settings.language.description')}</p>
               </div>
-              <div className="flex space-x-4">
+              <div className="flex space-x-4 rtl:space-x-reverse">
                 <button
                    type="button"
                    onClick={() => setLocale('en')}
-                   className={`flex items-center space-x-2 px-4 py-2 rounded-xl border-2 transition-all duration-300 ${
+                   className={`flex items-center space-x-2 rtl:space-x-reverse px-4 py-2 rounded-xl border-2 transition-all duration-300 ${
                      locale === 'en'
                        ? 'border-personal-accent bg-personal-accent text-white shadow-glow'
                        : 'border-personal-border bg-white text-personal-text hover:border-personal-accent'
@@ -396,12 +396,12 @@ export default function SettingsPage() {
                        <path d="M0 0h364v258H0z" fill="#46467f"/>
                      </g>
                    </svg>
-                   <span className="font-medium">{t('common.english')}</span>
+                   <span className="font-medium">{t('languages.english')}</span>
                  </button>
                  <button
                    type="button"
                    onClick={() => setLocale('es')}
-                   className={`flex items-center space-x-2 px-4 py-2 rounded-xl border-2 transition-all duration-300 ${
+                   className={`flex items-center space-x-2 rtl:space-x-reverse px-4 py-2 rounded-xl border-2 transition-all duration-300 ${
                      locale === 'es'
                        ? 'border-personal-accent bg-personal-accent text-white shadow-glow'
                        : 'border-personal-border bg-white text-personal-text hover:border-personal-accent'
@@ -411,7 +411,23 @@ export default function SettingsPage() {
                      <rect width="750" height="500" fill="#c60b1e"/>
                      <rect width="750" height="250" y="125" fill="#ffc400"/>
                    </svg>
-                   <span className="font-medium">{t('common.spanish')}</span>
+                   <span className="font-medium">{t('languages.spanish')}</span>
+                 </button>
+                 <button
+                   type="button"
+                   onClick={() => setLocale('ar')}
+                   className={`flex items-center space-x-2 rtl:space-x-reverse px-4 py-2 rounded-xl border-2 transition-all duration-300 ${
+                     locale === 'ar'
+                       ? 'border-personal-accent bg-personal-accent text-white shadow-glow'
+                       : 'border-personal-border bg-white text-personal-text hover:border-personal-accent'
+                   }`}
+                 >
+                   <svg className="w-5 h-4" viewBox="0 0 900 600" xmlns="http://www.w3.org/2000/svg">
+                     <rect width="900" height="200" fill="#000"/>
+                     <rect width="900" height="200" y="200" fill="#fff"/>
+                     <rect width="900" height="200" y="400" fill="#d00"/>
+                   </svg>
+                   <span className="font-medium">{t('languages.arabic')}</span>
                  </button>
               </div>
             </div>

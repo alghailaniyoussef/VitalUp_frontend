@@ -19,6 +19,7 @@ export default function LocaleLayout({ children }: LocaleLayoutProps) {
 export async function generateStaticParams() {
   return [
     { locale: 'en' },
-    { locale: 'es' }
+    { locale: 'es' },
+    { locale: 'ar' }
   ];
 }

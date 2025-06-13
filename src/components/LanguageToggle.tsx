@@ -16,7 +16,8 @@ export default function LanguageToggle({ className = '', showLabels = true }: La
   
   const languages = {
     en: t('languages.english'),
-    es: t('languages.spanish')
+    es: t('languages.spanish'),
+    ar: t('languages.arabic')
   };
 
   const languageFlags = {
@@ -38,6 +39,12 @@ export default function LanguageToggle({ className = '', showLabels = true }: La
       <svg className="w-5 h-4" viewBox="0 0 750 500" xmlns="http://www.w3.org/2000/svg">
         <rect width="750" height="500" fill="#c60b1e"/>
         <rect width="750" height="250" y="125" fill="#ffc400"/>
+      </svg>
+    ),
+    ar: (
+      <svg className="w-5 h-4" viewBox="0 0 900 600" xmlns="http://www.w3.org/2000/svg">
+        <rect width="900" height="600" fill="#c1272d"/>
+        <path d="M450 225l-53.455 164.45L266 225l130.545 94.55L266 414.1l130.545-94.55L450 484l53.455-164.45L634 414.1l-130.545-94.55L634 225l-130.545 94.55L450 225z" fill="#006233"/>
       </svg>
     )
   };
@@ -76,7 +83,14 @@ export function LanguageToggleCompact({ className = '' }: { className?: string }
   const { locale, setLocale } = useI18n();
 
   const toggleLanguage = () => {
-    setLocale(locale === 'en' ? 'es' : 'en');
+    // Cycle through languages: en -> es -> ar -> en
+    if (locale === 'en') {
+      setLocale('es');
+    } else if (locale === 'es') {
+      setLocale('ar');
+    } else {
+      setLocale('en');
+    }
   };
 
   const compactLanguageFlags = {
@@ -99,6 +113,12 @@ export function LanguageToggleCompact({ className = '' }: { className?: string }
         <rect width="750" height="500" fill="#c60b1e"/>
         <rect width="750" height="250" y="125" fill="#ffc400"/>
       </svg>
+    ),
+    ar: (
+      <svg className="w-4 h-3" viewBox="0 0 900 600" xmlns="http://www.w3.org/2000/svg">
+        <rect width="900" height="600" fill="#c1272d"/>
+        <path d="M450 225l-53.455 164.45L266 225l130.545 94.55L266 414.1l130.545-94.55L450 484l53.455-164.45L634 414.1l-130.545-94.55L634 225l-130.545 94.55L450 225z" fill="#006233"/>
+      </svg>
     )
   };
 
@@ -112,7 +132,7 @@ export function LanguageToggleCompact({ className = '' }: { className?: string }
       `}
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.9 }}
-      title={`Switch to ${locale === 'en' ? 'Español' : 'English'}`}
+      title={`Switch to ${locale === 'en' ? 'Español' : locale === 'es' ? 'العربية' : 'English'}`}
     >
       <span className="flex items-center justify-center">{compactLanguageFlags[locale]}</span>
     </motion.button>
