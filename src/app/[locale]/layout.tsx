@@ -1,5 +1,9 @@
 import { ReactNode } from 'react';
+import type { Metadata } from 'next';
 
+export const metadata: Metadata = {
+  title: 'VitalUp',
+};
 interface LocaleLayoutProps {
   children: ReactNode;
   params: Promise<{
