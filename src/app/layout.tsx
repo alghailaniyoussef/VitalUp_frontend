@@ -6,6 +6,8 @@ import { UserProvider } from '@/context/UserContext';
 import { I18nProvider } from '@/context/I18nContext';
 import Footer from '@/components/Footer';
 
+
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="es">

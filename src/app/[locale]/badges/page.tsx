@@ -1,5 +1,4 @@
 'use client';
-
 import { useState, useEffect } from 'react';
 import { useUser } from '@/context/UserContext';
 import { useI18n } from '@/context/I18nContext';
